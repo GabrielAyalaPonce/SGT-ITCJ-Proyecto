@@ -17,12 +17,16 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import{AngularFireModule} from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './components/login/login.component';
+import { SpinnerComponent } from './Shared/spinner/spinner.component';
+import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    SpinnerComponent,
+    RecoverPasswordComponent
   ],
   imports: [
     BrowserModule,

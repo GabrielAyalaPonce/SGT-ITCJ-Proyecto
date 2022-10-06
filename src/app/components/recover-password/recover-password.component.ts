@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecoverPasswordComponent implements OnInit {
 
+  email!:string;
+
   constructor() { }
 
   ngOnInit(): void {

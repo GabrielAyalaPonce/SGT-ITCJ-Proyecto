@@ -5,7 +5,7 @@
         <img style="border-radius: 100%;" mat-card-lg-image src="assets/img/Logo-SGT.png">
       </mat-card-header>
       <mat-card-content>
-        <mat-tab-group>
+        <mat-tab-group >
           <mat-tab label="Login">
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
@@ -18,25 +18,26 @@
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
             <button mat-button color="primary" (click)="login()">Login</button>
+            <a style="color: rgb(0, 0, 0);" routerLink="/recover-password">Olvide mi contrasena</a>
           </mat-tab>
-          <mat-tab label="Register">
+
+          <mat-tab  (ngSubmit)="register()" [formGroup]="registerUser"  label="Register">
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
-              <input type="email" matInput placeholder="Email" value="" [(ngModel)]="remail">
+              <input type="email" matInput placeholder="Email" value="" formControlName="email">
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
-
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
-              <input type="password" matInput placeholder="Password" [(ngModel)]="rpassword">
+              <input type="password" matInput placeholder="Password" formControlName="password">
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
-              <input type="password" matInput placeholder="Password" [(ngModel)]="rcpassword">
+              <input type="password" matInput placeholder="Password" formControlName="repeatPassword">
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
-            <button mat-button color="primary" (click)="register()">Register</button>
+            <button mat-button color="primary" type="submit"  (click)="register()">Registrar</button>
           </mat-tab>
         </mat-tab-group>
       </mat-card-content>

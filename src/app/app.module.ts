@@ -12,7 +12,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import{AngularFireModule} from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
@@ -42,7 +42,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MatIconModule,
     FormsModule,
     MatSnackBarModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

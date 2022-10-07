@@ -48,15 +48,15 @@ export class LoginComponent {
     }).catch((err)=>{
       this.loading = false;
       console.log(err)
-      this.snackBar.open(this.firebaseErrors.codeError(err.code), 'exit');
+      this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
     })
 
     console.log(email,password,repeatPassword);
   }
 
   login() {
-    const email = this.loginUser.value.email;
-    const password = this.loginUser.value.password;
+    const email = this.loginUser.value.logemail;
+    const password = this.loginUser.value.logpassword;
 
     this.loading = true;
     this.afAuth.signInWithEmailAndPassword(email, password).then((user) => {
@@ -67,8 +67,7 @@ export class LoginComponent {
       }
     }).catch((err) => {
       this.loading = false;
-      this.snackBar.open(this.firebaseErrors.codeError(err.code), 'exit');
+      this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
     })
   }
-
 }

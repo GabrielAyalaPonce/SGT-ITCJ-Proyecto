@@ -13,7 +13,10 @@ export class LoginComponent {
 
   email!:string;
   password!:string;
+  logemail!:string;
+  logpassword!:string;
   registerUser!: FormGroup;
+  loginUser!:FormGroup;
   loading:boolean=false;
 
 
@@ -22,7 +25,11 @@ export class LoginComponent {
       email :['',Validators.required],
       password :['',Validators.required],
       repeatPassword :['',Validators.required],
-      })
+      });
+      this.loginUser = this.fb.group({
+        logemail :['',Validators.required],
+        logpassword :['',Validators.required],
+        })
    }
    register() {
     const email = this.registerUser.value.email;
@@ -48,11 +55,18 @@ export class LoginComponent {
     console.log(email,password,repeatPassword);
   }
   login() {
-    if(this.email=="admin" && this.password=="admin"){
-        this.snackBar.open('Login Successful','',{duration:1000})
-    }else{
-      this.snackBar.open('Login error','',{duration:1000})
-    }
+    const logemail = this.loginUser.value.logemail;
+    const logpassword = this.loginUser.value.logpassword;
+
+
+    this.afAuth.signInWithEmailAndPassword(logemail,logpassword).then((user)=>{
+      this.loading = false;
+      this.router.navigate(['/dashboard'])
+      console.log(user)
+      this.router
+    }).catch((err)=>{
+      console.log(err)
+    })
 
 
 

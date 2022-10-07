@@ -1,5 +1,10 @@
 <div class="center-content">
-    <mat-card class="example-card">
+
+  <mat-card   *ngIf="loading" class="loading">
+    <img style="width:100%; border-radius: 100%;" src="assets/img/Gif-Loading-SGTv2.gif">
+  </mat-card>
+
+    <mat-card class="example-card" *ngIf="!loading">
       <mat-card-title style="font-size:31px;">Sistema Gestion De Tutorias</mat-card-title>
       <mat-card-header >
         <img style="border-radius: 100%;" mat-card-lg-image src="assets/img/Logo-SGT.png">

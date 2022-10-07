@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router, RouterLink } from '@angular/router';
+import { Router} from '@angular/router';
+import { FirebaseCodeErrorsService } from 'src/app/services/firebase-code-errors.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent {
   loading:boolean=false;
 
 
-  constructor(private afAuth:AngularFireAuth, private fb:FormBuilder,private snackBar:MatSnackBar,private router:Router) {
+  constructor(private afAuth:AngularFireAuth, private fb:FormBuilder,private snackBar:MatSnackBar,private router:Router,  private firebaseErrors:FirebaseCodeErrorsService ) {
       this.registerUser = this.fb.group({
       email :['',Validators.required],
       password :['',Validators.required],
@@ -42,32 +43,32 @@ export class LoginComponent {
       this.snackBar.open('Usuario registrado con exito!!','',{duration:1000})
     }
     this.loading = true;
-     this.afAuth.createUserWithEmailAndPassword(email,password).then((user)=>{
-      this.loading = false;
+     this.afAuth.createUserWithEmailAndPassword(email,password).then(()=>{
       this.router.navigate(['/login'])
-      console.log(user)
-      this.router
     }).catch((err)=>{
       this.loading = false;
       console.log(err)
+      this.snackBar.open(this.firebaseErrors.codeError(err.code), 'exit');
     })
 
     console.log(email,password,repeatPassword);
   }
+
   login() {
-    const logemail = this.loginUser.value.logemail;
-    const logpassword = this.loginUser.value.logpassword;
+    const email = this.loginUser.value.email;
+    const password = this.loginUser.value.password;
 
-
-    this.afAuth.signInWithEmailAndPassword(logemail,logpassword).then((user)=>{
+    this.loading = true;
+    this.afAuth.signInWithEmailAndPassword(email, password).then((user) => {
+      if(user.user?.emailVerified) {
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.router.navigate(['/verificar-correo']);
+      }
+    }).catch((err) => {
       this.loading = false;
-      this.router.navigate(['/dashboard'])
-      console.log(user)
-      this.router
-    }).catch((err)=>{
-      console.log(err)
+      this.snackBar.open(this.firebaseErrors.codeError(err.code), 'exit');
     })
+  }
 
-
-
-}}
+}

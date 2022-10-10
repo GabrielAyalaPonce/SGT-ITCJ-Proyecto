@@ -12,19 +12,25 @@
       <mat-card-content>
         <mat-tab-group >
 
-          <mat-tab    (ngSubmit)="login()" [formGroup]="loginUser" label="Login">
+          <mat-tab   *ngIf="!loading" (ngSubmit)="login()" [formGroup]="loginUser" label="Login">
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
               <input type="email" matInput placeholder="Email" formControlName="logemail">
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
+            <span *ngIf="loginUser.get('logemail')?.hasError('required') && loginUser.get('logemail')?.touched" >
+              El <strong>correo</strong> es requerido
+          </span>
+          <span *ngIf="loginUser.get('logemail')?.hasError('email') && loginUser.get('logemail')?.touched" >
+              El <strong>correo</strong> es invalido
+          </span>
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
               <input type="password" matInput placeholder="Password" formControlName="logpassword">
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
-            <button mat-button color="primary" type="submit" (click)="login()">Login</button>
-            <a style="color: rgb(0, 0, 0);" routerLink="/recover-password">Olvide mi contrasena</a>
+            <button mat-button color="primary" type="submit"  [disabled]="loginUser.invalid" (click)="login()">Login</button>
+            <a style="color: rgb(0, 0, 0);"  routerLink="/recover-password"  >Olvide mi contrasena</a>
           </mat-tab>
 
           <mat-tab  (ngSubmit)="register()" [formGroup]="registerUser"  label="Register">
@@ -33,17 +39,29 @@
               <input type="email" matInput placeholder="Email" formControlName="email">
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
+            <span *ngIf="registerUser.get('email')?.hasError('required') && registerUser.get('email')?.touched" >
+              El <strong>correo</strong> es requerido
+          </span>
+          <span *ngIf="registerUser.get('email')?.hasError('email') && registerUser.get('email')?.touched" >
+              El <strong>correo</strong> es invalido
+          </span>
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
               <input type="password" matInput placeholder="Password" formControlName="password">
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
+            <span *ngIf="registerUser.get('password')?.hasError('required') && registerUser.get('password')?.touched" >
+              El <strong>password</strong> es requerida
+          </span>
+          <span *ngIf="registerUser.get('password')?.hasError('minlength') && registerUser.get('password')?.touched">
+              El <strong>password</strong> debe tener 6 caracteres
+          </span>
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
               <input type="password" matInput placeholder="Password" formControlName="repeatPassword">
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
-            <button mat-button color="primary" type="submit"  (click)="register()">Registrar</button>
+            <button mat-button color="primary" type="submit"  (click)="register()" [disabled]="registerUser.invalid" >Registrar</button>
           </mat-tab>
         </mat-tab-group>
       </mat-card-content>

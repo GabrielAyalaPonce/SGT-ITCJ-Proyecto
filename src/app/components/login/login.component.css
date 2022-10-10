@@ -6,7 +6,7 @@
 
 .example-card {
   max-width: 400px;
-  height: 520px;
+  height: auto;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(255, 1, 1, 0.22);
   border-radius: 15px;
 }

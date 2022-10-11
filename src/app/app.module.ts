@@ -22,6 +22,7 @@ import { RecoverPasswordComponent } from './components/recover-password/recover-
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 
@@ -48,7 +49,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

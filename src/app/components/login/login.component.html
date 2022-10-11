@@ -1,8 +1,9 @@
 <div class="center-content">
 
-  <mat-card   *ngIf="loading" class="loading">
-    <img style="width:100%; border-radius: 100%;" src="assets/img/Gif-Loading-SGTv2.gif">
-  </mat-card>
+
+    <mat-spinner *ngIf="loading" style="margin-top:200px;" ></mat-spinner>
+
+
 
     <mat-card class="example-card" *ngIf="!loading">
       <mat-card-title style="font-size:31px;">Sistema Gestion De Tutorias</mat-card-title>
@@ -61,7 +62,7 @@
               <input type="password" matInput placeholder="Password" formControlName="repeatPassword">
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
-            <button mat-button color="primary" type="submit"  (click)="register()" [disabled]="registerUser.invalid" >Registrar</button>
+            <button mat-button color="primary" type="submit" (click)="register()" [disabled]="registerUser.invalid" >Registrar</button>
           </mat-tab>
         </mat-tab-group>
       </mat-card-content>

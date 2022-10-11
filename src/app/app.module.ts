@@ -20,6 +20,9 @@ import { LoginComponent } from './components/login/login.component';
 import { SpinnerComponent } from './Shared/spinner/spinner.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     LoginComponent,
     SpinnerComponent,
     RecoverPasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     FormsModule,
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,13 @@
+.verify-email{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.verify-email-card{
+  margin-top: 10%;
+  max-width: 400px;
+  max-height: auto;
+}
+
+

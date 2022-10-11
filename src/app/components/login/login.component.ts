@@ -40,36 +40,43 @@ export class LoginComponent {
     const email = this.registerUser.value.email;
     const password = this.registerUser.value.password;
     const repeatPassword = this.registerUser.value.repeatPassword;
+
     console.log(this.registerUser);
     if(password!=repeatPassword){
-      this.snackBar.open('Contrasena deben coincidir','',{duration:1000})
-    }
-    else{
-      this.snackBar.open('Usuario registrado con exito!!','',{duration:1000})
+      this.snackBar.open('Contrasena deben coincidir','',{duration:1000});
+      return;
     }
     this.loading = true;
      this.afAuth.createUserWithEmailAndPassword(email,password).then(()=>{
-      this.router.navigate(['/login'])
+      this.verificarCorreo();
     }).catch((err)=>{
       this.loading = false;
-      console.log(err)
       this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
     })
-
-    console.log(email,password,repeatPassword);
   }
 
 
-  //registration method
+  verificarCorreo() {
+    this.afAuth.currentUser.then((user) => user?.sendEmailVerification())
+      .then(() => {
+        this.router.navigate(['/verify-email']);
+        this.snackBar.open( 'Le enviamos un correo electronico para su verificacion','Aceptar'
+        );
+      });
+    }
+
+  //login method
    login() {
     const email = this.loginUser.value.logemail;
     const password = this.loginUser.value.logpassword;
 
     this.loading = true;
     this.afAuth.signInWithEmailAndPassword(email, password).then((user) => {
-      // if(user.user?.emailVerified) {
+      if(user.user?.emailVerified) {
         this.router.navigate(['/dashboard']);
-      // }
+      }else{
+        this.router.navigate(['/verify-email'])
+      }
     }).catch((err) => {
       this.loading = false;
       this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');

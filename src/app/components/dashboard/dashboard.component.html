@@ -1,9 +1,77 @@
-<p>
-  <mat-toolbar  color="primary">
-   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
+<mat-drawer-container class="container" autosize>
+  <mat-toolbar class="tool-bar">
+   <button  (click)="drawer.toggle()" mat-icon-button >
+    <mat-icon style="color:white;">menu</mat-icon>
   </button>
-  <span>Sistema De Gestion de Tutorias ITCJ
-  </span>
+  <span style="color:white;">Sistema De Gestion de Tutorias ITCJ</span>
 </mat-toolbar>
-</p>
+
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <mat-toolbar class="tool-bar-sidenav">
+     <span style="color: white; margin-left: 5%;">Menu</span>
+     <button  (click)="drawer.toggle()" mat-icon-button  style="color: white;margin-left: 50%;" >
+     <mat-icon>cancel</mat-icon>
+    </button>
+   </mat-toolbar>
+
+   <mat-list role="list">
+    <mat-list-item role="listitem">Bienvenido: User
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </mat-list-item>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item disabled>
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>settings</mat-icon>
+        <span>Configuracion</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>cerrar sesion</span>
+      </button>
+    </mat-menu>
+  </mat-list>
+  <mat-divider></mat-divider>
+
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+         Menu 1
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Menu 2</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+         Menu 1
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Menu 2</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+         Menu 1
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Menu 2</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  </mat-drawer>
+</mat-drawer-container>

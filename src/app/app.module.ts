@@ -27,6 +27,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { QuestionComponent } from './components/question/question.component';
 
 
 
@@ -37,7 +38,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     SpinnerComponent,
     RecoverPasswordComponent,
     DashboardComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,

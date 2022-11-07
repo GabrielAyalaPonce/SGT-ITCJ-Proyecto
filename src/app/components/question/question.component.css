@@ -1,0 +1,56 @@
+body {
+    background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),
+    url(src/assets/img/FondoPagina.jpg);
+    background-repeat: no-repeat;
+    opacity: 0.7;
+ }
+ 
+ 
+ h2{
+     font-family:fantasy;
+     font-size: 55px;
+     padding-top: 35px;
+     padding-bottom: 5px;
+ }
+ 
+ .layout {
+     width: 1050px;
+     margin: auto;
+   }
+   .accordion {
+     border-radius: 20px;
+     padding: 10px;
+     margin-top: 10px;
+     margin-bottom: 10px;
+     background: rgb(217, 74, 84);
+     opacity: 0.9;
+     border-radius: 10px;
+     box-shadow: 12px;
+    
+   }
+   .accordion__question p {
+     margin: 5px;
+     padding: 0;
+     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     font-size: 25px;
+     color: blanchedalmond;
+     
+   }
+   .accordion__answer p {
+     margin: 5px;
+     padding: 10px;
+     font-size: large;
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+     color: rgb(255, 255, 255);
+     background: rgb(82, 170, 122);
+     border-radius: 10px;
+   }
+   .accordion:hover {
+     cursor: pointer;
+   }
+   .accordion__answer {
+     display: none;
+   }
+   .accordion.active .accordion__answer {
+     display: block;
+   }

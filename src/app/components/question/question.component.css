@@ -1,39 +1,48 @@
+
 body {
     background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),
     url(src/assets/img/FondoPagina.jpg);
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     opacity: 0.7;
+    
  }
+ 
  
  
  h2{
      font-family:fantasy;
-     font-size: 55px;
+     font-size: 60px;
      padding-top: 35px;
      padding-bottom: 5px;
  }
  
  .layout {
-     width: 1050px;
+     width: 1000px;
      margin: auto;
+     text-align: center;
    }
    .accordion {
      border-radius: 20px;
      padding: 10px;
      margin-top: 10px;
      margin-bottom: 10px;
-     background: rgb(217, 74, 84);
+     background: rgba(246, 19, 34, 0.962);
      opacity: 0.9;
      border-radius: 10px;
      box-shadow: 12px;
+     margin: 10px auto;
     
    }
+   
    .accordion__question p {
      margin: 5px;
      padding: 0;
      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
      font-size: 25px;
      color: blanchedalmond;
+     text-align: center;
+     
+
      
    }
    .accordion__answer p {
@@ -42,8 +51,9 @@ body {
      font-size: large;
      font-family: Verdana, Geneva, Tahoma, sans-serif;
      color: rgb(255, 255, 255);
-     background: rgb(82, 170, 122);
+     background: rgb(5, 76, 37);
      border-radius: 10px;
+     text-align: center;
    }
    .accordion:hover {
      cursor: pointer;
@@ -54,3 +64,51 @@ body {
    .accordion.active .accordion__answer {
      display: block;
    }
+   a{
+    text-decoration: none;
+    color: bisque;
+   }
+
+   @media only screen and (min-width: 270px) {
+    .container{
+      padding: 0px;
+      height: 100vh;
+    }
+     body{
+      max-width: 100%;
+      align-items: center;
+      margin-left: auto;
+      background-color: rgb(174, 127, 218);
+      background-repeat: repeat-y;
+      background-size: 100%;
+      
+     } 
+     h2{
+      font-size: 35px;
+     }
+     .layout{
+      max-width: 95%;
+      justify-content: center;
+     }
+     .accordion{
+      min-width: 280px;
+      max-width: 800px;
+      text-align: center;
+      
+     }
+     .accordion__question{
+      min-width: 280px;
+      max-width: 800px;
+      text-align: center;
+      margin: 0px ;
+     }
+     .accordion__answer{
+      min-width: 330px; 
+      max-width: 700px;
+      margin: 0px auto;
+     }
+    
+   }
+   
+   
+   

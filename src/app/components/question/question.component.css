@@ -1,10 +1,13 @@
 
+.ContenedorPrimario{
+  align-items: center;
+  
+}
 body {
-    background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),
-    url(src/assets/img/FondoPagina.jpg);
-    background-repeat: repeat-y;
-    opacity: 0.7;
-    
+  background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),
+  url(src/assets/img/FondoPagina.jpg);
+  background-repeat: repeat-y;
+  opacity: 0.7;
  }
  
  
@@ -14,6 +17,7 @@ body {
      font-size: 60px;
      padding-top: 35px;
      padding-bottom: 5px;
+     color: rgb(120, 15, 129);
  }
  
  .layout {
@@ -26,7 +30,7 @@ body {
      padding: 10px;
      margin-top: 10px;
      margin-bottom: 10px;
-     background: rgba(246, 19, 34, 0.962);
+     background: rgb(242, 4, 20);
      opacity: 0.9;
      border-radius: 10px;
      box-shadow: 12px;
@@ -51,7 +55,7 @@ body {
      font-size: large;
      font-family: Verdana, Geneva, Tahoma, sans-serif;
      color: rgb(255, 255, 255);
-     background: rgb(5, 76, 37);
+     background: rgb(8, 56, 30);
      border-radius: 10px;
      text-align: center;
    }
@@ -71,39 +75,41 @@ body {
 
    @media only screen and (min-width: 270px) {
     .container{
-      padding: 0px;
       height: 100vh;
     }
      body{
       max-width: 100%;
+      max-height: 200%;
       align-items: center;
       margin-left: auto;
-      background-color: rgb(174, 127, 218);
       background-repeat: repeat-y;
-      background-size: 100%;
+      background-size: 100% 100%;
+      overflow-y: scroll;
+      scrollbar-color: rgb(29, 3, 78) red;
       
      } 
      h2{
       font-size: 35px;
      }
      .layout{
-      max-width: 95%;
-      justify-content: center;
+      max-width: 90%;
+      align-items: center;
      }
      .accordion{
-      min-width: 280px;
+      min-width: 250px;
       max-width: 800px;
-      text-align: center;
-      
+      align-items: center;
+      padding-left: 0;
+      padding-right: 0;
      }
      .accordion__question{
-      min-width: 280px;
+      min-width: 250px;
       max-width: 800px;
       text-align: center;
       margin: 0px ;
      }
      .accordion__answer{
-      min-width: 330px; 
+      min-width: 250px; 
       max-width: 700px;
       margin: 0px auto;
      }

@@ -18,17 +18,17 @@ import{AngularFireModule} from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './auth/login/login.component';
 import { SpinnerComponent } from './Shared/spinner/spinner.component';
-import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { RecoverPasswordComponent } from './pages/recover-password/recover-password.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { QuestionComponent } from './components/question/question.component';
-
+import { QuestionComponent } from './pages/question/question.component';
+import { PagesComponent } from './pages/pages.component';
 
 
 @NgModule({
@@ -39,7 +39,8 @@ import { QuestionComponent } from './components/question/question.component';
     RecoverPasswordComponent,
     DashboardComponent,
     VerifyEmailComponent,
-    QuestionComponent
+    QuestionComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,

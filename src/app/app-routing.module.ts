@@ -1,19 +1,25 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
-import { QuestionComponent } from './components/question/question.component';
-import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { QuestionComponent } from './pages/question/question.component';
+import { RecoverPasswordComponent } from './pages/recover-password/recover-password.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
+import { PagesComponent } from './pages/pages.component';
 
 
 const routes: Routes = [
+
+  {path:'',component: PagesComponent,
+   children:[
+   {path: 'dashboard', component:DashboardComponent},
+   {path: 'recover-password', component:RecoverPasswordComponent},
+   {path: 'verify-email', component:VerifyEmailComponent},
+   {path: 'page-questions', component:QuestionComponent},
+   {path: '**',redirectTo: 'login', pathMatch:'full'}]},
+
   {path: 'login', component: LoginComponent},
-  {path: 'recover-password', component:RecoverPasswordComponent},
-  {path: 'dashboard', component:DashboardComponent},
-  {path: 'verify-email', component:VerifyEmailComponent},
-  {path: 'page-questions', component:QuestionComponent},
-  {path: '**',redirectTo: 'login', pathMatch:'full'}
+
 ];
 
 @NgModule({

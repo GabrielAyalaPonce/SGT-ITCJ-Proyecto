@@ -13,6 +13,7 @@
       <mat-card-content>
         <mat-tab-group >
 
+            <!-- LOGIN -->
           <mat-tab   *ngIf="!loading" (ngSubmit)="login()" [formGroup]="loginUser" label="Login">
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
@@ -34,11 +35,19 @@
             <a style="color: rgb(0, 0, 0);"  routerLink="/recover-password"  >Olvide mi contrasena</a>
           </mat-tab>
 
-          <mat-tab  (ngSubmit)="register()" [formGroup]="registerUser"  label="Register">
+            <!-- REGISTER -->
+          <mat-tab  (ngSubmit)="register()" [formGroup]="registerUser" label="Register">
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Nombre</mat-label>
+              <input type="name" matInput placeholder="name" formControlName="name">
+              <mat-icon matSuffix>account_box</mat-icon>
+            </mat-form-field>
+
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
               <input type="email" matInput placeholder="Email" formControlName="email">
-              <mat-icon matSuffix>email</mat-icon>
+              <mat-icon matSuffix>alternate_email</mat-icon>
             </mat-form-field>
             <span *ngIf="registerUser.get('email')?.hasError('required') && registerUser.get('email')?.touched" >
               El <strong>correo</strong> es requerido
@@ -46,6 +55,7 @@
           <span *ngIf="registerUser.get('email')?.hasError('email') && registerUser.get('email')?.touched" >
               El <strong>correo</strong> es invalido
           </span>
+
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
               <input type="password" matInput placeholder="Password" formControlName="password">
@@ -62,8 +72,24 @@
               <input type="password" matInput placeholder="Password" formControlName="repeatPassword">
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
-            <button mat-button color="primary" type="submit" (click)="register()" [disabled]="registerUser.invalid" >Registrar</button>
-          </mat-tab>
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    Soy Alumno
+                </mat-expansion-panel-header>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Numero control</mat-label>
+                  <input type="" matInput placeholder="" formControlName="Ncontrol">
+                  <mat-icon matSuffix> <mat-form-field class="example-full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input type="number" matInput placeholder="number" formControlName="Ncontrol">
+                    <mat-icon matSuffix>account_box</mat-icon>
+                  </mat-form-field></mat-icon>
+                </mat-form-field>
+              </mat-expansion-panel>
+        
+            <button mat-button color="primary" type="submit" (click)="register()" >Registrar</button>
+          </mat-tab>   
         </mat-tab-group>
       </mat-card-content>
 

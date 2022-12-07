@@ -29,6 +29,9 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { QuestionComponent } from './pages/question/question.component';
 import { PagesComponent } from './pages/pages.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -61,7 +64,9 @@ import { PagesComponent } from './pages/pages.component';
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
-    MatExpansionModule
+    MatExpansionModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore())
 
   ],
   providers: [],

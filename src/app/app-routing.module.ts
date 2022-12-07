@@ -10,20 +10,26 @@ import { PagesComponent } from './pages/pages.component';
 
 const routes: Routes = [
 
-  {path:'',component: PagesComponent,
-   children:[
+  
+
+  {path: '', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
+ 
+
+{path:'',component: PagesComponent,
+   children:[ 
    {path: 'dashboard', component:DashboardComponent},
    {path: 'recover-password', component:RecoverPasswordComponent},
    {path: 'verify-email', component:VerifyEmailComponent},
    {path: 'page-questions', component:QuestionComponent},
-   {path: '**',redirectTo: 'login', pathMatch:'full'}]},
+   {path: '**',redirectTo: 'login', pathMatch:'full'}
+  ]},
 
-  {path: 'login', component: LoginComponent},
-
+  {path: '**',redirectTo: 'login', pathMatch:'full'},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { }    

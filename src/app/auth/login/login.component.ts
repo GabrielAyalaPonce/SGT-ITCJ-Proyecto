@@ -55,9 +55,12 @@ export class LoginComponent {
     }
     this.loading = true;
     
-   this.afAuth.createUserWithEmailAndPassword(email, password).then((userI) =>  {
+   this.afAuth.createUserWithEmailAndPassword(email, password).then(async (userI) =>  {
       console.log(userI.user?.uid) 
-      this.verificarCorreo();
+      const path='Usuarios';
+      const id = userI.user?.uid;
+      await this.firebaseErrors.createDoc(this.registerUser,path,id)
+      this.verificarCorreo(); 
     }).catch((err) => {
       this.loading = false;
       this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');

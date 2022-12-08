@@ -30,7 +30,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { QuestionComponent } from './pages/question/question.component';
 import { PagesComponent } from './pages/pages.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 

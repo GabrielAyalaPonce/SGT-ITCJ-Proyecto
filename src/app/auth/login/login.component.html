@@ -33,6 +33,8 @@
             </mat-form-field>
             <button mat-button color="primary" type="submit"  [disabled]="loginUser.invalid" (click)="login()">Login</button>
             <a style="color: rgb(0, 0, 0);"  routerLink="/recover-password">Olvide mi contrasena</a>
+            {{emailUser}}
+
           </mat-tab>
 
             <!-- REGISTER -->
@@ -91,7 +93,7 @@
           </mat-tab>   
         </mat-tab-group>
       </mat-card-content>
-
+       
     </mat-card>
 
 

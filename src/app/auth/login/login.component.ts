@@ -19,6 +19,7 @@ export class LoginComponent {
   public loginUser!: FormGroup;
   public loading: boolean = false;
   public UserDocument:any;
+  public emailUser:any;
 
 
   constructor(private afAuth: AngularFireAuth,
@@ -42,29 +43,6 @@ export class LoginComponent {
       logpassword: ['', Validators.required],
     })
   }
-
-  
-  
-
-
-//   register() {
-//     this.afAuth.auth.createUserWithEmailAndPassword(User.email, User.password)
-//       .then((user) => {
-//         this.verificarCorreo(); 
-//         this.firestore.collection('users').add({
-//           name: this.registerUser.value.name,
-//           email: user.email,
-//           controlNumber: this.registerUser.value.controlNumber
-//         });
-//       })
-//       .catch((err) => {
-//         this.loading = false;
-//       this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
-//       });
-//   }
-// }
-
-
 
 
   //registration method
@@ -113,25 +91,20 @@ export class LoginComponent {
   login() {
     const email = this.loginUser.value.logemail;
     const password = this.loginUser.value.logpassword;
-
     this.loading = true;
     this.afAuth.signInWithEmailAndPassword(email, password).then((user)=> {
       if (user.user?.emailVerified) {
-        this.router.navigate(['/pages'])
+        this.router.navigate(['/pages', {user: this.emailUser}])
       } else {
         this.router.navigate(['/verify-email'])
       }
+      this.emailUser = user.user?.email
     }).catch((err) => {
       this.loading = false;
       this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
     })
 
-    
-
-  }
-
-
-  
+  }  
 
 }
 

@@ -11,20 +11,19 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
 const routes: Routes = [
 
-  {path: '', component: LoginComponent},
+  {path: 'pages', 
+  component:PagesComponent,
+  children:[
+    {path: 'pages/dashboard', component:DashboardComponent},
+    {path: 'pages/page-questions', component:QuestionComponent},
+    {path: 'pages/usuarios', component:UsuariosComponent},
+    {path: '',redirectTo: 'dashboard', pathMatch:'full'},
+  ]},
+  
   {path: 'login', component: LoginComponent},
- 
-
-{path:'',component: PagesComponent,
-   children:[ 
-   {path: 'dashboard', component:DashboardComponent},
    {path: 'recover-password', component:RecoverPasswordComponent},
    {path: 'verify-email', component:VerifyEmailComponent},
-   {path: 'page-questions', component:QuestionComponent},
-   {path: 'dashboard/Usuarios', component:UsuariosComponent},
-   {path: '**',redirectTo: 'dashboard', pathMatch:'full'}
-  ]},
-
+   {path: '', component: LoginComponent},
   {path: '**',redirectTo: 'login', pathMatch:'full'},
 ];
 

@@ -92,7 +92,7 @@ export class LoginComponent {
         this.firestore.collection('Usuarios').doc(user.user?.uid).set({
           email :user.user?.email}),
 
-        this.router.navigate(['/dashboard']),
+        this.router.navigate(['/pages']),
         console.log('id de usuario',user.user?.uid),
         console.log('correo de usuario',user.user?.email)
       } else {

@@ -6,11 +6,10 @@ import { QuestionComponent } from './pages/question/question.component';
 import { RecoverPasswordComponent } from './pages/recover-password/recover-password.component';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { PagesComponent } from './pages/pages.component';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
 
 const routes: Routes = [
-
-  
 
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
@@ -22,7 +21,8 @@ const routes: Routes = [
    {path: 'recover-password', component:RecoverPasswordComponent},
    {path: 'verify-email', component:VerifyEmailComponent},
    {path: 'page-questions', component:QuestionComponent},
-   {path: '**',redirectTo: 'login', pathMatch:'full'}
+   {path: 'dashboard/Usuarios', component:UsuariosComponent},
+   {path: '**',redirectTo: 'dashboard', pathMatch:'full'}
   ]},
 
   {path: '**',redirectTo: 'login', pathMatch:'full'},

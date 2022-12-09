@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { FirebaseCodeErrorsService } from 'src/app/services/firebase-code-errors.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 
 @Component({
@@ -17,13 +18,16 @@ export class LoginComponent {
   public registerUser!: FormGroup;
   public loginUser!: FormGroup;
   public loading: boolean = false;
+  public UserDocument:any;
+
 
 
   constructor(private afAuth: AngularFireAuth,
+    private firestore:AngularFirestore,
     private fb: FormBuilder, private snackBar: MatSnackBar,
     private router: Router,
-    private firebaseErrors: FirebaseCodeErrorsService) {
-
+    private firebaseErrors: FirebaseCodeErrorsService,) {
+    
     //form reactive register
     this.registerUser = this.fb.group({
       name: ['', [Validators.required]],
@@ -40,34 +44,32 @@ export class LoginComponent {
     })
   }
 
-  //registration method
-  register() {
-    const email = this.registerUser.value.email;
-    const password = this.registerUser.value.password;
-    const repeatPassword = this.registerUser.value.repeatPassword;
-    const name = this.registerUser.value.name;
-    const uid = this.registerUser.value.uid;
-    const Ncontrol = this.registerUser.value.Ncontrol;
+  
+  
 
-    if (password != repeatPassword) {
+  //registration method
+  register()  {
+    const User:any ={
+      email:this.registerUser.value.email,
+      password : this.registerUser.value.password,
+      repeatPassword :this.registerUser.value.repeatPassword,
+      name: this.registerUser.value.name,
+      uid :this.registerUser.value.uid,
+      Ncontrol: this.registerUser.value.Ncontrol
+   }
+    if (User.password != User.repeatPassword) {
       this.snackBar.open('Contrasena deben coincidir', '', { duration: 1000 });
       return;
     }
     this.loading = true;
     
-   this.afAuth.createUserWithEmailAndPassword(email, password).then(async (userI) =>  {
-      console.log(userI.user?.uid) 
-      const path='Usuarios';
-      const id = userI.user?.uid;
-      await this.firebaseErrors.createDoc(this.registerUser,path,id)
+  this.afAuth.createUserWithEmailAndPassword(User.email, User.password).then( () =>  {
       this.verificarCorreo(); 
     }).catch((err) => {
       this.loading = false;
       this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
     })
-     console.log()
   }
-
 
   verificarCorreo() {
     this.afAuth.currentUser.then((user) => user?.sendEmailVerification())
@@ -84,11 +86,15 @@ export class LoginComponent {
     const password = this.loginUser.value.logpassword;
 
     this.loading = true;
-    this.afAuth.signInWithEmailAndPassword(email, password).then((user) => {
+    this.afAuth.signInWithEmailAndPassword(email, password).then((user)=> {
       if (user.user?.emailVerified) {
-        this.router.navigate(['/dashboard']);
-        console.log('id de usuario',user.user?.uid)
-        console.log('id de usuario',user.user?.email)
+
+        this.firestore.collection('Usuarios').doc(user.user?.uid).set({
+          email :user.user?.email}),
+
+        this.router.navigate(['/dashboard']),
+        console.log('id de usuario',user.user?.uid),
+        console.log('correo de usuario',user.user?.email)
       } else {
         this.router.navigate(['/verify-email'])
       }
@@ -96,5 +102,14 @@ export class LoginComponent {
       this.loading = false;
       this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
     })
+
+    
+
   }
+
+
+  
+
 }
+
+

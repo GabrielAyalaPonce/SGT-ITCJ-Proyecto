@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-
+import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
@@ -31,6 +31,8 @@ import { QuestionComponent } from './pages/question/question.component';
 import { PagesComponent } from './pages/pages.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     DashboardComponent,
     VerifyEmailComponent,
     QuestionComponent,
-    PagesComponent
+    PagesComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     MatListModule,
     MatMenuModule,
     MatExpansionModule,
+    MatTableModule,
+    MatPaginatorModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
 

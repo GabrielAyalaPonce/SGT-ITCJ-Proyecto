@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+
+  option:hover {
+    box-shadow: 0 0 10px 100px #1882A8 inset;

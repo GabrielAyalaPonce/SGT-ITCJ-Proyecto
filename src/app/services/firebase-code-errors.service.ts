@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreDocument} from '@angular/fire/compat/firestore';
 import { FirebaseCodeErrorEnum } from '../utils/firebase-code-errors';
 
 @Injectable({
@@ -7,13 +7,14 @@ import { FirebaseCodeErrorEnum } from '../utils/firebase-code-errors';
 })
 export class FirebaseCodeErrorsService {
 
-  constructor(private firestore:AngularFirestore) { }
 
-   createDoc(data:any,path:string,id:any){
-    const collection = this.firestore.collection(path)
-    return collection.doc(id)
-   }
+   constructor( private firestore:AngularFirestore) {
+   
+    }
 
+     createDoc(data:any):Promise<any> {
+      return this.firestore.collection('Usuarios').add(data);
+      }
 
   codeError(code: string) {
     switch (code) {
@@ -39,4 +40,6 @@ export class FirebaseCodeErrorsService {
       default:
         return 'Error desconocido';
     }
-}}
+}
+
+}

@@ -15,7 +15,7 @@
    </mat-toolbar>
 
    <mat-list role="list">
-    <mat-list-item role="listitem">Bienvenido: User
+    <mat-list-item role="listitem">Bienvenido: user
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>more_vert</mat-icon>
       </button>
@@ -43,10 +43,10 @@
                          (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
         <mat-panel-title>
-         Menu 1
+        Usuarios
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p>Menu 2</p>
+      <button style="width: 100%;" mat-stroked-button color="warn" routerLink="Usuarios">Ver Usuarios</button>
     </mat-expansion-panel>
   </mat-accordion>
 
@@ -76,4 +76,13 @@
   <p style="margin-bottom: 400px">@Tecnm ITCJ</p>
 
   </mat-drawer>
+    
+<div class="dashboard-main">
+  EXAMPLE
+  <router-outlet></router-outlet>
+</div>
+
+
+  
+  
 </mat-drawer-container>

@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { FirebaseCodeErrorsService } from 'src/app/services/firebase-code-errors.service';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, } from '@angular/fire/compat/firestore';
 
 
 @Component({
@@ -19,7 +19,6 @@ export class LoginComponent {
   public loginUser!: FormGroup;
   public loading: boolean = false;
   public UserDocument:any;
-
 
 
   constructor(private afAuth: AngularFireAuth,
@@ -47,6 +46,27 @@ export class LoginComponent {
   
   
 
+
+//   register() {
+//     this.afAuth.auth.createUserWithEmailAndPassword(User.email, User.password)
+//       .then((user) => {
+//         this.verificarCorreo(); 
+//         this.firestore.collection('users').add({
+//           name: this.registerUser.value.name,
+//           email: user.email,
+//           controlNumber: this.registerUser.value.controlNumber
+//         });
+//       })
+//       .catch((err) => {
+//         this.loading = false;
+//       this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
+//       });
+//   }
+// }
+
+
+
+
   //registration method
   register()  {
     const User:any ={
@@ -59,17 +79,26 @@ export class LoginComponent {
    }
     if (User.password != User.repeatPassword) {
       this.snackBar.open('Contrasena deben coincidir', '', { duration: 1000 });
-      return;
     }
     this.loading = true;
     
-  this.afAuth.createUserWithEmailAndPassword(User.email, User.password).then( () =>  {
+    this.afAuth.createUserWithEmailAndPassword(User.email, User.password)
+    .then((user) => {
+      this.firestore.collection('users').add({
+        id: user.user?.uid,
+        name: User.name,
+        password: User.password,
+        email: User.email,
+        controlNumber: User.Ncontrol
+      });
       this.verificarCorreo(); 
-    }).catch((err) => {
-      this.loading = false;
-      this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
     })
-  }
+    .catch((err) => {
+      this.loading = false;
+    this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
+    });
+}
+  
 
   verificarCorreo() {
     this.afAuth.currentUser.then((user) => user?.sendEmailVerification())
@@ -88,13 +117,7 @@ export class LoginComponent {
     this.loading = true;
     this.afAuth.signInWithEmailAndPassword(email, password).then((user)=> {
       if (user.user?.emailVerified) {
-
-        this.firestore.collection('Usuarios').doc(user.user?.uid).set({
-          email :user.user?.email}),
-
-        this.router.navigate(['/pages']),
-        console.log('id de usuario',user.user?.uid),
-        console.log('correo de usuario',user.user?.email)
+        this.router.navigate(['/pages'])
       } else {
         this.router.navigate(['/verify-email'])
       }

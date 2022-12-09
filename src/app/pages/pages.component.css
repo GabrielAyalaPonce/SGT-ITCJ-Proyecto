@@ -6,6 +6,8 @@
   .tool-bar{
     width:auto;
     background-color: rgb(230, 50, 50);
+    display: flex;
+    justify-content: center;
   }
   
   .tool-bar-sidenav{
@@ -22,3 +24,12 @@
     margin-left: 10%;
   }
 
+  .foot-bar{
+    position: fixed;left: 0;bottom: 0;
+     width: 100%; 
+    color: white; 
+    background-color: rgb(230, 50, 50);
+    display: flex;
+    justify-content: center;
+   
+  }

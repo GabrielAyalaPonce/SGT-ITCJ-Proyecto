@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 })
 export class PagesComponent implements OnInit {
 
+  public year = new Date().getFullYear();
+  
+
   showFiller = false;
   panelOpenState = false;
   constructor(private afAuth: AngularFireAuth,

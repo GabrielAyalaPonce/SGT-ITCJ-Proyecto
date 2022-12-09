@@ -9,19 +9,22 @@ import {MatTableDataSource} from '@angular/material/table';
 export interface UserData {
   id: string;
   name: string;
-  progress: string;
-  fruit: string;
+  email: string;
+  Rol: string;
 }
 
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
+const EMAIL: string[] = [
+  'angelm.h.z@hotmail.com',
+  'l18110529@itcj.edu.mx',
+  'l17110853@itcj.edu.mx',
+  'l193673745@itcj.edu.mx',
+  'l204758202@itcj.edu.mx',
+];
+
+const ROLES: string[] = [
+  'Admin',
+  'Tutor',
+  'Tutorado',
 ];
 const NAMES: string[] = [
   'Maia',
@@ -29,20 +32,6 @@ const NAMES: string[] = [
   'Olivia',
   'Atticus',
   'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
 ];
 
 @Component({
@@ -51,7 +40,7 @@ const NAMES: string[] = [
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent   implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
+  displayedColumns: string[] = ['id', 'name', 'email', 'Rol'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: any;
@@ -91,7 +80,7 @@ function createNewUser(id: number): UserData {
   return {
     id: id.toString(),
     name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
+    email: EMAIL[Math.round(Math.random() * (EMAIL.length - 1))],
+    Rol: ROLES[Math.round(Math.random() * (ROLES.length - 1))],
   };
 }

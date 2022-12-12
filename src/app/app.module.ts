@@ -45,7 +45,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     VerifyEmailComponent,
     QuestionComponent,
     PagesComponent,
-    UsuariosComponent
+    UsuariosComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +60,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     FormsModule,
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatToolbarModule,

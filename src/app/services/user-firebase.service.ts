@@ -11,11 +11,11 @@ export class UserFirebaseService {
   constructor(private firestore: AngularFirestore) { }
 
 // Crea un documento
-//    crear(user:User) {
-//     return this.firestore.collection('users').add(user);
-// }
+    crear(user:User) {
+    return this.firestore.collection('users').add(user);
+}
   
-  // Obtiene un documento
+  // Obtiene un documento 
   getUsername(user:User) {
     return this.firestore.collection('users').doc(user.name).snapshotChanges();
   }

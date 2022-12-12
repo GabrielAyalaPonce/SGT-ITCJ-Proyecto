@@ -15,7 +15,7 @@
      </mat-toolbar>
   
      <mat-list role="list">
-      <mat-list-item role="listitem">Bienvenido: {{userinput}}
+      <mat-list-item role="listitem">{{name}}
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
         </button>
@@ -50,7 +50,7 @@
       </mat-expansion-panel>
     </mat-accordion>
   
-    <mat-accordion>
+    <mat-accordion *ngIf="rol==='administrador'">
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
@@ -81,11 +81,15 @@
   <div class="pages-main">
     <router-outlet></router-outlet>
   </div>
-  
-  
+
+ <div class="container-card-welcome">
+    <mat-card class="card-welcome">
+        <mat-card-content>Bienvenido: {{name}}</mat-card-content>
+      </mat-card>
+ </div>
+
   <mat-toolbar class="foot-bar">
    <span>© ITCJ {{year}}</span>
  </mat-toolbar>
     
   </mat-drawer-container>
-  

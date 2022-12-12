@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FirebaseCodeErrorsService } from 'src/app/services/firebase-code-errors.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User } from 'src/app/models/user';
+import { UserFirebaseService } from 'src/app/services/user-firebase.service';
 
 
 
@@ -37,7 +38,8 @@ export class LoginComponent {
     private firestore:AngularFirestore,
     private fb: FormBuilder, private snackBar: MatSnackBar,
     private router: Router,
-    private firebaseErrors: FirebaseCodeErrorsService,) {
+    private firebaseErrors: FirebaseCodeErrorsService,
+    private userfirebase: UserFirebaseService) {
     
     //form reactive register
     this.registerUser = this.fb.group({
@@ -74,15 +76,17 @@ export class LoginComponent {
     }
     this.loading = true;
     
-  this.afAuth.createUserWithEmailAndPassword(this.datos.email, this.datos.password).then( (user) => {
-    this.firestore.collection('users').add({
-      name:this.datos.name,
-      password: null,
-      email: this.datos.email,
-      uid: user.user?.uid,
-      controlNumber: this.datos.Ncontrol,
-      rol:'tutorado'
-    });
+  this.afAuth.createUserWithEmailAndPassword(this.datos.email, this.datos.password).then( (resp) => {
+    this.datos ={
+      email:this.registerUser.value.email,
+      password : "",
+      repeatPassword :"",
+      name: this.registerUser.value.name,
+      uid : resp.user?.uid,
+      Ncontrol: this.registerUser.value.Ncontrol,
+      Rol: 'tutorado'
+   }
+      this.userfirebase.createDoc(this.datos,'users',resp.user?.uid)
     this.verificarCorreo(); 
   }).catch((err) => {
     this.loading = false;
@@ -106,7 +110,7 @@ export class LoginComponent {
     this.loading = true;
     this.afAuth.signInWithEmailAndPassword(email, password).then((user)=> {
       if (user.user?.emailVerified) {
-        this.router.navigate(['/pages', {user: this.emailUser}])
+        this.router.navigate(['/pages'])
       } else {
         this.router.navigate(['/verify-email'])
       }

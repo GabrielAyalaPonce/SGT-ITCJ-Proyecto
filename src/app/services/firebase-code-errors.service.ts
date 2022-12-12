@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument} from '@angular/fire/compat/firestore';
+import { AngularFirestore} from '@angular/fire/compat/firestore';
+import { User } from '../models/user';
 import { FirebaseCodeErrorEnum } from '../utils/firebase-code-errors';
 
 @Injectable({
@@ -8,13 +9,13 @@ import { FirebaseCodeErrorEnum } from '../utils/firebase-code-errors';
 export class FirebaseCodeErrorsService {
 
 
-   constructor( private firestore:AngularFirestore) {
+   constructor( private firestore:AngularFirestore,) {
    
-    }
+   }
 
-     createDoc(data:any):Promise<any> {
-      return this.firestore.collection('Usuarios').add(data);
-      }
+   getUsername(user:User) {
+    return this.firestore.collection('users').doc(user.name).snapshotChanges();
+  }
 
   codeError(code: string) {
     switch (code) {

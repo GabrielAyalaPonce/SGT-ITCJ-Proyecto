@@ -4,7 +4,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { FirebaseCodeErrorsService } from 'src/app/services/firebase-code-errors.service';
-import { AngularFirestore, } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { User } from 'src/app/models/user';
+
 
 
 @Component({
@@ -19,8 +21,17 @@ export class LoginComponent {
   public loginUser!: FormGroup;
   public loading: boolean = false;
   public UserDocument:any;
-  public emailUser:any;
+  public emailUser: any;
 
+  datos: User = {
+   name: null,
+   email:null,
+   password:null,
+   repeatPassword: null,
+   uid: null,
+   Ncontrol:null,
+   Rol:'tutorado'
+  }
 
   constructor(private afAuth: AngularFireAuth,
     private firestore:AngularFirestore,
@@ -34,7 +45,9 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       repeatPassword: ['', Validators.required],
+      uid: ['', Validators.required],
       Ncontrol: ['', [Validators.required]],
+      Rol: ['tutorado', Validators.required],
     });
 
     //form reactive login
@@ -44,39 +57,38 @@ export class LoginComponent {
     })
   }
 
-
   //registration method
   register()  {
-    const User:any ={
+    this.datos ={
       email:this.registerUser.value.email,
       password : this.registerUser.value.password,
       repeatPassword :this.registerUser.value.repeatPassword,
       name: this.registerUser.value.name,
-      uid :this.registerUser.value.uid,
-      Ncontrol: this.registerUser.value.Ncontrol
+      uid : '',
+      Ncontrol: this.registerUser.value.Ncontrol,
+      Rol: 'tutorado'
    }
-    if (User.password != User.repeatPassword) {
+    if (this.datos.password != this.datos.repeatPassword) {
       this.snackBar.open('Contrasena deben coincidir', '', { duration: 1000 });
+      return;
     }
     this.loading = true;
     
-    this.afAuth.createUserWithEmailAndPassword(User.email, User.password)
-    .then((user) => {
-      this.firestore.collection('users').add({
-        id: user.user?.uid,
-        name: User.name,
-        password: User.password,
-        email: User.email,
-        controlNumber: User.Ncontrol
-      });
-      this.verificarCorreo(); 
-    })
-    .catch((err) => {
-      this.loading = false;
-    this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
+  this.afAuth.createUserWithEmailAndPassword(this.datos.email, this.datos.password).then( (user) => {
+    this.firestore.collection('users').add({
+      name:this.datos.name,
+      password: null,
+      email: this.datos.email,
+      uid: user.user?.uid,
+      controlNumber: this.datos.Ncontrol,
+      rol:'tutorado'
     });
+    this.verificarCorreo(); 
+  }).catch((err) => {
+    this.loading = false;
+  this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
+  });
 }
-  
 
   verificarCorreo() {
     this.afAuth.currentUser.then((user) => user?.sendEmailVerification())
@@ -105,6 +117,9 @@ export class LoginComponent {
     })
 
   }  
+
+
+  
 
 }
 

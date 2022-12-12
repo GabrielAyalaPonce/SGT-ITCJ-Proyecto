@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
@@ -20,10 +21,13 @@ export class PagesComponent implements OnInit {
   constructor(private afAuth: AngularFireAuth,
     private router: Router,
     private snackBar: MatSnackBar,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    // private firebaseservice: FirebaseS
+    ) { }
 
   ngOnInit(): void {
     this.userinput = this.route.snapshot.params['name']; 
+    
   }
 
   logout() {

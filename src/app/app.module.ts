@@ -33,6 +33,11 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
+
+import { CrearUsuariosComponent } from './pages/crear-usuarios/crear-usuarios.component';
 
 
 @NgModule({
@@ -46,6 +51,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     QuestionComponent,
     PagesComponent,
     UsuariosComponent,
+    CrearUsuariosComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +76,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatExpansionModule,
     MatTableModule,
     MatPaginatorModule,
+    MatFormFieldModule,
+    MatSelectModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
 

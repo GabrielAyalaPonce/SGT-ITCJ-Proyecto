@@ -7,6 +7,7 @@ import { RecoverPasswordComponent } from './pages/recover-password/recover-passw
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { PagesComponent } from './pages/pages.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { CrearUsuariosComponent } from './pages/crear-usuarios/crear-usuarios.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
     {path: 'pages/dashboard', component:DashboardComponent},
     {path: 'pages/page-questions', component:QuestionComponent},
     {path: 'pages/usuarios', component:UsuariosComponent},
+    {path: 'pages/crear-usuarios', component:CrearUsuariosComponent},
     {path: '',redirectTo: 'dashboard', pathMatch:'full'},
   ]},
   

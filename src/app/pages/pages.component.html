@@ -8,8 +8,8 @@
   
     <mat-drawer #drawer class="sidenav" mode="side">
       <mat-toolbar class="tool-bar-sidenav">
-       <span style="color: white; margin-left: 5%;">Menu</span>
-       <button  (click)="drawer.toggle()" mat-icon-button  style="color: white;margin-left: 50%;" >
+       <span style="color: rgb(255, 255, 255); margin-left: 5%;">Menu</span>
+       <button  (click)="drawer.toggle()" mat-icon-button  style="color: rgb(255, 255, 255);margin-left: 50%;" >
        <mat-icon>cancel</mat-icon>
       </button>
      </mat-toolbar>
@@ -47,6 +47,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <button style="width: 100%;" mat-stroked-button color="warn" routerLink="pages/usuarios">Ver Usuarios</button>
+        <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/crear-usuarios">crear Usuarios</button>
       </mat-expansion-panel>
     </mat-accordion>
   

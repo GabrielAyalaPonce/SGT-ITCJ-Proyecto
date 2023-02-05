@@ -35,9 +35,15 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 
 import { CrearUsuariosComponent } from './pages/crear-usuarios/crear-usuarios.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { ChangeRolComponent } from './pages/change-rol/change-rol.component';
+import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
+import { DatabaseComponent } from './pages/database/database.component';
 
 
 @NgModule({
@@ -52,6 +58,10 @@ import { CrearUsuariosComponent } from './pages/crear-usuarios/crear-usuarios.co
     PagesComponent,
     UsuariosComponent,
     CrearUsuariosComponent,
+    PerfilComponent,
+    ChangeRolComponent,
+    DeleteUserComponent,
+    DatabaseComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +88,8 @@ import { CrearUsuariosComponent } from './pages/crear-usuarios/crear-usuarios.co
     MatPaginatorModule,
     MatFormFieldModule,
     MatSelectModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    MatBadgeModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
 
   ],

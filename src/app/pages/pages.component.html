@@ -22,9 +22,9 @@
       </mat-list-item>
   
       <mat-menu #menu="matMenu">
-        <button mat-menu-item disabled>
+        <button mat-menu-item >
           <mat-icon>person</mat-icon>
-          <span>Perfil</span>
+          <span routerLink="pages/perfil">Perfil</span>
         </button>
         <button mat-menu-item disabled>
           <mat-icon>settings</mat-icon>
@@ -59,7 +59,8 @@
            Acciones
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Menu 2</p>
+        <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/change-rol">Cambiar rol</button>
+        <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/delete-user">Eliminar usuario</button>
       </mat-expansion-panel>
     </mat-accordion>
     <mat-accordion>
@@ -67,10 +68,10 @@
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
-           Menu 1
+           Base de Datos
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Menu 2</p>
+        <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/database">Informacion de Base datos</button>
       </mat-expansion-panel>
     </mat-accordion>
   
@@ -83,7 +84,7 @@
     <router-outlet></router-outlet>
   </div>
 
- <div class="container-card-welcome">
+  <div class="container-card-welcome">
     <mat-card class="card-welcome">
         <mat-card-content>Bienvenido: {{name}}</mat-card-content>
       </mat-card>

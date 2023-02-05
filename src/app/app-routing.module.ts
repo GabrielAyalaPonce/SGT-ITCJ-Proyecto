@@ -8,6 +8,10 @@ import { VerifyEmailComponent } from './pages/verify-email/verify-email.componen
 import { PagesComponent } from './pages/pages.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { CrearUsuariosComponent } from './pages/crear-usuarios/crear-usuarios.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { ChangeRolComponent } from './pages/change-rol/change-rol.component';
+import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
+import { DatabaseComponent } from './pages/database/database.component';
 
 
 const routes: Routes = [
@@ -19,6 +23,10 @@ const routes: Routes = [
     {path: 'pages/page-questions', component:QuestionComponent},
     {path: 'pages/usuarios', component:UsuariosComponent},
     {path: 'pages/crear-usuarios', component:CrearUsuariosComponent},
+    {path: 'pages/perfil', component:PerfilComponent},
+    {path: 'pages/change-rol', component:ChangeRolComponent},
+    {path: 'pages/delete-user', component:DeleteUserComponent},
+    {path: 'pages/database', component:DatabaseComponent},
     {path: '',redirectTo: 'dashboard', pathMatch:'full'},
   ]},
   

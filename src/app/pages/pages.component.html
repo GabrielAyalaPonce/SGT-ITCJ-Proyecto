@@ -66,7 +66,7 @@
     <mat-accordion>
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header *ngIf="rol==='administrador'">
           <mat-panel-title>
            Base de Datos
           </mat-panel-title>
@@ -74,6 +74,33 @@
         <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/database">Informacion de Base datos</button>
       </mat-expansion-panel>
     </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header *ngIf="rol==='tutorado'">
+          <mat-panel-title>
+           Datos
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <button *ngIf="rol==='tutorado'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/database">Datos</button>
+        <button *ngIf="rol==='tutorado'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/database">Datos socioeconomicos</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header *ngIf="rol==='tutorado'">
+          <mat-panel-title>
+           Tutorias
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+              <button *ngIf="rol==='tutorado'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/tutor-request">Solicitar</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    
   
     <mat-toolbar class="foot-bar">
     </mat-toolbar>

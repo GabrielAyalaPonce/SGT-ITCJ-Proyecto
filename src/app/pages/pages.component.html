@@ -63,6 +63,8 @@
         <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/delete-user">Eliminar usuario</button>
       </mat-expansion-panel>
     </mat-accordion>
+
+
     <mat-accordion>
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
@@ -74,6 +76,7 @@
         <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/database">Informacion de Base datos</button>
       </mat-expansion-panel>
     </mat-accordion>
+
 
     <mat-accordion>
       <mat-expansion-panel (opened)="panelOpenState = true"
@@ -88,6 +91,7 @@
       </mat-expansion-panel>
     </mat-accordion>
 
+
     <mat-accordion>
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
@@ -97,6 +101,20 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
               <button *ngIf="rol==='tutorado'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/tutor-request">Solicitar</button>
+              <button *ngIf="rol==='tutorado'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/tutor-history">Historial de solicitudes</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion *ngIf="rol==='tutor'" >
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header *ngIf="rol==='tutor'">
+          <mat-panel-title>
+           Tutorias
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+              <button *ngIf="rol==='tutor'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/tutor-request">Solicitar</button>
+              <button *ngIf="rol==='tutor'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/student-requests">Solicitud de tutorias</button>
       </mat-expansion-panel>
     </mat-accordion>
 

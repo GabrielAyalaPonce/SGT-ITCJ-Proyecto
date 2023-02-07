@@ -47,6 +47,8 @@ import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
 import { DatabaseComponent } from './pages/database/database.component';
 import { TutorRequestComponent } from './pages/tutor-request/tutor-request.component';
 import { SocioeconomicDataComponent } from './pages/socioeconomic-data/socioeconomic-data.component';
+import { TutorHistoryComponent } from './pages/tutor-history/tutor-history.component';
+import { StudentRequestsComponent } from './pages/student-requests/student-requests.component';
 
 
 
@@ -68,7 +70,9 @@ import { SocioeconomicDataComponent } from './pages/socioeconomic-data/socioecon
     DeleteUserComponent,
     DatabaseComponent,
     TutorRequestComponent,
-    SocioeconomicDataComponent
+    SocioeconomicDataComponent,
+    TutorHistoryComponent,
+    StudentRequestsComponent
   ],
   imports: [
     BrowserModule,

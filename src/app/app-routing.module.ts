@@ -14,6 +14,8 @@ import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
 import { DatabaseComponent } from './pages/database/database.component';
 import { TutorRequestComponent } from './pages/tutor-request/tutor-request.component';
 import { SocioeconomicDataComponent } from './pages/socioeconomic-data/socioeconomic-data.component';
+import { TutorHistoryComponent } from './pages/tutor-history/tutor-history.component';
+import { StudentRequestsComponent } from './pages/student-requests/student-requests.component';
 
 
 const routes: Routes = [
@@ -31,6 +33,8 @@ const routes: Routes = [
     {path: 'pages/database', component:DatabaseComponent},
     {path: 'pages/tutor-request', component:TutorRequestComponent},
     {path: 'pages/socioeconomic-data', component:SocioeconomicDataComponent},
+    {path: 'pages/tutor-history', component:TutorHistoryComponent},
+    {path: 'pages/student-requests', component:StudentRequestsComponent},
     {path: '',redirectTo: 'dashboard', pathMatch:'full'},
   ]},
   

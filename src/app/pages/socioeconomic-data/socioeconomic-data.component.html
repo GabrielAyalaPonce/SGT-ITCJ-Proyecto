@@ -1,0 +1,169 @@
+
+<mat-toolbar class="menu-socioeconimico"   color="warn">
+      <span >Datos socioeconomicos</span>
+</mat-toolbar>
+
+
+<mat-card  class="menu-socioeconimico-1" >
+    
+<mat-toolbar style="width: 100%;" color="warn">
+    <span >Nivel máximo de estudios alcanzado por tus padres aunque hayan fallecido (selecciona una opción columna)</span>
+</mat-toolbar>
+
+<mat-card class="menu-socioeconimico-1-1" >
+    <mat-card-content>padre:</mat-card-content>
+    <select style="width: 100%;" name="nivel_estudios_padre" size="10" id="nivel_estudios_padre">
+        <option value="1">No lo se</option>
+        <option value="13">No sabe leer ni escribir</option>
+        <option value="3">No fue a la escuela</option>
+        <option value="4" selected="">No termino la Primaria</option>
+        <option value="5">Termino la Primaria</option>
+        <option value="6">Tiene alguna capacitacion tecnica despues de la Primaria</option>
+        <option value="7">No termino la Secundaria </option>
+        <option value="8">Termino la Secundaria</option>
+        <option value="9">Tiene alguna capacitacion tecnica despues de la Secundaria</option>
+        <option value="10">Tiene estudios de tecnico profesional incompletos</option>
+        <option value="11">Tiene estudios de tecnico profesional completos</option>
+        <option value="113">No termino la Preparatoria o Bachicherato </option>
+        <option value="13">Termino la Preparatoria o Bachicherato</option>
+        <option value="14">No termino la Licenciatura, Ingenieria o Normal</option>
+        <option value="22.2">Termino la Licenciatura, Ingenieria o Normal</option>
+        <option value="16">No termino la Maestria o Doctorado</option>
+        <option value="17">Termino la Maestria o Doctorado</option>
+        <option value="0">Otro</option>					
+        </select>
+  </mat-card>
+
+  <mat-card class="menu-socioeconimico-1-1">
+    <mat-card-content>madre</mat-card-content>
+    <select style="width: 100%;" name="nivel_estudios_madre" size="10" id="nivel_estudios_madre" value="">
+        <option value="1">No lo se</option>
+        <option value="13">No sabe leer ni escribir
+        </option><option value="3">No fue a la escuela</option>
+        <option value="4">No termino la Primaria</option>
+        <option value="5" selected="">Termino la Primaria</option>
+        <option value="6">Tiene alguna capacitacion tecnica despues de la Primaria</option>
+        <option value="7">No termino la Secundaria</option>
+        <option value="8">Termino la Secundaria </option>
+        <option value="9">Tiene alguna capacitacion tecnica despues de la Secundaria </option>
+        <option value="10">Tiene estudios de tecnico profesional incompletos</option>
+        <option value="11">Tiene estudios de tecnico profesional completos</option>
+        <option value="113">No termino la Preparatoria o Bachicherato</option>
+        <option value="13">Termino la Preparatoria o Bachicherato</option>
+        <option value="14">No termino la Licenciatura, Ingenieria o Normal</option>
+        <option value="22.2">Termino la Licenciatura, Ingenieria o Normal</option>
+        <option value="16">No termino la Maestria o Doctorado</option>
+        <option value="17">Termino la Maestria o Doctorado</option>
+        <option value="0">Otro</option>
+        <option value="11">Tiene estudios de tecnico profesional completos</option>
+    </select>
+  </mat-card>
+
+  <mat-card class="menu-socioeconimico-1-1">
+    <mat-card-content>con quien vives actualmente:</mat-card-content>
+    <select style="width: 100%;" name="con_quien_vives" size="10" id="con_quien_vives" value="">
+        <option value="1">Padre y Madre</option>
+        <option value="13">Padre</option>
+        <option value="3" selected="">Madre</option>
+        <option value="4">Hermanos</option>
+        <option value="5">Conyuge o pareja</option>
+        <option value="6">Otro familiar</option>
+        <option value="7">Amigo o amigos</option>
+        <option value="8">Solo</option>
+        <option value="9">Hijos</option>
+        <option value="10">Otro</option>
+    </select>
+  </mat-card>
+
+  <mat-card class="menu-socioeconimico-1-1">
+    <mat-card-content>ingresos familiares mensuales:</mat-card-content>
+    <!-- <div class="data-ingresos">
+    <td height="0" align="center">Padre:</td>
+    <td align="center"><input name="ingresos_padre" type="text" id="ingresos_padre" value="0" size="10" maxlength="5" onchange="acumula_ingresos()"></td>
+    <td height="0" align="center">Madre: </td>
+    <td align="center"><input name="ingresos_madre" type="text" id="ingresos_madre" value="0" size="10" maxlength="5" onchange="acumula_ingresos()"></td>
+    <td height="25" align="center">Hermanos: </td>
+    <td align="center"><input name="ingresos_hermanos" type="text" id="ingresos_hermanos" value="8000" size="10" maxlength="5" onchange="acumula_ingresos()"></td>
+    <td height="30" align="center">Propios: </td>
+    <td align="center"><input name="ingresos_propios" type="text" id="ingresos_propios" value="8000" size="10" maxlength="5" onchange="acumula_ingresos()"></td>
+    <td height="27" align="center">Otros: </td>
+    <td align="center"><input name="ingresos_otros" type="text" id="ingresos_otros" value="0" size="10" maxlength="5" onchange="acumula_ingresos()"></td>
+    <td height="26" align="center">Total de Ingresos</td>
+    <input name="total_ingresos" type="text" id="total_ingresos" value="16000" size="10" maxlength="5" onchange="" readonly="">
+</div> -->
+  </mat-card>
+
+  <mat-toolbar style="width: 100%;" color="warn">
+    <span >¿Cual es la ocupación o Trabajo de tus padres o tutores ? (Selecciona una opción)	</span>
+</mat-toolbar>
+
+<mat-card class="menu-socioeconimico-1-1" >
+    <mat-card-content>padre:</mat-card-content>
+    <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-label>ocupación</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let ocupation of ocupations" [value]="ocupation.value">
+            {{ocupation.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </mat-card>
+
+  <mat-card class="menu-socioeconimico-1-1" >
+    <mat-card-content>Madre:</mat-card-content>
+    <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-label>ocupación</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let ocupation of ocupations" [value]="ocupation.value">
+            {{ocupation.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </mat-card>
+
+  <mat-card class="menu-socioeconimico-1-1" style="width: 22.2%;">
+    <mat-card-content>De quien dependes economicamente:</mat-card-content>
+    <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-label>Dependo de:</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let depend of depends" [value]="depend.value">
+            {{depend.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </mat-card>
+
+  <mat-card class="menu-socioeconimico-1-1" style="width: 22.2%;">
+    <mat-card-content>La casa donde vivo es:</mat-card-content>
+    <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-label>casa es:</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let house of houses" [value]="house.value">
+            {{house.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </mat-card>
+
+  <mat-card class="menu-socioeconimico-1-1">
+      <mat-card-content>cuantos cuartos tiene la casa:</mat-card-content>
+      <button mat-button style="background-color:rgb(0, 255, 0);margin-left: 10%;" (click)="increment()">+</button>
+     <button mat-button  style="background-color:rgb(255, 35, 35);margin-left: 10%;" (click)="decrement()">-</button>
+     <p style="margin-left: 25%;">Total: {{counter}}</p>
+    </mat-card>
+
+    <mat-card class="menu-socioeconimico-1-1" >
+        <mat-card-content>Cuantas personas viven en la casa:</mat-card-content>
+        <button mat-button style="background-color:rgb(0, 255, 0);margin-left: 10%;" (click)="increment()">+</button>
+       <button mat-button  style="background-color:rgb(255, 35, 35);margin-left: 10%;" (click)="decrement()">-</button>
+       <p style="margin-left: 25%;">Total: {{counter}}</p>
+      </mat-card>
+
+      <mat-card class="menu-socioeconimico-1-1" >
+        <mat-card-content>¿Cuántas personas incluyéndote a ti, dependen económicamente del principal apoyo o sustento?:</mat-card-content>
+        <button mat-button style="background-color:rgb(0, 255, 0);margin-left: 10%;" (click)="increment()">+</button>
+       <button mat-button  style="background-color:rgb(255, 35, 35);margin-left: 10%;" (click)="decrement()">-</button>
+       <p style="margin-left: 25%;">Total: {{counter}}</p>
+      </mat-card>
+
+  </mat-card>

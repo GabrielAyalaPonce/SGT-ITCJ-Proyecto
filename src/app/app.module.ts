@@ -35,8 +35,9 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import {MatBadgeModule} from '@angular/material/badge';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 import { CrearUsuariosComponent } from './pages/crear-usuarios/crear-usuarios.component';
@@ -44,6 +45,10 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ChangeRolComponent } from './pages/change-rol/change-rol.component';
 import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
 import { DatabaseComponent } from './pages/database/database.component';
+import { TutorRequestComponent } from './pages/tutor-request/tutor-request.component';
+import { SocioeconomicDataComponent } from './pages/socioeconomic-data/socioeconomic-data.component';
+
+
 
 
 @NgModule({
@@ -62,6 +67,8 @@ import { DatabaseComponent } from './pages/database/database.component';
     ChangeRolComponent,
     DeleteUserComponent,
     DatabaseComponent,
+    TutorRequestComponent,
+    SocioeconomicDataComponent
   ],
   imports: [
     BrowserModule,
@@ -88,8 +95,10 @@ import { DatabaseComponent } from './pages/database/database.component';
     MatPaginatorModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatBadgeModule,
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatGridListModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
 
   ],

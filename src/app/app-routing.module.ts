@@ -12,6 +12,8 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ChangeRolComponent } from './pages/change-rol/change-rol.component';
 import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
 import { DatabaseComponent } from './pages/database/database.component';
+import { TutorRequestComponent } from './pages/tutor-request/tutor-request.component';
+import { SocioeconomicDataComponent } from './pages/socioeconomic-data/socioeconomic-data.component';
 
 
 const routes: Routes = [
@@ -27,6 +29,8 @@ const routes: Routes = [
     {path: 'pages/change-rol', component:ChangeRolComponent},
     {path: 'pages/delete-user', component:DeleteUserComponent},
     {path: 'pages/database', component:DatabaseComponent},
+    {path: 'pages/tutor-request', component:TutorRequestComponent},
+    {path: 'pages/socioeconomic-data', component:SocioeconomicDataComponent},
     {path: '',redirectTo: 'dashboard', pathMatch:'full'},
   ]},
   

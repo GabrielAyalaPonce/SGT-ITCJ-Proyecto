@@ -4,6 +4,11 @@
       <mat-icon style="color:white;">menu</mat-icon>
     </button>
     <span style="color:white; text-align: center;">Sistema De Gestion de Tutorias ITCJ</span>
+
+    <div *ngIf="rol==='tutorado' || rol==='tutor'" class="demo-section">
+      <mat-icon style="margin-left: 15%;" matBadge="1" matBadgeColor="warn" >notifications</mat-icon>
+    </div>
+
   </mat-toolbar>
   
     <mat-drawer #drawer class="sidenav" mode="side">
@@ -38,7 +43,7 @@
     </mat-list>
     <mat-divider></mat-divider>
   
-    <mat-accordion>
+    <mat-accordion  *ngIf="rol==='administrador' || rol==='tutor'"  >
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
@@ -46,7 +51,7 @@
           Usuarios
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <button style="width: 100%;" mat-stroked-button color="warn" routerLink="pages/usuarios">Ver Usuarios</button>
+        <button  style="width: 100%;" mat-stroked-button color="warn" routerLink="pages/usuarios">Ver Usuarios</button>
         <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/crear-usuarios">crear Usuarios</button>
       </mat-expansion-panel>
     </mat-accordion>
@@ -86,11 +91,10 @@
            Datos
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <button *ngIf="rol==='tutorado'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/database">Datos</button>
+        <button *ngIf="rol==='tutorado'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/database">Mis Datos</button>
         <button *ngIf="rol==='tutorado'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/socioeconomic-data">Datos socioeconomicos</button>
       </mat-expansion-panel>
     </mat-accordion>
-
 
     <mat-accordion>
       <mat-expansion-panel (opened)="panelOpenState = true"
@@ -114,7 +118,20 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
               <button *ngIf="rol==='tutor'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/tutor-request">Solicitar</button>
-              <button *ngIf="rol==='tutor'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/student-requests">Solicitud de tutorias</button>
+              <button *ngIf="rol==='tutor'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" matBadge="1" [matBadgeHidden]="hidden" matBadgeColor="warn" (click)="toggleBadgeVisibility()" routerLink="pages/student-requests">Solicitud de tutorias</button>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header *ngIf="rol==='tutorado'">
+          <mat-panel-title>
+           portafolio Academico
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <button *ngIf="rol==='tutorado'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/academic-portafolio">Seguimiento</button>
       </mat-expansion-panel>
     </mat-accordion>
 

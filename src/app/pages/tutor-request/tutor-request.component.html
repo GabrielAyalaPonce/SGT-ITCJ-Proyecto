@@ -7,7 +7,14 @@
     
         <mat-form-field class="menu" appearance="outline">
           <mat-label>Tema</mat-label>
-          <input matInput [(ngModel)]="tema">
+          <mat-select>
+            <mat-option value="one">Economico</mat-option>
+            <mat-option value="two">Psicologico</mat-option>
+            <mat-option value="two">Personal</mat-option>
+            <mat-option value="two">Materias</mat-option>
+            <mat-option value="two">Calificaciones</mat-option>
+            <mat-option value="two">Otro</mat-option>
+          </mat-select>
         </mat-form-field>
       
 
@@ -34,9 +41,11 @@
       </mat-form-field>
 
       <mat-form-field class="menu" appearance="outline" >
-        <mat-label>Comentarios</mat-label>
+        <mat-label>Breve Descripcion de solicitud</mat-label>
         <textarea matInput></textarea>
       </mat-form-field>
+
+  
 
  <div class="btn-choose">
    <h4 style="display: contents;">Elegir archivo:   </h4> <input  type="file" (change)="onFileSelected($event)" />

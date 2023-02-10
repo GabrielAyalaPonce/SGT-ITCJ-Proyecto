@@ -27,11 +27,11 @@ const ROLES: string[] = [
   'Tutorado',
 ];
 const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
+  'Angel',
+  'Gabo',
+  'Noe',
+  'margarita',
+  'luis',
 ];
 
 @Component({

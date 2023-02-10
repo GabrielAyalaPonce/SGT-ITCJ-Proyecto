@@ -16,6 +16,7 @@ export class PagesComponent implements OnInit {
   
   public year = new Date().getFullYear();
 
+ hidden = false;
   showFiller = false;
   panelOpenState = false;
   login:boolean = false;
@@ -63,6 +64,11 @@ export class PagesComponent implements OnInit {
     this.afAuth.signOut();
     this.router.navigate(['login']);
     this.snackBar.open('Sesion finalizada', 'Aceptar');
+  }
+
+
+  toggleBadgeVisibility() {
+    this.hidden = !this.hidden;
   }
 
 }

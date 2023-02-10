@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-usuarios',
-  templateUrl: './crear-usuarios.component.html',
-  styleUrls: ['./crear-usuarios.component.css']
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.css']
 })
 export class CrearUsuariosComponent {
 

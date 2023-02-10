@@ -7,7 +7,7 @@ import { RecoverPasswordComponent } from './pages/recover-password/recover-passw
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { PagesComponent } from './pages/pages.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
-import { CrearUsuariosComponent } from './pages/crear-usuarios/crear-usuarios.component';
+import { CrearUsuariosComponent } from './pages/create-user/create-user.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ChangeRolComponent } from './pages/change-rol/change-rol.component';
 import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
@@ -16,6 +16,7 @@ import { TutorRequestComponent } from './pages/tutor-request/tutor-request.compo
 import { SocioeconomicDataComponent } from './pages/socioeconomic-data/socioeconomic-data.component';
 import { TutorHistoryComponent } from './pages/tutor-history/tutor-history.component';
 import { StudentRequestsComponent } from './pages/student-requests/student-requests.component';
+import { AcademicPortfolioComponent } from './pages/academic-portfolio/academic-portfolio.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
     {path: 'pages/socioeconomic-data', component:SocioeconomicDataComponent},
     {path: 'pages/tutor-history', component:TutorHistoryComponent},
     {path: 'pages/student-requests', component:StudentRequestsComponent},
+    {path: 'pages/academic-portafolio', component:AcademicPortfolioComponent},
     {path: '',redirectTo: 'dashboard', pathMatch:'full'},
   ]},
   

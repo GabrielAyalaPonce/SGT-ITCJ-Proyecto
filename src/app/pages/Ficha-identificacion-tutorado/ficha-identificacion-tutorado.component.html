@@ -1,0 +1,81 @@
+
+<mat-card class="fichaTutorado">
+<form [formGroup]="datosGeneralesForm">
+    <div class="seccion-1">
+    <mat-form-field appearance="outline">
+      <mat-label>Carrera a la que pertenece</mat-label>
+      <input matInput formControlName="carrera" >
+    </mat-form-field>
+    <mat-form-field appearance="outline" >
+      <mat-label>Número de Control</mat-label>
+      <input matInput formControlName="numControl">
+    </mat-form-field>
+    <mat-form-field  appearance="outline">
+      <mat-label>Semestre</mat-label>
+      <input matInput formControlName="semestre">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha</mat-label>
+      <input matInput formControlName="fecha" [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</div>
+
+    <h2 style="text-align: center;">Datos Generales</h2>
+    <div class="seccion-2"> 
+    <mat-form-field appearance="outline">
+      <mat-label>Apellido Paterno</mat-label>
+      <input matInput formControlName="apellidoPaterno">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Apellido Materno</mat-label>
+      <input matInput formControlName="apellidoMaterno">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre(s)</mat-label>
+      <input matInput formControlName="nombres">
+    </mat-form-field>
+    <mat-radio-group formControlName="sexo">
+      <mat-radio-button value="H">Hombre</mat-radio-button>
+      <mat-radio-button value="M">Mujer</mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field appearance="outline">
+      <mat-label>Correo Electrónico</mat-label>
+      <input matInput formControlName="correoElectronico">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="telefono">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Domicilio</mat-label>
+      <input matInput formControlName="domicilio">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Celular 1</mat-label>
+      <input matInput formControlName="celular1">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Celular 2</mat-label>
+      <input matInput formControlName="celular2">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha de Nacimiento</mat-label>
+      <input matInput formControlName="fechaNacimiento" [matDatepicker]="picker2">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Lugar de Nacimiento</mat-label>
+      <input matInput formControlName="lugarNacimiento">
+    </mat-form-field>
+    <mat-radio-group  formControlName="estadoCivil">
+      <mat-radio-button  value="CASADO">Casado(a)</mat-radio-button>
+      <mat-radio-button value="SOLTERO">Soltero(a)</mat-radio-button>
+      <mat-radio-button value="OTRO">Otro</mat-radio-button>
+    </mat-radio-group>
+</div>
+  </form>
+
+  </mat-card>

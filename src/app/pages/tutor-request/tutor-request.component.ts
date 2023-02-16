@@ -15,6 +15,8 @@ export class TutorRequestComponent implements OnInit {
       this.selectedFile = fileInput.files[0];
     }
   }
+
+  time: string | undefined;
   tema:string | undefined;
   constructor() { }
 

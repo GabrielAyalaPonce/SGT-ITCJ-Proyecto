@@ -39,19 +39,21 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
-import { CrearUsuariosComponent } from './pages/create-user/create-user.component';
+import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ChangeRolComponent } from './pages/change-rol/change-rol.component';
 import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
-import { DatabaseComponent } from './pages/database/database.component';
 import { TutorRequestComponent } from './pages/tutor-request/tutor-request.component';
 import { SocioeconomicDataComponent } from './pages/socioeconomic-data/socioeconomic-data.component';
 import { TutorHistoryComponent } from './pages/tutor-history/tutor-history.component';
 import { StudentRequestsComponent } from './pages/student-requests/student-requests.component';
 import { AcademicPortfolioComponent } from './pages/academic-portfolio/academic-portfolio.component';
+import { AcademicPortafoliosTutorComponent } from './pages/academic-portafolios-tutor/academic-portafolios-tutor.component';
+import { PasswordCoordinatorComponent } from './auth/login/password-coordinator/password-coordinator.component';
 
 
 
@@ -67,16 +69,17 @@ import { AcademicPortfolioComponent } from './pages/academic-portfolio/academic-
     QuestionComponent,
     PagesComponent,
     UsuariosComponent,
-    CrearUsuariosComponent,
+    CreateUserComponent,
     PerfilComponent,
     ChangeRolComponent,
     DeleteUserComponent,
-    DatabaseComponent,
     TutorRequestComponent,
     SocioeconomicDataComponent,
     TutorHistoryComponent,
     StudentRequestsComponent,
-    AcademicPortfolioComponent
+    AcademicPortfolioComponent,
+    AcademicPortafoliosTutorComponent,
+    PasswordCoordinatorComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +109,8 @@ import { AcademicPortfolioComponent } from './pages/academic-portfolio/academic-
     MatDatepickerModule,
     MatNativeDateModule,
     MatGridListModule,
-    MatBadgeModule,   
+    MatBadgeModule,
+    MatDialogModule,   
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
 

@@ -20,7 +20,7 @@ export class PagesComponent implements OnInit {
   showFiller = false;
   panelOpenState = false;
   login:boolean = false;
-  rol: 'administrador' | 'cordinador' | 'tutor' | 'tutorado' | undefined; 
+  rol: 'administrador' | 'coordinador' | 'tutor' | 'tutorado' | undefined; 
   name: string='';
 
   constructor(private afAuth: AngularFireAuth,

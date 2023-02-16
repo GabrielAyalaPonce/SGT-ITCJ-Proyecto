@@ -5,15 +5,6 @@ export interface User {
    repeatPassword: any,
    uid:any;
    Ncontrol:any,
-   Rol: 'administrador'|'cordinador'|'tutor'|'tutorado'; 
+   Rol: 'administrador'|'coordinador'|'tutor'|'tutorado'; 
 }
 
-
-
-export interface solicitud{
-   tema:any, 
-   modalidad:any, 
-   fecha:any,
-   comentarios:any, 
-   status:any
-}

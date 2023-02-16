@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-crear-usuarios',
+  selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css']
 })
-export class CrearUsuariosComponent {
+export class CreateUserComponent implements OnInit {
 
   form = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -18,6 +18,12 @@ export class CrearUsuariosComponent {
 
   addPerson() {
   // lógica para agregar una persona utilizando los datos del formulario
+  }
+
+
+  constructor() { }
+
+  ngOnInit(): void {
   }
 
 }

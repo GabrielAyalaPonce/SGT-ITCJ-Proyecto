@@ -25,6 +25,7 @@ const ROLES: string[] = [
   'Admin',
   'Tutor',
   'Tutorado',
+  'coordinador',
 ];
 const NAMES: string[] = [
   'Angel',

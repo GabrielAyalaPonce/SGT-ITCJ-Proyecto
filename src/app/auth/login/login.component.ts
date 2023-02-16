@@ -7,7 +7,8 @@ import { FirebaseCodeErrorsService } from 'src/app/services/firebase-code-errors
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User } from 'src/app/models/user';
 import { UserFirebaseService } from 'src/app/services/user-firebase.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { PasswordCoordinatorComponent } from './password-coordinator/password-coordinator.component';
 
 
 @Component({
@@ -23,6 +24,9 @@ export class LoginComponent {
   public loading: boolean = false;
   public UserDocument:any;
   public emailUser: any;
+  public disabled:boolean=false;
+  public showMessage:boolean = false;
+  public newRol:string | undefined;
 
   datos: User = {
    name: null,
@@ -35,11 +39,11 @@ export class LoginComponent {
   }
 
   constructor(private afAuth: AngularFireAuth,
-    private firestore:AngularFirestore,
     private fb: FormBuilder, private snackBar: MatSnackBar,
     private router: Router,
     private firebaseErrors: FirebaseCodeErrorsService,
-    private userfirebase: UserFirebaseService) {
+    private userfirebase: UserFirebaseService,
+    public dialog: MatDialog) {
     
     //form reactive register
     this.registerUser = this.fb.group({
@@ -59,7 +63,11 @@ export class LoginComponent {
     })
   }
 
-  //registration method
+
+
+
+
+  //registration method 1
   register()  {
     this.datos ={
       email:this.registerUser.value.email,
@@ -68,7 +76,7 @@ export class LoginComponent {
       name: this.registerUser.value.name,
       uid : '',
       Ncontrol: this.registerUser.value.Ncontrol,
-      Rol: 'tutorado'
+      Rol: this.datos.Rol
    }
     if (this.datos.password != this.datos.repeatPassword) {
       this.snackBar.open('Contrasena deben coincidir', '', { duration: 1000 });
@@ -84,15 +92,29 @@ export class LoginComponent {
       name: this.registerUser.value.name,
       uid : resp.user?.uid,
       Ncontrol: this.registerUser.value.Ncontrol,
-      Rol: 'tutorado'
-   }
-      this.userfirebase.createDoc(this.datos,'users',resp.user?.uid)
+      Rol: this.datos.Rol   
+    }
+      this.userfirebase.createDoc(this.datos,'users',resp.user?.uid);
     this.verificarCorreo(); 
   }).catch((err) => {
     this.loading = false;
   this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
   });
 }
+
+openDialog(): void {
+  const dialogRef = this.dialog.open(PasswordCoordinatorComponent, {});
+  dialogRef.afterClosed().subscribe(result => {
+    if (result === 'SGT2022') {
+      this.disabled = true;
+      this.datos.Rol = 'coordinador';
+    } else {
+      this.showMessage = true;
+    }
+  });
+}
+
+
 
   verificarCorreo() {
     this.afAuth.currentUser.then((user) => user?.sendEmailVerification())
@@ -122,8 +144,6 @@ export class LoginComponent {
 
   }  
 
-
-  
 
 }
 

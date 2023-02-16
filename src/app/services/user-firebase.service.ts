@@ -27,13 +27,13 @@ const collection = this.firestore.collection(path)
 return collection.doc(id).set(data)
 }
 
-// getDoc<tipo>(path:string, id:string){
-//   return this.firestore.collection(path).doc<tipo>(id).valueChanges();
-//   }
+updateUserRole(userId: any): Promise<void> {
+  return this.firestore.collection('users').doc(userId).update({ Rol: 'coordinador' });
+}
 
-// getDoc<tipo>(path:string, id:string){
-//   return this.firestore.collection(path).doc<tipo>(id).get().valueChanges();
-//   }
+updateDoc(data: any, collection: string, docId: string): Promise<void> {
+  return this.firestore.collection(collection).doc(docId).update(data);
+}
 
 
 
@@ -55,8 +55,7 @@ getCollection<tipo>(path:string){
 }
  
 
-updateUser(){
-}
+
 
 deleteDoc(){
 

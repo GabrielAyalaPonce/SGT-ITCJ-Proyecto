@@ -52,7 +52,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <button  style="width: 100%;" mat-stroked-button color="warn" routerLink="pages/usuarios">Ver Usuarios</button>
-        <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/crear-usuarios">crear Usuarios</button>
+        <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/create-user">crear Usuarios</button>
       </mat-expansion-panel>
     </mat-accordion>
   
@@ -134,6 +134,22 @@
         <button *ngIf="rol==='tutorado'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/academic-portafolio">Seguimiento</button>
       </mat-expansion-panel>
     </mat-accordion>
+
+
+    <mat-accordion  *ngIf="rol==='tutor'">
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+           portafolios Academicos
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <button *ngIf="rol==='tutor'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/academic-portafolios-tutor">Seguimiento portafolios</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+    
 
     
   

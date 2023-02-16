@@ -30,6 +30,14 @@
   background-color: #e02d2d;
 }
 
+.mat-stroked-button{
+  margin-top: 10px;
+  width: 100%;
+  color: rgb(255, 0, 0);
+  height: 40px;
+
+}
+
 .mat-card-header{
   justify-content:center;
   margin: 0 0px;

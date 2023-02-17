@@ -40,6 +40,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -48,7 +49,7 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ChangeRolComponent } from './pages/change-rol/change-rol.component';
 import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
 import { TutorRequestComponent } from './pages/tutor-request/tutor-request.component';
-import { SocioeconomicDataComponent } from './pages/socioeconomic-data/socioeconomic-data.component';
+import { FichaIdentificacionTutoradoComponent } from './pages/Ficha-identificacion-tutorado/ficha-identificacion-tutorado.component';
 import { TutorHistoryComponent } from './pages/tutor-history/tutor-history.component';
 import { StudentRequestsComponent } from './pages/student-requests/student-requests.component';
 import { AcademicPortfolioComponent } from './pages/academic-portfolio/academic-portfolio.component';
@@ -74,12 +75,12 @@ import { PasswordCoordinatorComponent } from './auth/login/password-coordinator/
     ChangeRolComponent,
     DeleteUserComponent,
     TutorRequestComponent,
-    SocioeconomicDataComponent,
     TutorHistoryComponent,
     StudentRequestsComponent,
     AcademicPortfolioComponent,
     AcademicPortafoliosTutorComponent,
-    PasswordCoordinatorComponent
+    PasswordCoordinatorComponent,
+    FichaIdentificacionTutoradoComponent
   ],
   imports: [
     BrowserModule,
@@ -110,7 +111,8 @@ import { PasswordCoordinatorComponent } from './auth/login/password-coordinator/
     MatNativeDateModule,
     MatGridListModule,
     MatBadgeModule,
-    MatDialogModule,   
+    MatDialogModule,
+    MatRadioModule,   
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
 

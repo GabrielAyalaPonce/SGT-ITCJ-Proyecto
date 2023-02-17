@@ -70,11 +70,116 @@
       <mat-label>Lugar de Nacimiento</mat-label>
       <input matInput formControlName="lugarNacimiento">
     </mat-form-field>
+
+    <H2>Estado civil:</H2>
     <mat-radio-group  formControlName="estadoCivil">
       <mat-radio-button  value="CASADO">Casado(a)</mat-radio-button>
       <mat-radio-button value="SOLTERO">Soltero(a)</mat-radio-button>
       <mat-radio-button value="OTRO">Otro</mat-radio-button>
     </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Domicilio actual</mat-label>
+      <input matInput formControlName="domicilioActual">
+    </mat-form-field>
+
+    <H2>Escolaridad:</H2>
+    <mat-radio-group  formControlName="escolaridad">
+      <mat-radio-button  value="PREPARATORIA">Preparatoria</mat-radio-button>
+      <mat-radio-button value="BACHILLERATO TECNICO">Bachillerato Tecnico</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre de la institucion</mat-label>
+      <input matInput formControlName="nombreInstitucion">
+    </mat-form-field>
+
+    <H2>Has estado Becado:</H2>
+    <mat-radio-group  formControlName="becado">
+      <mat-radio-button  value="SI">SI</mat-radio-button>
+      <mat-radio-button value="NO">NO</mat-radio-button>
+      <mat-radio-button value="gobiernoFederal">Gobierno Federal</mat-radio-button>
+      <mat-radio-button value="gobiernoEstatal">Gobierno Estatal</mat-radio-button>
+      <mat-radio-button value="esfuerzosBachillerato">Esfuerzos Bachillerato</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre de la institucion Esfuerzos</mat-label>
+      <input matInput formControlName="nombreInstitucionEsfuerzos">
+    </mat-form-field>
+
+    <H2>En el transcurso de tus estudios viviras:</H2>
+    <mat-radio-group  formControlName="vivirTranscursoEstudios">
+      <mat-radio-button value="vivirConFamilia"> Vivir con familia</mat-radio-button>
+      <mat-radio-button value="vivirConFamiliaresCercanos">Vivir con familiares</mat-radio-button>
+      <mat-radio-button value="vivirConOtrosEstudiantes">vivir Con Otros Estudiantes</mat-radio-button>
+      <mat-radio-button value="vivirSolo">vivir Solo</mat-radio-button>
+    </mat-radio-group>
+
+    <H2>Trabajas:</H2>
+    <mat-radio-group  formControlName="trabajas">
+      <mat-radio-button  value="SI">SI</mat-radio-button>
+      <mat-radio-button value="NO">NO</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre de la empresa</mat-label>
+      <input matInput formControlName="nombreEmpresaTrabajo">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Horario trabajo</mat-label>
+      <input matInput formControlName="horarioTrabajo">
+    </mat-form-field>
+
+    <H2>Maximo Grado de escolaridad Padre:</H2>
+    <mat-radio-group  formControlName="maxGradoEscolaridadPadre">
+      <mat-radio-button  value="Primaria">Primaria</mat-radio-button>
+      <mat-radio-button value="secundaria">secundaria</mat-radio-button>
+      <mat-radio-button value="Prepa">Prepa</mat-radio-button>
+      <mat-radio-button value="Tecnico">Tecnico</mat-radio-button>
+      <mat-radio-button value="SinEstudios">Sin Estudios</mat-radio-button>
+    </mat-radio-group>
+
+    <H2>Maximo Grado de escolaridad Madre:</H2>
+    <mat-radio-group  formControlName="maxGradoEscolaridadMadre">
+      <mat-radio-button  value="Primaria">Primaria</mat-radio-button>
+      <mat-radio-button value="secundaria">secundaria</mat-radio-button>
+      <mat-radio-button value="Prepa">Prepa</mat-radio-button>
+      <mat-radio-button value="Tecnico">Tecnico</mat-radio-button>
+      <mat-radio-button value="SinEstudios">Sin Estudios</mat-radio-button>
+    </mat-radio-group>
+
+    <H2>Tu padre vive?</H2>
+    <mat-radio-group  formControlName="padreVive">
+      <mat-radio-button  value="SI">SI</mat-radio-button>
+      <mat-radio-button value="NO">NO</mat-radio-button>
+    </mat-radio-group>
+
+    <H2>Tu madre vive?</H2>
+    <mat-radio-group  formControlName="madreVive">
+      <mat-radio-button  value="SI">SI</mat-radio-button>
+      <mat-radio-button value="NO">NO</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre lugar de trabajo padre</mat-label>
+      <input matInput formControlName="nombreLugarTrabajoPadre">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre lugar de trabajo madre</mat-label>
+      <input matInput formControlName="nombreLugarTrabajoMadre">
+    </mat-form-field>
+
+
+    <H2>En caso de emergencias comunicarse con:</H2>
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre Contacto Emergencia</mat-label>
+      <input matInput formControlName="nombreContactoEmergencia">
+      <mat-label>Telefono Contacto Emergencia</mat-label>
+      <input matInput formControlName="telefonoContactoEmergencia">
+    </mat-form-field>
 </div>
   </form>
 

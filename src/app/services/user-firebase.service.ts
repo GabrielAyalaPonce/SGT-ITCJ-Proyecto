@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs';
 
-import { User } from '../models/user';
 
 
 
@@ -35,8 +34,6 @@ updateDoc(data: any, collection: string, docId: string): Promise<void> {
   return this.firestore.collection(collection).doc(docId).update(data);
 }
 
-
-
   getDoc<tipo>(path:string, id:string){
     return this.firestore.collection(path).doc<tipo>(id).get().pipe(
     map(doc => {
@@ -55,9 +52,4 @@ getCollection<tipo>(path:string){
 }
  
 
-
-
-deleteDoc(){
-
-}
 }

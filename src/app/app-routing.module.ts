@@ -12,7 +12,7 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ChangeRolComponent } from './pages/change-rol/change-rol.component';
 import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
 import { TutorRequestComponent } from './pages/tutor-request/tutor-request.component';
-import { SocioeconomicDataComponent } from './pages/socioeconomic-data/socioeconomic-data.component';
+import { FichaIdentificacionTutoradoComponent } from './pages/Ficha-identificacion-tutorado/ficha-identificacion-tutorado.component';
 import { TutorHistoryComponent } from './pages/tutor-history/tutor-history.component';
 import { StudentRequestsComponent } from './pages/student-requests/student-requests.component';
 import { AcademicPortfolioComponent } from './pages/academic-portfolio/academic-portfolio.component';
@@ -32,7 +32,7 @@ const routes: Routes = [
     {path: 'pages/change-rol', component:ChangeRolComponent},
     {path: 'pages/delete-user', component:DeleteUserComponent},
     {path: 'pages/tutor-request', component:TutorRequestComponent},
-    {path: 'pages/socioeconomic-data', component:SocioeconomicDataComponent},
+    {path: 'pages/FichaIdentificacionTutoradoComponent', component:FichaIdentificacionTutoradoComponent},
     {path: 'pages/tutor-history', component:TutorHistoryComponent},
     {path: 'pages/student-requests', component:StudentRequestsComponent},
     {path: 'pages/academic-portafolio', component:AcademicPortfolioComponent},

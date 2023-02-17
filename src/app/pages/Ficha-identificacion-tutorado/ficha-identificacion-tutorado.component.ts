@@ -38,6 +38,7 @@ export class FichaIdentificacionTutoradoComponent implements OnInit {
       gobiernoEstatal: ['', Validators.required],
       esfuerzosBachillerato: ['', Validators.required],
       nombreInstitucionEsfuerzos: [''],
+      vivirTranscursoEstudios: ['', Validators.required],
       vivirConFamilia: ['', Validators.required],
       vivirConFamiliaresCercanos: ['', Validators.required],
       vivirConOtrosEstudiantes: ['', Validators.required],

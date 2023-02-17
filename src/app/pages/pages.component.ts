@@ -26,8 +26,6 @@ export class PagesComponent implements OnInit {
   constructor(private afAuth: AngularFireAuth,
     private router: Router,
     private snackBar: MatSnackBar,
-    private route: ActivatedRoute,
-    private firestore:AngularFirestore,
     private userfirebase:UserFirebaseService
     ) { 
     this.userfirebase.stateUser().subscribe(resp=>{

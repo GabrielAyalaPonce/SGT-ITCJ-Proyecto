@@ -1,0 +1,43 @@
+export interface FichaTecnica {
+    carrera: string;
+    numControl: string;
+    semestre: string;
+    fecha: string;
+    apellidoPaterno: string;
+    apellidoMaterno: string;
+    nombres: string;
+    sexo: string;
+    correoElectronico: string;
+    telefono: string;
+    domicilio: string;
+    celular1: string;
+    celular2: string;
+    fechaNacimiento: string;
+    lugarNacimiento: string;
+    estadoCivil: string;
+    domicilioActual: string;
+    escolaridad: string;
+    nombreInstitucion: string;
+    becado: string;
+    gobiernoFederal: string,
+    gobiernoEstatal: string,
+    esfuerzosBachillerato: string,
+    nombreInstitucionEsfuerzos: string,
+    vivirTranscursoEstudios: string,
+    vivirConFamilia: string,
+    vivirConFamiliaresCercanos: string,
+    vivirConOtrosEstudiantes: string,
+    vivirSolo: string,
+    trabajas: string,
+    nombreEmpresaTrabajo: string,
+    horarioTrabajo: string,
+    maxGradoEscolaridadPadre: string,
+    maxGradoEscolaridadMadre: string,
+    padreVive: string,
+    madreVive: string,
+    nombreLugarTrabajoPadre: string,
+    nombreLugarTrabajoMadre: string,
+    nombreContactoEmergencia: string,
+    telefonoContactoEmergencia: string
+    uid:any;
+  }

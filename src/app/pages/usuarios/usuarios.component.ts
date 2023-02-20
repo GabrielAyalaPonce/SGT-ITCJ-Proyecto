@@ -1,87 +1,46 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { User } from 'src/app/models/user';
+import { UserFirebaseService } from 'src/app/services/user-firebase.service';
 
-
-
-
-export interface UserData {
-  id: string;
-  name: string;
-  email: string;
-  Rol: string;
-}
-
-const EMAIL: string[] = [
-  'angelm.h.z@hotmail.com',
-  'l18110529@itcj.edu.mx',
-  'l17110853@itcj.edu.mx',
-  'l193673745@itcj.edu.mx',
-  'l204758202@itcj.edu.mx',
-];
-
-const ROLES: string[] = [
-  'Admin',
-  'Tutor',
-  'Tutorado',
-  'coordinador',
-];
-const NAMES: string[] = [
-  'Angel',
-  'Gabo',
-  'Noe',
-  'margarita',
-  'luis',
-];
 
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
+  styleUrls: ['./usuarios.component.css'],
 })
-export class UsuariosComponent   implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'email', 'Rol'];
-  dataSource: MatTableDataSource<UserData>;
+export class UsuariosComponent implements OnInit, AfterViewInit {
+  users: User[] = [];
+  dataSource = new MatTableDataSource<User>([]);
+  displayedColumns: string[] = ['name', 'email', 'Ncontrol', 'Rol'];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  @ViewChild(MatPaginator) paginator: any;
-  @ViewChild(MatSort) sort: any;
 
-  constructor() {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+  constructor(private userfirebaseservice: UserFirebaseService) {}
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+  ngOnInit(): void {
+    this.userfirebaseservice.getUsers().subscribe(users => {
+      this.dataSource = new MatTableDataSource(users);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  ngAfterViewInit() {}
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filterPredicate = (data: User, filter: string) =>
+      data.name.toLowerCase().includes(filter) ||
+      data.email.toLowerCase().includes(filter) ||
+      data.Rol.toLowerCase().includes(filter);
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
-}
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    email: EMAIL[Math.round(Math.random() * (EMAIL.length - 1))],
-    Rol: ROLES[Math.round(Math.random() * (ROLES.length - 1))],
-  };
 }

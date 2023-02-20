@@ -1,48 +1,37 @@
 
+<mat-form-field style="width: 100%; margin-top: 1.5%;" appearance="outline">
+  <mat-label>Buscador</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+</mat-form-field> 
 
-<mat-form-field style="width:100% ; margin-top: 5%;">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-  </mat-form-field>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- Define las columnas de la tabla -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+      <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Correo electrónico</th>
+      <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Ncontrol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Número de control</th>
+      <td mat-cell *matCellDef="let user">{{ user.Ncontrol }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Rol">
+      <th mat-header-cell *matHeaderCellDef>Rol</th>
+      <td mat-cell *matCellDef="let user">{{ user.Rol }}</td>
+    </ng-container>
   
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <!-- Renderiza las filas de datos -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
   
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-      </ng-container>
-  
-      <!-- Progress Column -->
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>
-        <td mat-cell *matCellDef="let row"> {{row.email}} </td>
-      </ng-container>
-  
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-      </ng-container>
-  
-      <!-- Fruit Column -->
-      <ng-container matColumnDef="Rol">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
-        <td mat-cell *matCellDef="let row"> {{row.Rol}} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  
-      <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
-    </table>
-  
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  <!-- Agrega el paginator y el buscador filtrado -->
+  <mat-paginator [pageSizeOptions]="[4, 10, 20,50,100]" [pageSize]="4" [length]="dataSource.data.length"></mat-paginator>
   </div>
-  
-  
-  
+
+
+

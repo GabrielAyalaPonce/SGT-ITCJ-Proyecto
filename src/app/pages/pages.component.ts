@@ -13,6 +13,8 @@ import { UserFirebaseService } from '../services/user-firebase.service';
   styleUrls: ['./pages.component.css']
 })
 export class PagesComponent implements OnInit {
+
+  users: User[] | undefined;
   
   public year = new Date().getFullYear();
 
@@ -40,9 +42,12 @@ export class PagesComponent implements OnInit {
     })
     }
 
-  ngOnInit(): void {
-
-  }
+    ngOnInit() {
+      this.userfirebase.getUsers().subscribe(users => {
+        this.users = users;
+        console.log('todos los usuarios', this.users); // Aquí puedes hacer lo que quieras con los usuarios obtenidos
+      });
+    }
 
     
   getDatosUser(uid: string){
@@ -56,14 +61,14 @@ export class PagesComponent implements OnInit {
     }
   })
 
-  }
 
+  }
+// function logout session
   logout() {
     this.afAuth.signOut();
     this.router.navigate(['login']);
     this.snackBar.open('Sesion finalizada', 'Aceptar');
   }
-
 
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;

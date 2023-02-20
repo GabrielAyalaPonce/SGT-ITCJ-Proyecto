@@ -41,6 +41,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -112,7 +113,8 @@ import { PasswordCoordinatorComponent } from './auth/login/password-coordinator/
     MatGridListModule,
     MatBadgeModule,
     MatDialogModule,
-    MatRadioModule,   
+    MatRadioModule, 
+    MatSortModule,  
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
 

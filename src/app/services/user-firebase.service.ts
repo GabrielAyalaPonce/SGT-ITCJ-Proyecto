@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { User } from '../models/user';
 
 
 
@@ -49,6 +50,10 @@ updateDoc(data: any, collection: string, docId: string): Promise<void> {
 getCollection<tipo>(path:string){
  const collection = this.firestore.collection<tipo>(path)
  return collection.valueChanges()
+}
+
+getUsers(): Observable<User[]> {
+  return this.firestore.collection<User>('users').valueChanges();
 }
  
 

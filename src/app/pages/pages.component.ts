@@ -5,6 +5,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../models/user';
 import { UserFirebaseService } from '../services/user-firebase.service';
+import { NavigationEnd } from '@angular/router';
+import { ElementRef,OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 
 
 @Component({
@@ -12,7 +16,7 @@ import { UserFirebaseService } from '../services/user-firebase.service';
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.css']
 })
-export class PagesComponent implements OnInit {
+export class PagesComponent implements OnInit, OnDestroy  {
 
   users: User[] | undefined;
   
@@ -24,11 +28,13 @@ export class PagesComponent implements OnInit {
   login:boolean = false;
   rol: 'administrador' | 'coordinador' | 'tutor' | 'tutorado' | undefined; 
   name: string='';
+  subscription: any;
 
   constructor(private afAuth: AngularFireAuth,
     private router: Router,
     private snackBar: MatSnackBar,
-    private userfirebase:UserFirebaseService
+    private userfirebase:UserFirebaseService,
+    private elementRef: ElementRef
     ) { 
     this.userfirebase.stateUser().subscribe(resp=>{
       if(resp){
@@ -42,12 +48,9 @@ export class PagesComponent implements OnInit {
     })
     }
 
-    ngOnInit() {
-      this.userfirebase.getUsers().subscribe(users => {
-        this.users = users;
-        console.log('todos los usuarios', this.users); // Aquí puedes hacer lo que quieras con los usuarios obtenidos
-      });
-    }
+
+ 
+   
 
     
   getDatosUser(uid: string){
@@ -74,5 +77,29 @@ export class PagesComponent implements OnInit {
     this.hidden = !this.hidden;
   }
 
+
+  ngOnInit() {
+    this.subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && event.url !== '/pages') {
+        // Ocultar el div si la ruta actual no es /pages
+        const container = this.elementRef.nativeElement.querySelector('.container-card-welcome');
+        if (container) {
+          container.style.display = 'none';
+        }
+      } else {
+        // Mostrar el div si la ruta actual es /pages
+        const container = this.elementRef.nativeElement.querySelector('.container-card-welcome');
+        if (container) {
+          container.style.display = 'block';
+        }
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
+
+
 

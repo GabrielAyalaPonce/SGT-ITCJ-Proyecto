@@ -1,21 +1,14 @@
-.cambio-rol-css{
-    margin-top: 5%;
+table {
     width: 100%;
-    justify-content: center;
-}
-
-.demo-section {
-    display: flex;
-    justify-content: center;
-    margin-top: 2.5%;
   }
-
-  .mat-badge-large.mat-badge-overlap.mat-badge-after .mat-badge-content {
-    right: 450px;
-}
-
-.cambio-de-rol{
-    width: 50%;
-}
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
   
   

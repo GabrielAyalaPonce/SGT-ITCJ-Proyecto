@@ -1,34 +1,56 @@
 
- 
- <div class="cambio-rol">
-  <mat-form-field class="cambio-rol-css" appearance="outline">
-    <mat-label>Buscar Usuario</mat-label>
-    <input matInput placeholder="ingresa nombre, correo o numero de control">
-    <mat-hint>*Verifica la informacion antes de cambiar el rol de algun usuario*</mat-hint>
-  </mat-form-field>
-  <button style="width: 50%; margin-left: 25%;"mat-raised-button color="warn" (click)="buscarUsuario()">Buscar</button>
-</div>
+<mat-form-field style="width: 100%; margin-top: 1.5%;" appearance="outline">
+  <mat-label>Buscador</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+</mat-form-field> 
+
+<div class="mat-elevation-z8">
+
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- Define las columnas de la tabla -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+      <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Correo electrónico</th>
+      <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Ncontrol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Número de control</th>
+      <td mat-cell *matCellDef="let user">{{ user.Ncontrol }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Rol">
+      <th mat-header-cell *matHeaderCellDef>Rol</th>
+      <td mat-cell *matCellDef="let user">{{ user.Rol }}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Cambiar Rol</th>
+      <td mat-cell *matCellDef="let user">
+        <div class="example-button-container">
+          <button mat-icon-button color="warn" aria-label="Example icon button with a menu icon" [matMenuTriggerFor]="menu">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="changeUserRole('coordinador')">Coordinador</button>
+            <button mat-menu-item (click)="changeUserRole('tutor')">Tutor</button>
+            <button mat-menu-item (click)="changeUserRole('tutorado')">Tutorado</button>
+          </mat-menu>
+        </div>
+      </td>
+    </ng-container>
+  
+    <!-- Renderiza las filas de datos -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  
+  <!-- Agrega el paginator y el buscador filtrado -->
+  <mat-paginator [pageSizeOptions]="[4, 10, 20,50,100]" [pageSize]="4" [length]="dataSource.data.length"></mat-paginator>
 
 
-<mat-card style="margin-top: 2.5%;">
 
-  <div *ngIf="mostrarResultados">
-    <mat-card style="margin-top: 2.5%;">
-      <mat-card-title>Nombre: {{nombre}}</mat-card-title>
-      <mat-card-subtitle>Correo: {{correo}}</mat-card-subtitle>
-      <mat-card-subtitle>Numero control: {{numeroControl}}</mat-card-subtitle>
-      <mat-card-subtitle>Carrera: {{carrera}}</mat-card-subtitle>
-      <mat-card-subtitle>Rol: {{rol}}</mat-card-subtitle>
-    </mat-card>
-
-    <mat-form-field class="cambio-de-rol">
-        <mat-label>Cambiar rol de usuario a:</mat-label>
-        <mat-select>
-          <mat-option value="one">Coordinador</mat-option>
-          <mat-option value="two">Tutor</mat-option>
-          <mat-option value="three">Alumno</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <button style="width: 40%; margin-left: 10%;" mat-raised-button color="warn">Guardar</button>
+  
   </div>
-  </mat-card>

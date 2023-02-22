@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -56,6 +55,7 @@ import { StudentRequestsComponent } from './pages/student-requests/student-reque
 import { AcademicPortfolioComponent } from './pages/academic-portfolio/academic-portfolio.component';
 import { AcademicPortafoliosTutorComponent } from './pages/academic-portafolios-tutor/academic-portafolios-tutor.component';
 import { PasswordCoordinatorComponent } from './auth/login/password-coordinator/password-coordinator.component';
+import { UsersFilterPipe } from './pipes/users-filter.pipe';
 
 
 
@@ -81,7 +81,8 @@ import { PasswordCoordinatorComponent } from './auth/login/password-coordinator/
     AcademicPortfolioComponent,
     AcademicPortafoliosTutorComponent,
     PasswordCoordinatorComponent,
-    FichaIdentificacionTutoradoComponent
+    FichaIdentificacionTutoradoComponent,
+    UsersFilterPipe
   ],
   imports: [
     BrowserModule,

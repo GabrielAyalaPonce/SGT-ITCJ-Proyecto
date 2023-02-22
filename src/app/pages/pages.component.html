@@ -43,7 +43,7 @@
     </mat-list>
     <mat-divider></mat-divider>
   
-    <mat-accordion  *ngIf="rol==='administrador' || rol==='tutor'"  >
+    <mat-accordion  *ngIf="rol==='administrador' || rol==='tutor' || rol==='coordinador'" >
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
@@ -56,7 +56,7 @@
       </mat-expansion-panel>
     </mat-accordion>
   
-    <mat-accordion *ngIf="rol==='administrador'">
+    <mat-accordion *ngIf="rol==='administrador'|| rol==='coordinador' ">
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
@@ -64,8 +64,8 @@
            Acciones
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/change-rol">Cambiar rol</button>
-        <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/delete-user">Eliminar usuario</button>
+        <button *ngIf="rol==='administrador' || rol==='coordinador' " style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/change-rol">Cambiar rol</button>
+        <button *ngIf="rol==='administrador' || rol==='coordinador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/delete-user">Eliminar usuario</button>
       </mat-expansion-panel>
     </mat-accordion>
 
@@ -148,11 +148,6 @@
       </mat-expansion-panel>
     </mat-accordion>
 
-
-    
-
-    
-  
     <mat-toolbar class="foot-bar">
     </mat-toolbar>
   
@@ -165,6 +160,7 @@
   <div class="container-card-welcome">
     <mat-card class="card-welcome">
         <mat-card-content>Bienvenido: {{name}}</mat-card-content>
+        <mat-card-content>Rol: {{rol}}</mat-card-content>
       </mat-card>
  </div>
 

@@ -56,6 +56,10 @@ import { AcademicPortfolioComponent } from './pages/academic-portfolio/academic-
 import { AcademicPortafoliosTutorComponent } from './pages/academic-portafolios-tutor/academic-portafolios-tutor.component';
 import { PasswordCoordinatorComponent } from './auth/login/password-coordinator/password-coordinator.component';
 import { UsersFilterPipe } from './pipes/users-filter.pipe';
+import { AlertSummaryComponent } from './pages/alert-summary/alert-summary.component';
+import { CreatePackageComponent } from './pages/create-package/create-package.component';
+import {MatStepperModule} from '@angular/material/stepper';
+
 
 
 
@@ -82,7 +86,9 @@ import { UsersFilterPipe } from './pipes/users-filter.pipe';
     AcademicPortafoliosTutorComponent,
     PasswordCoordinatorComponent,
     FichaIdentificacionTutoradoComponent,
-    UsersFilterPipe
+    UsersFilterPipe,
+    AlertSummaryComponent,
+    CreatePackageComponent
   ],
   imports: [
     BrowserModule,
@@ -115,7 +121,8 @@ import { UsersFilterPipe } from './pipes/users-filter.pipe';
     MatBadgeModule,
     MatDialogModule,
     MatRadioModule, 
-    MatSortModule,  
+    MatSortModule, 
+    MatStepperModule, 
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
 

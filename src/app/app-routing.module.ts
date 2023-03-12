@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, createComponent, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -17,6 +17,8 @@ import { TutorHistoryComponent } from './pages/tutor-history/tutor-history.compo
 import { StudentRequestsComponent } from './pages/student-requests/student-requests.component';
 import { AcademicPortfolioComponent } from './pages/academic-portfolio/academic-portfolio.component';
 import { AcademicPortafoliosTutorComponent } from './pages/academic-portafolios-tutor/academic-portafolios-tutor.component';
+import { AlertSummaryComponent } from './pages/alert-summary/alert-summary.component';
+import { CreatePackageComponent } from './pages/create-package/create-package.component';
 
 
 const routes: Routes = [
@@ -37,6 +39,8 @@ const routes: Routes = [
     {path: 'pages/student-requests', component:StudentRequestsComponent},
     {path: 'pages/academic-portafolio', component:AcademicPortfolioComponent},
     {path: 'pages/academic-portafolios-tutor', component:AcademicPortafoliosTutorComponent},
+    {path: 'pages/alert-summary', component:AlertSummaryComponent},
+    {path: 'pages/create-package', component:CreatePackageComponent},
     {path: '',redirectTo: 'dashboard', pathMatch:'full'},
   ]},
   

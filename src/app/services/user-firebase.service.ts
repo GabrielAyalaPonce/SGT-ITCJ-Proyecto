@@ -52,6 +52,10 @@ updateDoc(data: any, collection: string, docId: string): Promise<void> {
 getUsers(): Observable<User[]> {
   return this.firestore.collection<User>('users').valueChanges();
 }
+//get users where rol is equal tutor
+getTutorUsers() {
+  return this.firestore.collection('users', ref => ref.where('Rol', '==', 'tutor')).valueChanges();
+}
 
 
 getCollection<tipo>(path:string){
@@ -59,10 +63,6 @@ getCollection<tipo>(path:string){
  return collection.valueChanges()
 }
 
-buscarUsuario(busqueda: string): Observable<any> {
-  return this.firestore.collection('users', resp => 
-    resp.where('correo', '==', busqueda)
-  ).valueChanges();}
 
  
 

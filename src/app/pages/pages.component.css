@@ -45,3 +45,6 @@
    text-align: center;
   }
 
+  .container-card-welcome.hidden {
+    display: none;
+  }

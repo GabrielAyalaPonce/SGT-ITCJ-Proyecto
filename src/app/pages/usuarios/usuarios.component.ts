@@ -12,6 +12,8 @@ import { UserFirebaseService } from 'src/app/services/user-firebase.service';
   styleUrls: ['./usuarios.component.css'],
 })
 export class UsuariosComponent implements OnInit, AfterViewInit {
+
+
   users: User[] = [];
   dataSource = new MatTableDataSource<User>([]);
   displayedColumns: string[] = ['name', 'email', 'Ncontrol', 'Rol'];
@@ -20,9 +22,9 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
 
 
   constructor(private userfirebaseservice: UserFirebaseService) {}
-
   ngOnInit(): void {
     this.userfirebaseservice.getUsers().subscribe(users => {
+      console.log('Usuarios en la BD',users)
       this.dataSource = new MatTableDataSource(users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

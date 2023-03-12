@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs';
 })
 export class PagesComponent implements OnInit, OnDestroy  {
 
-  users: User[] | undefined;
+  users!: User[];
   
   public year = new Date().getFullYear();
 
@@ -52,7 +52,7 @@ export class PagesComponent implements OnInit, OnDestroy  {
  
    
 
-    
+   //obtener un solo usuario por el uid para mostrar nombre. 
   getDatosUser(uid: string){
    const id = uid;
    this.userfirebase.getDoc<User>('users', id).subscribe(resp => {

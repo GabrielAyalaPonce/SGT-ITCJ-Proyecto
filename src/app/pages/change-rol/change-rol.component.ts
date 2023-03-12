@@ -4,6 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/models/user';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 @Component({
   selector: 'app-change-rol',
@@ -19,16 +21,25 @@ export class ChangeRolComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor(private userfirebaseservice: UserFirebaseService) {}
+  constructor(private userfirebaseservice: UserFirebaseService,) {}
   ngOnInit(): void {
     this.userfirebaseservice.getUsers().subscribe(users => {
       this.dataSource = new MatTableDataSource(users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+    
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.currentUserId = user.uid;
+      } else {
+        this.currentUserId;
+      }
+    });
   }
 
   ngAfterViewInit() {}
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -43,12 +54,16 @@ export class ChangeRolComponent implements OnInit, AfterViewInit {
     }
   }
 
-  changeUserRole(newRole: string) {
-    const userId = this.currentUserId; // aquí debes reemplazar por la forma en que estás obteniendo el ID del usuario actualmente autenticado
-    this.userfirebaseservice.updateUserRole(userId, newRole)
-      .then(() => console.log(`Rol actualizado a ${newRole}`))
-      .catch((error) => console.error(`Error al actualizar el rol: ${error}`));
+     
+  changeUserRole(user: any, newRole: string) {
+    const userId = user.uid; // extraer el id del usuario
+    if (userId) {
+      this.userfirebaseservice.updateUserRole(userId, newRole)
+        .then(() => console.log(`Rol actualizado a ${newRole}`))
+        .catch((error) => console.error(`Error al actualizar el rol: ${error}`));
+    }
   }
+  
   
 
 }

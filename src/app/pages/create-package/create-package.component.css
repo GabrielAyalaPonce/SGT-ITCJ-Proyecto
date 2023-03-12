@@ -1,0 +1,28 @@
+.packages{
+    margin-top: 2.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.card-packages{
+    width:100%;
+}
+
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+  
+  .mat-stepper .mat-step{
+    display: none;
+  }

@@ -33,14 +33,15 @@
             <mat-icon>menu</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="changeUserRole('coordinador')">Coordinador</button>
-            <button mat-menu-item (click)="changeUserRole('tutor')">Tutor</button>
-            <button mat-menu-item (click)="changeUserRole('tutorado')">Tutorado</button>
+            <button mat-menu-item (click)="changeUserRole(user, 'coordinador')">Coordinador</button>
+            <button mat-menu-item (click)="changeUserRole(user, 'tutor')">Tutor</button>
+            <button mat-menu-item (click)="changeUserRole(user,'tutorado')">Tutorado</button>
           </mat-menu>
         </div>
       </td>
     </ng-container>
-  
+
+    
     <!-- Renderiza las filas de datos -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

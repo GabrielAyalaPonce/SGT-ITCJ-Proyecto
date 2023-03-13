@@ -19,6 +19,8 @@ import { Subscription } from 'rxjs';
 export class PagesComponent implements OnInit, OnDestroy  {
 
   users!: User[];
+  showContainer: boolean = true;
+
   
   public year = new Date().getFullYear();
 
@@ -48,9 +50,6 @@ export class PagesComponent implements OnInit, OnDestroy  {
     })
     }
 
-
- 
-   
 
    //obtener un solo usuario por el uid para mostrar nombre. 
   getDatosUser(uid: string){

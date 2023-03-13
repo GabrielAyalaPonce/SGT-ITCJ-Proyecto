@@ -1,0 +1,7 @@
+<div class="container-view-package">
+    <mat-card class="card-view" *ngFor="let package of packages">
+      <mat-card-content style="text-align: center;">{{package.nombrePaquete}}</mat-card-content>
+      <mat-card-content>{{package.TutorAsignado.name}}</mat-card-content>
+      <button style="width: 100%;" mat-stroked-button color="warn">ver mas</button>
+    </mat-card>
+  </div>

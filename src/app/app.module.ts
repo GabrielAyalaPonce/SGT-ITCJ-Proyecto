@@ -59,6 +59,7 @@ import { UsersFilterPipe } from './pipes/users-filter.pipe';
 import { AlertSummaryComponent } from './pages/alert-summary/alert-summary.component';
 import { CreatePackageComponent } from './pages/create-package/create-package.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { ViewPackagesComponent } from './pages/view-packages/view-packages.component';
 
 
 
@@ -88,7 +89,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     FichaIdentificacionTutoradoComponent,
     UsersFilterPipe,
     AlertSummaryComponent,
-    CreatePackageComponent
+    CreatePackageComponent,
+    ViewPackagesComponent
   ],
   imports: [
     BrowserModule,

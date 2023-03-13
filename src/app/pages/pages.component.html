@@ -66,6 +66,7 @@
         </mat-expansion-panel-header>
         <button *ngIf="rol==='administrador' || rol==='coordinador' " style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/change-rol">Cambiar rol</button>
         <button *ngIf="rol=== 'coordinador' " style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/create-package">Crear paquete</button>
+        <button *ngIf="rol=== 'coordinador' " style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/view-package">Ver Paquetes</button>
         <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/delete-user">Eliminar usuario</button>
       </mat-expansion-panel>
     </mat-accordion>
@@ -158,12 +159,13 @@
     <router-outlet></router-outlet>
   </div>
 
-  <div class="container-card-welcome">
+  <div class="container-card-welcome" *ngIf="showContainer">
     <mat-card class="card-welcome">
-        <mat-card-content>Bienvenido: {{name}}</mat-card-content>
-        <mat-card-content>Rol: {{rol}}</mat-card-content>
-      </mat-card>
- </div>
+      <mat-card-content>Bienvenido: {{name}}</mat-card-content>
+      <mat-card-content>Rol: {{rol}}</mat-card-content>
+    </mat-card>
+  </div>
+  
 
   <mat-toolbar class="foot-bar">
    <span>© ITCJ {{year}}</span>

@@ -60,7 +60,7 @@ import { AlertSummaryComponent } from './pages/alert-summary/alert-summary.compo
 import { CreatePackageComponent } from './pages/create-package/create-package.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ViewPackagesComponent } from './pages/view-packages/view-packages.component';
-
+import { ViewPackageComponent } from './pages/view-package/view-package.component';
 
 
 
@@ -90,7 +90,8 @@ import { ViewPackagesComponent } from './pages/view-packages/view-packages.compo
     UsersFilterPipe,
     AlertSummaryComponent,
     CreatePackageComponent,
-    ViewPackagesComponent
+    ViewPackagesComponent,
+    ViewPackageComponent
   ],
   imports: [
     BrowserModule,

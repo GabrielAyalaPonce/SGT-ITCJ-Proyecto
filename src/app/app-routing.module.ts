@@ -20,6 +20,7 @@ import { AcademicPortafoliosTutorComponent } from './pages/academic-portafolios-
 import { AlertSummaryComponent } from './pages/alert-summary/alert-summary.component';
 import { CreatePackageComponent } from './pages/create-package/create-package.component';
 import { ViewPackagesComponent } from './pages/view-packages/view-packages.component';
+import { ViewPackageComponent } from './pages/view-package/view-package.component';
 
 
 const routes: Routes = [
@@ -42,7 +43,8 @@ const routes: Routes = [
     {path: 'pages/academic-portafolios-tutor', component:AcademicPortafoliosTutorComponent},
     {path: 'pages/alert-summary', component:AlertSummaryComponent},
     {path: 'pages/create-package', component:CreatePackageComponent},
-    {path: 'pages/view-package', component:ViewPackagesComponent},
+    {path: 'pages/view-packages', component:ViewPackagesComponent},
+    {path: 'pages/view-package', component:ViewPackageComponent},
     {path: '',redirectTo: 'dashboard', pathMatch:'full'},
   ]},
   

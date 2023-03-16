@@ -16,7 +16,7 @@ import { UserTutorI } from 'src/app/models/user-tutor-i';
 export class AlertSummaryComponent implements OnInit {
   users: User[] = [];
   dataSource = new MatTableDataSource<User>([]);
-  columnsToDisplay : string[] = ['uid','name','Ncontrol'];
+  columnsToDisplay : string[] = ['name','Ncontrol'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 

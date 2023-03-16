@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { User } from 'src/app/models/user';
+import { UserTutorI } from 'src/app/models/user-tutor-i';
 
 
 @Component({
@@ -13,10 +14,9 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./alert-summary.component.css']
 })
 export class AlertSummaryComponent implements OnInit {
-  users: User[] = [
-  ];
+  users: User[] = [];
   dataSource = new MatTableDataSource<User>([]);
-  columnsToDisplay : string[] = ['id','name','Ncontrol'];
+  columnsToDisplay : string[] = ['uid','name','Ncontrol'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -25,11 +25,10 @@ export class AlertSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.userfirebaseservice.getUsers().subscribe(users => {
-      console.log('Mostrando usuarios',users)
-      this.dataSource = new MatTableDataSource(this.users);
+      console.log('Mostrando usuarios',users);
+      this.dataSource = new MatTableDataSource(users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      
     });
   }
 

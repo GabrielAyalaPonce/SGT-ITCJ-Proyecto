@@ -18,19 +18,19 @@
       <td mat-cell *matCellDef="let element">{{element.Ncontrol}}</td>
     </ng-container>
 
-    <!-- <ng-container matColumnDef='EN$'>
+   <ng-container matColumnDef='EN$'>
       <th mat-header-cell *matHeaderCellDef >EN$</th>
       <td mat-cell *matCellDef="let element">
-        <mat-form-field>
+        <mat-form-field appearance="outline" class="sin-linea">
           <input matInput [(ngModel)]="element.EN$">
         </mat-form-field>
       </td>
     </ng-container>
 
-    <ng-container matColumnDef='N$'>
+     <ng-container matColumnDef='N$'>
       <th mat-header-cell *matHeaderCellDef >N$</th>
       <td mat-cell *matCellDef="let element">
-        <mat-form-field>
+        <mat-form-field appearance="outline" class="sin-linea">
           <input matInput [(ngModel)]="element.N$">
         </mat-form-field>
       </td>
@@ -39,7 +39,7 @@
     <ng-container matColumnDef='ADA'>
       <th mat-header-cell *matHeaderCellDef >ADA</th>
       <td mat-cell *matCellDef="let element">
-        <mat-form-field>
+        <mat-form-field appearance="outline" class="sin-linea">
           <input matInput [(ngModel)]="element.ADA">
         </mat-form-field>
       </td>
@@ -48,7 +48,7 @@
     <ng-container matColumnDef='BDA'>
       <th mat-header-cell *matHeaderCellDef >BDA</th>
       <td mat-cell *matCellDef="let element">
-        <mat-form-field>
+        <mat-form-field appearance="outline" class="sin-linea">
           <input matInput [(ngModel)]="element.BDA">
         </mat-form-field>
       </td>
@@ -57,16 +57,16 @@
     <ng-container matColumnDef='SM'>
       <th mat-header-cell *matHeaderCellDef >SM</th>
       <td mat-cell *matCellDef="let element">
-        <mat-form-field>
+        <mat-form-field appearance="outline" class="sin-linea">
           <input matInput [(ngModel)]="element.SM">
         </mat-form-field>
       </td>
     </ng-container>
 
-    <ng-container matColumnDef='AE'>
+    <ng-container matColumnDef='AE' style="width: 230px;">
       <th mat-header-cell *matHeaderCellDef >AE</th>
       <td mat-cell *matCellDef="let element">
-        <mat-form-field>
+        <mat-form-field appearance="outline" class="sin-linea" style="width: 150px;">
           <input matInput [(ngModel)]="element.AE">
         </mat-form-field>
       </td>
@@ -75,11 +75,11 @@
     <ng-container matColumnDef='Psicologia'>
       <th mat-header-cell *matHeaderCellDef >Psicologia</th>
       <td mat-cell *matCellDef="let element">
-        <mat-form-field>
+        <mat-form-field appearance="outline" class="sin-linea">
           <input matInput [(ngModel)]="element.Psicologia">
         </mat-form-field>
       </td>
-    </ng-container> -->
+    </ng-container> 
      
     <!-- Definición de columnas de la tabla -->
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay "></tr>

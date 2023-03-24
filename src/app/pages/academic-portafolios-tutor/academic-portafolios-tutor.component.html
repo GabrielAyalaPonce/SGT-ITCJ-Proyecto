@@ -1,1 +1,190 @@
-<p>academic-portafolios-tutor works!</p>
+<div class="titulo">
+<h5>INSTITUTO TECNOLÓGICO DE CD. JUÁREZ <br>
+DEPARTAMENTO DE DESARROLLO ACADÉMICO <br>
+COORDINACIÓN DEL PROGRAMA INSTITUCIONAL DE TUTORÍA <br>
+ REPORTE SEMESTRAL DEL TUTOR </h5> 
+</div>
+
+<div class="inputs">
+  <div class="containerInputs">
+    <mat-label class="label">Nombre del tutor</mat-label>
+      <input matInput placeholder="Juan Ramirez">
+  </div>
+
+  <div class="containerInputs">
+    <mat-label class="label">Departamento</mat-label>
+      <input class="input" matInput placeholder="Sistemas">
+  </div>
+
+  <div class="containerInputs">
+    <mat-form-field appearance="fill">
+      <mat-label class="label">Fecha</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    
+  </div>
+
+  <div class="containerInputs">
+    <mat-label class="label">Programa academico de los tutorados</mat-label>
+      <input class="input" matInput placeholder="Programa Academico">
+  </div>
+
+  <div class="containerInputs">
+    <mat-label class="label">Cohorte</mat-label>
+    <input class="input" matInput placeholder="Cohortes">
+  </div>
+
+  <div class="containerInputs">
+    <mat-label class="label">Hora</mat-label>
+      <input class="input" matInput placeholder="10 am">
+  </div>
+
+  <div class="containerInputs">
+    <mat-label class="label">Tut</mat-label>
+    <input class="input" matInput placeholder="Jose Martinez">
+  </div>
+
+  <div class="containerInputs">
+    <mat-label class="label">Grupal</mat-label>
+      <input class="input" matInput placeholder="Grupal">
+  </div>
+ 
+</div>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-table-responsive">
+  
+      <!-- Columna de nombre -->
+      <!-- <ng-container matColumnDef='uid'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Numero</th>
+        <td mat-cell *matCellDef="let element">{{element.uid}}</td>
+      </ng-container> -->
+    
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef >Nombre</th>
+        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+      </ng-container>
+    
+      <!-- Columna de edad -->
+      <ng-container matColumnDef="Ncontrol">
+        <th mat-header-cell *matHeaderCellDef >No. Control</th>
+        <td mat-cell *matCellDef="let element">{{element.Ncontrol}}</td>
+      </ng-container>
+  
+     <ng-container matColumnDef='grup'>
+        <th mat-header-cell *matHeaderCellDef >Grup</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="outline" class="sin-linea">
+            <input matInput [(ngModel)]="element.EN$">
+          </mat-form-field>
+        </td>
+      </ng-container>
+  
+       <ng-container matColumnDef='ind'>
+        <th mat-header-cell *matHeaderCellDef >ind</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="outline" class="sin-linea">
+            <input matInput [(ngModel)]="element.ind$">
+          </mat-form-field>
+        </td>
+      </ng-container>
+     
+      <ng-container matColumnDef='conferencias'>
+        <th mat-header-cell *matHeaderCellDef >Conferencias</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="outline" class="sin-linea">
+            <input matInput [(ngModel)]="element.conferencias">
+          </mat-form-field>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef='Beca'>
+        <th mat-header-cell *matHeaderCellDef >Beca</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="outline" class="sin-linea">
+            <input matInput [(ngModel)]="element.Beca">
+          </mat-form-field>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef='total'>
+        <th mat-header-cell *matHeaderCellDef >Total</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="outline" class="sin-linea">
+            <input matInput [(ngModel)]="element.total">
+          </mat-form-field>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef='apro' style="width: 230px;">
+        <th mat-header-cell *matHeaderCellDef >Apro</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="outline" class="sin-linea" style="width: 150px;">
+            <input matInput [(ngModel)]="element.apro">
+          </mat-form-field>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef='prom'>
+        <th mat-header-cell *matHeaderCellDef >Prom</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="outline" class="sin-linea">
+            <input matInput [(ngModel)]="element.prom">
+          </mat-form-field>
+        </td>
+      </ng-container> 
+
+      <ng-container matColumnDef='Acad'>
+        <th mat-header-cell *matHeaderCellDef >Acad</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="outline" class="sin-linea">
+            <input matInput [(ngModel)]="element.Acad">
+          </mat-form-field>
+        </td>
+      </ng-container> 
+
+      <ng-container matColumnDef='Psic'>
+        <th mat-header-cell *matHeaderCellDef >Psic</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="outline" class="sin-linea">
+            <input matInput [(ngModel)]="element.Psicologia">
+          </mat-form-field>
+        </td>
+      </ng-container> 
+
+      <ng-container matColumnDef='Med'>
+        <th mat-header-cell *matHeaderCellDef >Med</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="outline" class="sin-linea">
+            <input matInput [(ngModel)]="element.Med">
+          </mat-form-field>
+        </td>
+      </ng-container> 
+
+      <ng-container matColumnDef='Adm'>
+        <th mat-header-cell *matHeaderCellDef >Adm</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field appearance="outline" class="sin-linea">
+            <input matInput [(ngModel)]="element.Adm">
+          </mat-form-field>
+        </td>
+      </ng-container> 
+       
+      <!-- Definición de columnas de la tabla -->
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay "></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplay ;"></tr>
+  
+     
+    </table>
+    
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+    
+    
+  </div>
+  
+  
+  
+  

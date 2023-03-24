@@ -3,15 +3,28 @@
   border: 5px;
   border-color: black;
 }
-
+/* .mat-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+} */
+.mat-elevation-z8 {
+  width: 100%;
+  overflow-x: auto;
+}
+.matColumnDef{
+  border: 1px solid black;
+}
 .mat-header-cell {
+  width: 70px;
+  max-width: 100%;
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: medium
 }
 
 .mat-cell {
-  max-width: 150px;
+  width: 70px;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -21,12 +34,14 @@
 
 
 
+
+
 .matColumnDef-ADA {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 20px;
-  width: 20px;
+  max-width: 20%;
+  width: 20%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

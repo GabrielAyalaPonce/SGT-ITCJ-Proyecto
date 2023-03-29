@@ -29,13 +29,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: center;
-
 }
-
-
-
-
-
 .matColumnDef-ADA {
   display: flex;
   align-items: center;

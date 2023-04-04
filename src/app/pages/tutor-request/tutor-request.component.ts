@@ -22,7 +22,6 @@ export class TutorRequestComponent {
     fecha: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
     archivo: new FormControl(),
-    
   });
 
   constructor(private tutorRequestService: TutorRequestService,private afAuth: AngularFireAuth) {

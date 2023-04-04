@@ -29,7 +29,6 @@ export class CreatePackageComponent implements OnInit {
 
 
 
-
   
   constructor(private  packagesservice:PackagesService,  
     private userfirebaseservice: UserFirebaseService,
@@ -59,6 +58,7 @@ export class CreatePackageComponent implements OnInit {
       this.existingPackages = packages.map((p: { nombrePaquete: any; }) => p.nombrePaquete);
     });
     
+
   }
 
   ngAfterViewInit() {}
@@ -112,6 +112,11 @@ export class CreatePackageComponent implements OnInit {
       this.snackBar.open(`El Paquete : ${this.packageName} se creo exitosamente`, 'Cerrar', {duration: 3000});
     }
   }
-  
-  
+
+
+
+
+
+
+   
 }

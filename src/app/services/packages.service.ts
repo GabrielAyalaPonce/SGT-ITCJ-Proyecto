@@ -41,4 +41,19 @@ export class PackagesService {
 
 
 
+  getPackageById(packageId: string): Observable<any> {
+    return this.firestore.collection<any>('packages').doc(packageId).get().pipe(
+      map(doc => {
+        if (doc.exists) {
+          const data = doc.data() as any;
+          return { id: doc.id, ...data };
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+  
+  
+
 }

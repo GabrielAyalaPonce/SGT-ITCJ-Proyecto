@@ -1,0 +1,11 @@
+/* courses-and-schedules.component.css */
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 16px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PackagesI } from 'src/app/models/packages';
+import { Route, Router } from '@angular/router';
 import { PackagesService } from 'src/app/services/packages.service';
 
 @Component({
@@ -9,18 +9,16 @@ import { PackagesService } from 'src/app/services/packages.service';
 })
 export class ViewPackagesComponent implements OnInit {
 
-  packages!: any
+  packages!: any;
 
-  constructor( private Packagesservice:PackagesService) { }
+  constructor(private packagesService: PackagesService, private router: Router) { }
+
 
   ngOnInit(): void {
-  this.Packagesservice.getPackages().subscribe( resp =>{
-    this.packages = resp
-   console.log('vamos viendo que tengo', this.packages)
-  })
+    this.packagesService.getPackages().subscribe(resp => {
+      this.packages = resp;
+      console.log('vamos viendo que tengo', this.packages);
+    });
   }
-
-
   
-
 }

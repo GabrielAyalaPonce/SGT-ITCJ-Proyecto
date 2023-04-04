@@ -41,6 +41,8 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatSortModule } from '@angular/material/sort';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+
 
 
 
@@ -60,7 +62,7 @@ import { AlertSummaryComponent } from './pages/alert-summary/alert-summary.compo
 import { CreatePackageComponent } from './pages/create-package/create-package.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ViewPackagesComponent } from './pages/view-packages/view-packages.component';
-import { ViewPackageComponent } from './pages/view-package/view-package.component';
+import { CoursesAndSchedulesComponent } from './pages/courses-and-schedules/courses-and-schedules.component';
 
 
 
@@ -91,7 +93,8 @@ import { ViewPackageComponent } from './pages/view-package/view-package.componen
     AlertSummaryComponent,
     CreatePackageComponent,
     ViewPackagesComponent,
-    ViewPackageComponent
+    CoursesAndSchedulesComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -126,6 +129,7 @@ import { ViewPackageComponent } from './pages/view-package/view-package.componen
     MatRadioModule, 
     MatSortModule, 
     MatStepperModule, 
+    // NgxMaterialTimepickerModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
 

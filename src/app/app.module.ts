@@ -41,6 +41,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -124,7 +125,8 @@ import { ViewPackageComponent } from './pages/view-package/view-package.componen
     MatBadgeModule,
     MatDialogModule,
     MatRadioModule, 
-    MatSortModule, 
+    MatSortModule,
+    MatTooltipModule, 
     MatStepperModule, 
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())

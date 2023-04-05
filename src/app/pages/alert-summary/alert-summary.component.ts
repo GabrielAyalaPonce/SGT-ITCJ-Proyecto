@@ -9,10 +9,14 @@ import { UserTutorI } from 'src/app/models/user-tutor-i';
 
 
 
+
 @Component({
   selector: 'app-alert-summary',
   templateUrl: './alert-summary.component.html',
   styleUrls: ['./alert-summary.component.css']
+
+  
+
 })
 export class AlertSummaryComponent implements OnInit {
   users: User[] = [];

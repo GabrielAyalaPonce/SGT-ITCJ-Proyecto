@@ -68,7 +68,22 @@
 
   <mat-step>
     <ng-template matStepLabel>Asignar materias y horarios</ng-template>
-    <!-- Formulario para materias y horarios aquí -->
+    <form [formGroup]="newPackage">
+      <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-label>Materia</mat-label>
+        <input matInput placeholder="" formControlName="subject" >
+      </mat-form-field>
+    
+      <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-label>Horario</mat-label>
+        <input matInput placeholder="" formControlName="schedule" >
+      </mat-form-field>
+      <!-- Botones para avanzar o retroceder en el stepper -->
+      <div style="width: 100%;">
+        <button style="width: 50%; margin-top: 2%;  background-color:#f0f0f0" mat-button matStepperPrevious>Volver</button>
+        <button style="width: 50%;  margin-top: 2%; background-color:#b6b6b0;" mat-button matStepperNext [disabled]="!newPackage.get('subject')?.value || !newPackage.get('schedule')?.value">Siguiente</button>
+      </div>
+    </form>
   </mat-step>
   
   <mat-step>
@@ -76,6 +91,8 @@
     <p>Tu paquete esta listo</p>
     <p>Tutor seleccionado para el paquete: {{nameTutor}}</p>
     <p>Nombre del paquete: {{packageName}}</p>
+    <p>Materia asignada: {{newPackage.get('subject')?.value}}</p>
+<p>Horario asignado: {{newPackage.get('schedule')?.value}}</p>
     <div>
       <button style="width: 50%; margin-top: 2%;  background-color:#f0f0f0" mat-button matStepperPrevious>Volver</button>
       <button style="width: 50%;  margin-top: 2%; background-color:#b6b6b0;" mat-button (click)="savePackage()" [disabled]="!newPackage.get('tutor')?.value || !newPackage.get('namePackage')?.value">Guardar</button>

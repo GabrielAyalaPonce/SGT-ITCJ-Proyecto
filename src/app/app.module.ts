@@ -95,6 +95,7 @@ import { CoursesAndSchedulesComponent } from './pages/courses-and-schedules/cour
     ViewPackagesComponent,
     CoursesAndSchedulesComponent,
     
+
   ],
   imports: [
     BrowserModule,

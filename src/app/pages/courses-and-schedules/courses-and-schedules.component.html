@@ -1,5 +1,6 @@
 <div class="container" fxLayout="column" fxLayoutAlign="center center">
-    <h2>Agregar Carrera y Materias</h2>
+  <mat-card class="card-schedules">
+    <h2 style="text-align: center;">Agregar Carrera y Materias</h2>
     <form [formGroup]="courseForm">
       <mat-form-field appearance="outline">
         <mat-label>Nombre de la carrera</mat-label>
@@ -11,7 +12,7 @@
           <mat-label>Nombre de la materia</mat-label>
           <input matInput [formControl]="getSubjectNameFormControl(subjectForm)">
         </mat-form-field>
-        <button *ngIf="i === subjectForms.length - 1" mat-raised-button color="primary" (click)="addSubjectForm()">Agregar Materia</button>
+        <button style="width: 100%;" *ngIf="i === subjectForms.length - 1" mat-raised-button color="primary" (click)="addSubjectForm()">Agregar Materia</button>
       </ng-container>
   
       <mat-form-field appearance="outline">
@@ -30,5 +31,7 @@
     </div>
     <button mat-raised-button color="accent" (click)="saveCourseAndSubjects()"
       [disabled]="!courseForm.valid || subjects.length === 0">Guardar Carrera y Materias</button>
+
+    </mat-card>
   </div>
   

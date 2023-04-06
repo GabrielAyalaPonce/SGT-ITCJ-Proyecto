@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { FirebaseCodeErrorsService } from 'src/app/services/firebase-code-errors.service';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User } from 'src/app/models/user';
 import { UserFirebaseService } from 'src/app/services/user-firebase.service';
 import { MatDialog } from '@angular/material/dialog';

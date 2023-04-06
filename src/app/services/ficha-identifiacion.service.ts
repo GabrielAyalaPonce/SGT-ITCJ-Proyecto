@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore,  AngularFirestoreCollection  } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { FichaTecnica } from '../models/ficha-tecnica';
 
 @Injectable({
@@ -56,5 +55,10 @@ export class FichaTecnicaService {
         });
     });
   }
+
+
+
+
+  
 }
 

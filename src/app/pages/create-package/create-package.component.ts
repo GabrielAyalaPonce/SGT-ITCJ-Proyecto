@@ -15,8 +15,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CreatePackageComponent implements OnInit { 
 
-
-
   newPackage!: FormGroup;
   tutorControl!:any;
   packageName!:any;
@@ -25,9 +23,8 @@ export class CreatePackageComponent implements OnInit {
   users: UserTutorI[] = [];
   existingPackages: string[] = [];
   tutorAsignado: string | null = null;
-
-
-
+  subject!: string;
+  schedule!:string;
 
 
   
@@ -58,7 +55,6 @@ export class CreatePackageComponent implements OnInit {
     this.packagesservice.getPackages().subscribe(packages => {
       this.existingPackages = packages.map((p: { nombrePaquete: any; }) => p.nombrePaquete);
     });
-    
   }
 
   ngAfterViewInit() {}
@@ -74,8 +70,6 @@ export class CreatePackageComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
-
 
   seleccionarTutor(user: UserTutorI) {
     this.tutorControl = this.newPackage.get('tutor');
@@ -112,6 +106,11 @@ export class CreatePackageComponent implements OnInit {
       this.snackBar.open(`El Paquete : ${this.packageName} se creo exitosamente`, 'Cerrar', {duration: 3000});
     }
   }
-  
-  
+
+
+
+
+
+
+   
 }

@@ -1,7 +1,7 @@
 <div class="container-view-package">
-    <mat-card class="card-view" *ngFor="let package of packages">
-      <mat-card-content style="text-align: center;  font-weight: bold;  font-size: 1.5em;">{{package.nombrePaquete}}</mat-card-content>
-      <mat-card-content style="text-align: center; font-weight: bold;"> <h1 style=" font-weight: bold;  font-size: 1.2em;">Tutor Asignado:</h1> {{package.TutorAsignado.name}}</mat-card-content>
-      <button style="width: 100%; " mat-stroked-button color="warn" routerLink="pages/view-package" >ver mas</button>
-    </mat-card>
-  </div>
+  <mat-card class="card-view" *ngFor="let package of packages">
+    <mat-card-content style="text-align: center;  font-weight: bold;  font-size: 1.5em;">{{package.nombrePaquete}}</mat-card-content>
+    <mat-card-content style="text-align: center; font-weight: bold;"> <h1 style=" font-weight: bold;  font-size: 1.2em;">Tutor Asignado:</h1> {{package.TutorAsignado.name}}</mat-card-content>
+    <mat-card-content style="text-align: center; font-weight: bold;"> <h1 style=" font-weight: bold;  font-size: 1.2em;">Email:</h1> {{package.TutorAsignado.email}}</mat-card-content>
+  </mat-card> 
+</div>

@@ -12,8 +12,6 @@ import { UserFirebaseService } from 'src/app/services/user-firebase.service';
   styleUrls: ['./usuarios.component.css'],
 })
 export class UsuariosComponent implements OnInit, AfterViewInit {
-
-
   users: User[] = [];
   dataSource = new MatTableDataSource<User>([]);
   displayedColumns: string[] = ['name', 'email', 'Ncontrol', 'Rol'];

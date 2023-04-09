@@ -46,6 +46,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 
 
+
+
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ChangeRolComponent } from './pages/change-rol/change-rol.component';
@@ -62,7 +64,6 @@ import { AlertSummaryComponent } from './pages/alert-summary/alert-summary.compo
 import { CreatePackageComponent } from './pages/create-package/create-package.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ViewPackagesComponent } from './pages/view-packages/view-packages.component';
-import { CoursesAndSchedulesComponent } from './pages/courses-and-schedules/courses-and-schedules.component';
 
 
 
@@ -93,9 +94,6 @@ import { CoursesAndSchedulesComponent } from './pages/courses-and-schedules/cour
     AlertSummaryComponent,
     CreatePackageComponent,
     ViewPackagesComponent,
-    CoursesAndSchedulesComponent,
-    
-
   ],
   imports: [
     BrowserModule,
@@ -129,13 +127,14 @@ import { CoursesAndSchedulesComponent } from './pages/courses-and-schedules/cour
     MatDialogModule,
     MatRadioModule, 
     MatSortModule, 
-    MatStepperModule, 
+    MatStepperModule,
     // NgxMaterialTimepickerModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

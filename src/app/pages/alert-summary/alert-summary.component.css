@@ -1,35 +1,43 @@
 .table {
-  width: 70%;
-  border: 5px;
+  width: 100%;
+  border: 7px;
   border-color: black;
 }
-/* .mat-table-responsive {
-  width: 100%;
-  overflow-x: auto;
-} */
+::ng-deep .mat-tooltip {
+  background-color: #333;
+  color: #fff;
+  font-size: 14px;
+  font-family: cursive;
+}
+
 .mat-elevation-z8 {
   width: 100%;
+  align-items: center;
   overflow-x: auto;
 }
 .matColumnDef{
+  margin: 1px 1px 1px 1px;
   border: 1px solid black;
 }
+
 .mat-header-cell {
-  width: 70px;
-  max-width: 100%;
+  /*width: 70px;
+  max-width: 100%;*/
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: medium
 }
 
 .mat-cell {
-  width: 70px;
-  max-width: 100%;
+ /* width: 70px;
+  max-width: 100%;*/
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: center;
 }
+  
+
 .matColumnDef-ADA {
   display: flex;
   align-items: center;
@@ -41,12 +49,19 @@
   white-space: nowrap;
 }
 
+
 .mat-form-field-appearance-outline .mat-form-field-outline {
   border:none;
 }
 
 .mat-form-field {
   width: 30%; 
+}
+
+input {
+  font-family: monospace;
+  font-size: 20px;
+  text-align: center;
 }
 
 .sin-linea .mat-form-field-outline {

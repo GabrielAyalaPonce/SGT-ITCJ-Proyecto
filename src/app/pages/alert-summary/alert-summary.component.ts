@@ -6,13 +6,17 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { User } from 'src/app/models/user';
 import { UserTutorI } from 'src/app/models/user-tutor-i';
-import { HttpClient } from '@angular/common/http';
+
+
 
 
 @Component({
   selector: 'app-alert-summary',
   templateUrl: './alert-summary.component.html',
   styleUrls: ['./alert-summary.component.css']
+
+  
+
 })
 export class AlertSummaryComponent implements OnInit {
   users: User[] = [];
@@ -22,7 +26,7 @@ export class AlertSummaryComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   //,'EN$','N$','ADA','BDA','SM','AE','Psicologia'
-  constructor(private userfirebaseservice: UserFirebaseService,private http:HttpClient) { }
+  constructor(private userfirebaseservice: UserFirebaseService) { }
 
   ngOnInit(): void {
     this.userfirebaseservice.getUsers().subscribe(users => {

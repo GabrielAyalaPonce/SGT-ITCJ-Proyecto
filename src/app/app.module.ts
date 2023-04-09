@@ -41,6 +41,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 
@@ -128,10 +129,11 @@ import { ViewPackagesComponent } from './pages/view-packages/view-packages.compo
     MatRadioModule, 
     MatSortModule, 
     MatStepperModule,
-    // NgxMaterialTimepickerModule,
+    MatSortModule,
+    MatTooltipModule, 
+    MatStepperModule, 
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
-
   ],
   providers: [],
   bootstrap: [AppComponent],

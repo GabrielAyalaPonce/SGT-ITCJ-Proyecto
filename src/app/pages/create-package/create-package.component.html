@@ -9,7 +9,7 @@
       <ng-template matStepLabel>Nombre de Paquete</ng-template>
       <mat-form-field style="width: 100%;" appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="" formControlName="namePackage" >
+        <input matInput placeholder="ej. Paquete A" formControlName="namePackage" >
       </mat-form-field>
       </form>
       <div>
@@ -62,34 +62,45 @@
         <button style="width: 50%;  margin-top: 2%; background-color:#b6b6b0;" mat-button matStepperNext [disabled]="!newPackage.get('tutor')?.value">Siguiente</button>
       </div>
     </form>
-    
-    <!-- step 3 -->
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Asignar materias y horarios</ng-template>
+    </mat-step>
+
+<!-- step 3 -->
+<mat-step>
+  <ng-template matStepLabel>Carrera</ng-template>
+  <form [formGroup]="newPackage">
     <mat-form-field style="width: 100%;" appearance="outline">
       <mat-label>Carrera</mat-label>
-      <input matInput placeholder="" >
+      <input matInput placeholder="ej.Ingenieria en sistemas computacionales" formControlName="career">
     </mat-form-field>
-  
-    <form [formGroup]="newPackage2">
-      <!-- ... -->
+    <div>
+      <button style="width: 50%; margin-top: 2%;  background-color:#f0f0f0" mat-button matStepperPrevious>Volver</button>
+      <button style="width: 50%;  margin-top: 2%; background-color:#b6b6b0" [disabled]="!newPackage.get('career')?.value" mat-button matStepperNext>siguiente</button>
+    </div>
+  </form>
+</mat-step>
+
+          <!-- step 4 -->
+  <mat-step>
+    <ng-template matStepLabel>Asignar materias y horarios</ng-template>
+    <form [formGroup]="subjectsAndSchedules"  class="form-container">
       <div formArrayName="inputs">
         <div *ngFor="let input of inputControls.controls; let i = index" [formGroupName]="i" style="margin-top: 2px; margin-right: 2px;">
       
-
-
-          <mat-form-field style="width: 30%;" appearance="outline">
+          <mat-form-field style="width: 33%;" appearance="outline">
             <mat-label>Materia</mat-label>
             <input matInput placeholder="" formControlName="subject">
           </mat-form-field>
     
-          <mat-form-field style="width: 30%; margin-left: 2px" appearance="outline">
+          <mat-form-field style="width: 33%; margin-left: 2px" appearance="outline">
             <mat-label>Horario</mat-label>
-            <input matInput placeholder="" formControlName="schedule">
+            <mat-select formControlName="schedule">
+              <mat-option *ngFor="let hour of hours" [value]="hour">
+                {{hour}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
     
-          <mat-form-field style="width: 30%; margin-left: 2px" appearance="outline">
+          <mat-form-field style="width: 33%; margin-left: 2px" appearance="outline">
             <mat-label>Profesor</mat-label>
             <input matInput placeholder="" formControlName="teacher">
           </mat-form-field>
@@ -97,20 +108,23 @@
       </div>
 
       <button mat-raised-button color="primary" (click)="addMore()">Agregar más campos</button>
-
-      <!-- ... -->
-    </form>
+      <div>
+        <button style="width: 50%; margin-top: 2%;  background-color:#f0f0f0" mat-button matStepperPrevious>Atrás</button>
+        <button style="width: 50%;  margin-top: 2%; background-color:#b6b6b0;" mat-button matStepperNext>Siguiente</button>
+      </div>
+    </form>    
   </mat-step>
-  
-  
+
+
+
+
   <mat-step>
     <ng-template matStepLabel>Terminado</ng-template>
-    <p>Tu paquete esta listo</p>
-    <p>Tutor seleccionado para el paquete: {{nameTutor}}</p>
+    <p style="text-align: center; font-size: 24px; color: red; animation: mover 2s linear infinite;">¡El paquete está listo!</p>
     <p>Nombre del paquete: {{packageName}}</p>
-    <p>Materia asignada: {{newPackage.get('subject')?.value}}</p>
-    <p>Horario asignado: {{newPackage.get('schedule')?.value}}</p>
-    <p>Horario asignado: {{newPackage.get('teacher')?.value}}</p>
+    <p>Tutor seleccionado para el paquete: {{nameTutor}}</p>
+    <p>Paquete para Carrera de: {{career}}</p>
+    <p>Materias asignadas: {{ totalSubjects }}</p>
     <div>
       <button style="width: 50%; margin-top: 2%;  background-color:#f0f0f0" mat-button matStepperPrevious>Volver</button>
       <button style="width: 50%;  margin-top: 2%; background-color:#b6b6b0;" mat-button (click)="savePackage()" [disabled]="!newPackage.get('tutor')?.value || !newPackage.get('namePackage')?.value">Guardar</button>

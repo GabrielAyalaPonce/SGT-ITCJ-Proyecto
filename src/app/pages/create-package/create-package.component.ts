@@ -25,15 +25,22 @@ export class CreatePackageComponent implements OnInit {
   tutorAsignado: string | null = null;
   subject!: string;
   schedule!: string;
-  newPackage2!: FormGroup;
+  subjectsAndSchedules!: FormGroup;
+  hours: string[] = [];
+  career!: string; // Agrega esta línea
+
+
 
   constructor(private packagesservice: PackagesService,
     private userfirebaseservice: UserFirebaseService,
     private snackBar: MatSnackBar,
     private fb: FormBuilder) {
-      this.newPackage2 = this.fb.group({
+      this.subjectsAndSchedules = this.fb.group({
         inputs: this.fb.array([])
       });
+
+      for (let i = 7; i <= 22; i++) {
+        this.hours.push(`${i < 10 ? '0' + i : i}:00`);}
   }
 
   dataSource = new MatTableDataSource<UserTutorI>([]);
@@ -44,6 +51,7 @@ export class CreatePackageComponent implements OnInit {
   ngOnInit(): void {
     this.newPackage = new FormGroup({
       namePackage: new FormControl('', Validators.required),
+      career: new FormControl('', Validators.required),
       tutor: new FormControl('', Validators.required),
     });
 
@@ -63,7 +71,11 @@ export class CreatePackageComponent implements OnInit {
 
 
   get inputControls(): FormArray {
-    return this.newPackage2.get('inputs') as FormArray;
+    return this.subjectsAndSchedules.get('inputs') as FormArray;
+  }
+
+  get totalSubjects() {
+    return this.inputControls.length;
   }
 
   addMore() {
@@ -86,7 +98,7 @@ export class CreatePackageComponent implements OnInit {
   }
 
   aaddInputs(count: number) {
-    const inputsArray = this.newPackage2.get('inputs') as FormArray;
+    const inputsArray = this.subjectsAndSchedules.get('inputs') as FormArray;
 
     for (let i = 0; i < count; i++) {
       inputsArray.push(
@@ -111,8 +123,7 @@ export class CreatePackageComponent implements OnInit {
       this.snackBar.open(`Tutor Seleccionado: ${this.nameTutor}`, 'Cerrar', { duration: 3000 });
     }
 
-    
-
+  
 
   }
 
@@ -122,15 +133,18 @@ export class CreatePackageComponent implements OnInit {
   
   savePackage() {
   const packageName = this.newPackage.get('namePackage')?.value;
+  const career = this.newPackage.get('career')?.value; // Agrega esta línea
   if (this.existingPackages.includes(packageName)) {
   this.snackBar.open('Ya existe un paquete con el mismo nombre', 'Cerrar', { duration: 3000 });
   } else {
+    const inputs = this.subjectsAndSchedules.get('inputs')?.value;
   const data = {
   nombrePaquete: packageName,
-  TutorAsignado: this.dataTutor
+  TutorAsignado: this.dataTutor,
+  NombreCarrera: career, // Añade esta línea
+  subjectsAndSchedules: inputs // Incluye los datos del formulario newPackage2
   };
   this.packagesservice.createPackage(data);
-  this.snackBar.open('El Paquete : ${this.packageName} se creo exitosamente', 'Cerrar', { duration: 3000 });
-  }
+  this.snackBar.open(`El Paquete : ${this.packageName} se creo exitosamente`, 'Cerrar', { duration: 3000 });}
   }
   }

@@ -65,7 +65,6 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <button *ngIf="rol==='administrador' || rol==='coordinador' " style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/change-rol">Cambiar rol</button>
-        <button *ngIf="rol=== 'coordinador' " style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/CoursesAndSchedules">Materias y Horarios</button>
         <button *ngIf="rol=== 'coordinador' " style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/create-package">Crear paquete</button>
         <button *ngIf="rol=== 'coordinador' " style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/view-packages">Ver Paquetes</button>
         <button *ngIf="rol==='administrador'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/delete-user">Eliminar usuario</button>

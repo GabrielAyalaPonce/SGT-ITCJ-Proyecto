@@ -23,5 +23,10 @@ table {
     width: 25%;
   }
   
+
+  .form-container {
+    margin-bottom: 50px; /* Ajusta este valor según el tamaño de tu foot bar */
+  }
+  
   
   

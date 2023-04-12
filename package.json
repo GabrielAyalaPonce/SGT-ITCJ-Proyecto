@@ -24,6 +24,7 @@
     "file-saver": "^2.0.5",
     "firebase": "^9.10.0",
     "ngx-material-timepicker": "^5.5.3",
+    "notiflix": "^3.2.6",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

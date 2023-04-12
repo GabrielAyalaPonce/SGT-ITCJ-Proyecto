@@ -1,7 +1,33 @@
-<div class="container-view-package">
-  <mat-card class="card-view" *ngFor="let package of packages">
-    <mat-card-content style="text-align: center;  font-weight: bold;  font-size: 1.5em;">{{package.nombrePaquete}}</mat-card-content>
-    <mat-card-content style="text-align: center; font-weight: bold;"> <h1 style=" font-weight: bold;  font-size: 1.2em;">Tutor Asignado:</h1> {{package.TutorAsignado.name}}</mat-card-content>
-    <mat-card-content style="text-align: center; font-weight: bold;"> <h1 style=" font-weight: bold;  font-size: 1.2em;">Email:</h1> {{package.TutorAsignado.email}}</mat-card-content>
-  </mat-card> 
+<div class="container-scroll">
+  <div class="container-view-package">
+    <mat-card class="card-view" *ngFor="let package of packages">
+      <mat-card-content style="text-align: center; font-size: 1.5em; font-weight: bold;">{{package.nombrePaquete}}</mat-card-content>
+      <mat-card-content class="package-info">
+        <mat-card-content class="package-info">
+          <h2>Paquete para carrera:</h2>  {{package.NombreCarrera}}
+        </mat-card-content>
+        <h2>Tutor Asignado:</h2> {{package.TutorAsignado.name}}
+      </mat-card-content>
+      <mat-card-content class="package-info">
+        <h2>Email:</h2> {{package.TutorAsignado.email}}
+      </mat-card-content>
+
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Materias de Paquete
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div *ngFor="let subjectSchedule of package.subjectsAndSchedules">
+            <p><b>Materia:</b> {{subjectSchedule.subject}}</p>
+            <p><b>Horario:</b> {{subjectSchedule.schedule}}</p>
+            <p><b>Profesor:</b> {{subjectSchedule.teacher}}</p>
+            <hr *ngIf="!last"> <!-- Opcional: agrega una línea horizontal entre cada conjunto de materias y horarios, excepto el último -->
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card> 
+  </div>
 </div>

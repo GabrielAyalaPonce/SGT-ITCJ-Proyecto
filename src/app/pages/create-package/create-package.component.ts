@@ -7,6 +7,8 @@ import { UserTutorI } from 'src/app/models/user-tutor-i';
 import { UserFirebaseService } from 'src/app/services/user-firebase.service';
 import { PackagesService } from 'src/app/services/packages.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as Notiflix from 'notiflix';
+
 
 @Component({
   selector: 'app-create-package',
@@ -61,14 +63,15 @@ export class CreatePackageComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-
     this.packagesservice.getPackages().subscribe(packages => {
       this.existingPackages = packages.map((p: { nombrePaquete: any; }) => p.nombrePaquete);
     });
+    
 
     this.aaddInputs(5); // Agrega esta línea para inicializar el FormArray con 3 grupos
   }
 
+  
 
   get inputControls(): FormArray {
     return this.subjectsAndSchedules.get('inputs') as FormArray;
@@ -123,28 +126,39 @@ export class CreatePackageComponent implements OnInit {
       this.snackBar.open(`Tutor Seleccionado: ${this.nameTutor}`, 'Cerrar', { duration: 3000 });
     }
 
-  
-
   }
 
   savePackageName() {
   this.packageName = this.newPackage.get('namePackage')?.value;
   }
+
+  savePackageCareer() {
+    this.career = this.newPackage.get('career')?.value;
+  }
+    
   
   savePackage() {
-  const packageName = this.newPackage.get('namePackage')?.value;
-  const career = this.newPackage.get('career')?.value; // Agrega esta línea
-  if (this.existingPackages.includes(packageName)) {
-  this.snackBar.open('Ya existe un paquete con el mismo nombre', 'Cerrar', { duration: 3000 });
-  } else {
-    const inputs = this.subjectsAndSchedules.get('inputs')?.value;
-  const data = {
-  nombrePaquete: packageName,
-  TutorAsignado: this.dataTutor,
-  NombreCarrera: career, // Añade esta línea
-  subjectsAndSchedules: inputs // Incluye los datos del formulario newPackage2
-  };
-  this.packagesservice.createPackage(data);
-  this.snackBar.open(`El Paquete : ${this.packageName} se creo exitosamente`, 'Cerrar', { duration: 3000 });}
-  }
-  }
+    Notiflix.Loading.init({ svgColor: 'red' });
+    Notiflix.Loading.pulse('Creando paquete...');
+    const packageName = this.newPackage.get('namePackage')?.value;
+    const career = this.newPackage.get('career')?.value; // Accede directamente al valor de la carrera aquí
+    if (this.existingPackages.includes(packageName)) {
+      this.snackBar.open('Ya existe un paquete con el mismo nombre', 'Cerrar', { duration: 3000 });
+    } else {
+      const inputs = this.subjectsAndSchedules.get('inputs')?.value;
+      const data = {
+        nombrePaquete: packageName,
+        TutorAsignado: this.dataTutor,
+        NombreCarrera: career, // Añade esta línea
+        subjectsAndSchedules: inputs // Incluye los datos del formulario newPackage2
+      };
+      this.packagesservice.createPackage(data).then(() => {
+        Notiflix.Loading.remove();
+        this.snackBar.open(`El Paquete : ${this.packageName} se creo exitosamente`, 'Cerrar', { duration: 3000 });
+      }).catch(() => {
+        Notiflix.Loading.remove();
+        this.snackBar.open('Error al crear el paquete', 'Cerrar', { duration: 3000 });
+      });
+    }
+}
+}

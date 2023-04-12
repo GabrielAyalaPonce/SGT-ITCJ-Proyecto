@@ -1,15 +1,23 @@
+<div class="container-main">
+  <button mat-icon-button (click)="toggleDeleteMode()" class="delete-button" [ngClass]="{'delete-active': deleteModeActive}">
+    <mat-icon>delete</mat-icon>
+  </button>
+
 <div class="container-scroll">
   <div class="container-view-package">
-    <mat-card class="card-view" *ngFor="let package of packages">
-      <mat-card-content style="text-align: center; font-size: 1.5em; font-weight: bold;">{{package.nombrePaquete}}</mat-card-content>
+    <mat-card class="card-view" *ngFor="let pkg of packages" [ngClass]="{'delete-active-card': deleteModeActive && pkg.toDelete, 'delete-mode': deleteModeActive}">
+      <button mat-icon-button (click)="togglePackageToDelete(pkg, $event); $event.stopPropagation()" class="delete-button" *ngIf="deleteModeActive" [ngClass]="{'delete-active': pkg.toDelete}">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <mat-card-content style="text-align: center; font-size: 1.5em; font-weight: bold;">{{pkg.nombrePaquete}}</mat-card-content>
       <mat-card-content class="package-info">
         <mat-card-content class="package-info">
-          <h2>Paquete para carrera:</h2>  {{package.NombreCarrera}}
+          <h2>Paquete para carrera:</h2>  {{pkg.NombreCarrera}}
         </mat-card-content>
-        <h2>Tutor Asignado:</h2> {{package.TutorAsignado.name}}
+        <h2>Tutor Asignado:</h2> {{pkg.TutorAsignado.name}}
       </mat-card-content>
       <mat-card-content class="package-info">
-        <h2>Email:</h2> {{package.TutorAsignado.email}}
+        <h2>Email:</h2> {{pkg.TutorAsignado.email}}
       </mat-card-content>
 
       <mat-accordion>
@@ -20,7 +28,7 @@
               Materias de Paquete
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div *ngFor="let subjectSchedule of package.subjectsAndSchedules">
+          <div *ngFor="let subjectSchedule of pkg.subjectsAndSchedules">
             <p><b>Materia:</b> {{subjectSchedule.subject}}</p>
             <p><b>Horario:</b> {{subjectSchedule.schedule}}</p>
             <p><b>Profesor:</b> {{subjectSchedule.teacher}}</p>
@@ -30,4 +38,5 @@
       </mat-accordion>
     </mat-card> 
   </div>
+</div>
 </div>

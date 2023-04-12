@@ -15,7 +15,7 @@
   width: 100%;
   max-height: 470px;
   overflow-y: auto;
-  border: 1px solid #626262;
+  border: 2px solid #626262;
   border-radius: 10px;
   padding: 1em;
   gap: 1em;
@@ -47,4 +47,41 @@
     width: 30%;
    min-height: 0%;  
   }
+}
+
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: white;
+}
+
+.delete-active {
+  background-color: red;
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+.delete-mode {
+  border: 2px solid red;
+  cursor: pointer;
+}
+
+.delete-active-card {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+@keyframes shake {
+  0% { transform: translate(2px, 2px) rotate(0deg); }
+  10% { transform: translate(-2px, -2px) rotate(-1deg); }
+  20% { transform: translate(-2px, 2px) rotate(1deg); }
+  30% { transform: translate(2px, -2px) rotate(0deg); }
+  40% { transform: translate(2px, 2px) rotate(1deg); }
+  50% { transform: translate(-2px, 2px) rotate(-1deg); }
+  60% { transform: translate(-2px, -2px) rotate(0deg); }
+  70% { transform: translate(2px, 2px) rotate(-1deg); }
+  80% { transform: translate(-2px, -2px) rotate(1deg); }
+  90% { transform: translate(2px, 2px) rotate(0deg); }
+  100% { transform: translate(2px, -2px) rotate(-1deg); }
 }

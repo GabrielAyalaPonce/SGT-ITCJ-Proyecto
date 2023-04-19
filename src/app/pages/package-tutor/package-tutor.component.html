@@ -5,6 +5,20 @@
 <div *ngIf="paquetesAsignados.length > 0; else noPaquete">
   <div *ngFor="let paquete of paquetesAsignados">
     <mat-card class="card-package-tutor" style="display: flex; flex-direction: column;">
+
+      <button
+      [ngClass]="{
+        'publish-button': true,
+        'published-button': publicados[paquete.id]
+      }"
+      mat-raised-button
+      [color]="publicados[paquete.id] ? 'accent' : 'primary'"
+      (click)="togglePublicarPaquete(paquete.id)"
+    >
+      {{ publicados[paquete.id] ? 'Publicado' : 'Publicar' }}
+    </button>
+    
+
       <h3>Información del paquete asignado:</h3>
       <p><strong>Nombre del paquete:</strong> {{paquete.nombrePaquete}}</p>
       <p><strong>Nombre de la carrera:</strong> {{paquete.NombreCarrera}}</p>

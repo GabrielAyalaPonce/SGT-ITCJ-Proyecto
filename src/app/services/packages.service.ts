@@ -14,19 +14,23 @@ export class PackagesService {
     this.packageCollection = this.firestore.collection('packages')
   }
 
+        // Método para crear paquetes
+        createPackage = async (data: any) => {
+          try {
+            const docRef = await this.firestore.collection("packages").add(data);
+        
+            // Agrega el ID del documento al campo 'id' del documento recién creado
+            await this.firestore.collection("packages").doc(docRef.id).update({ id: docRef.id });
+        
+            return docRef.id;
+          } catch (error) {
+            console.error("Error al agregar el documento: ", error);
+            return null;
+          }
+        };
+        
 
-
-  createPackage = async (data:any) => {
-    try {
-      const docRef = await this.firestore.collection("packages").add(data);
-      console.log("Documento agregado con ID: ", docRef.id);
-      return docRef.id;
-    } catch (error) {
-      console.error("Error al agregar el documento: ", error);
-      return null;
-    }
-  };
-
+      // Método para obtener todos los paquetes
   getPackages(): Observable<PackageI[]> {
     return this.firestore.collection<PackageI>('packages').snapshotChanges().pipe(
       map(actions => {
@@ -39,7 +43,7 @@ export class PackagesService {
     );
   }
   
-
+    // Método para obtener un paquete por id
   getPackageById(packageId: string): Observable<PackageI | null> {
     return this.firestore.collection<PackageI>('packages').doc(packageId).get().pipe(
       map(doc => {
@@ -68,6 +72,18 @@ export class PackagesService {
       });
     }
   
+     // Método para actualizar un paquete
+  updatePackage(packageId: string, updatedData: PackageI): Observable<void> {
+    return new Observable<void>(observer => {
+      this.firestore.collection("packages").doc(packageId).update(updatedData).then(() => {
+        observer.next();
+        observer.complete();
+      }).catch((error) => {
+        observer.error(error);
+        observer.complete();
+      });
+    });
+  }
   
 
 }

@@ -11,13 +11,12 @@ import { PackageI } from 'src/app/models/packages';
   styleUrls: ['./view-packages.component.css']
 })
 export class ViewPackagesComponent implements OnInit {
-  packages!: PackageI[]; // Utiliza el tipo Package[] en lugar de any
+  packages!: PackageI[]; 
   searchTerm: string = '';
   panelOpenState = false;
   last:any;
   pkg!:any;
   deleteModeActive: boolean = false;
-
 
   toggleDeleteMode(): void {
     this.deleteModeActive = !this.deleteModeActive;
@@ -34,17 +33,15 @@ export class ViewPackagesComponent implements OnInit {
   constructor(private packagesService: PackagesService, private router: Router) { }
 
   ngOnInit(): void {
-    // Mostrar el loader rojo
     Notiflix.Loading.init({ svgColor: '#FF0000' });
     Notiflix.Loading.standard('Cargando paquetes...');
   
     this.packagesService.getPackages().subscribe(resp => {
       this.packages = resp.map(pkg => {
-        return { ...pkg, toDelete: false }; // Inicializa la propiedad toDelete a false para cada objeto en el array
+        return { ...pkg, toDelete: false }; 
       });
       console.log('Respuesta', this.packages);
     
-      // Ocultar el loader una vez que se hayan cargado los datos
       Notiflix.Loading.remove();
     });
   }

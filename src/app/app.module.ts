@@ -65,6 +65,7 @@ import { AlertSummaryComponent } from './pages/alert-summary/alert-summary.compo
 import { CreatePackageComponent } from './pages/create-package/create-package.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ViewPackagesComponent } from './pages/view-packages/view-packages.component';
+import { PackageTutorComponent } from './pages/package-tutor/package-tutor.component';
 
 
 
@@ -95,6 +96,7 @@ import { ViewPackagesComponent } from './pages/view-packages/view-packages.compo
     AlertSummaryComponent,
     CreatePackageComponent,
     ViewPackagesComponent,
+    PackageTutorComponent,
   ],
   imports: [
     BrowserModule,

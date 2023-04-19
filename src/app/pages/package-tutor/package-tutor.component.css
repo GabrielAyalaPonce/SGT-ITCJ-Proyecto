@@ -1,0 +1,11 @@
+.example-card {
+width: 80%;  
+}
+  
+.card-package-tutor{
+    width: 100%;
+    margin-top: 2%;
+    box-shadow: inset 0 -3em 3em rgba(165, 163, 163, 0.1),
+    0 0 0 1px rgb(190, 190, 190),
+    0.3em 0.3em 1em rgba(175, 175, 175, 0.3);
+}

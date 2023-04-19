@@ -1,0 +1,70 @@
+<mat-toolbar>
+  <span>GRUPOS</span>
+</mat-toolbar>
+
+<div *ngIf="paquetesAsignados.length > 0; else noPaquete">
+  <div *ngFor="let paquete of paquetesAsignados">
+    <mat-card class="card-package-tutor" style="display: flex; flex-direction: column;">
+      <h3>Información del paquete asignado:</h3>
+      <p><strong>Nombre del paquete:</strong> {{paquete.nombrePaquete}}</p>
+      <p><strong>Nombre de la carrera:</strong> {{paquete.NombreCarrera}}</p>
+      <p><strong>Tutor asignado:</strong> {{paquete.TutorAsignado.name}}</p>
+      <p><strong>Email del tutor:</strong> {{paquete.TutorAsignado.email}}</p>
+
+      <div *ngIf="!editandoClave && paquete.keyAuthorization">
+        <p><strong>Clave de autorización:</strong> {{paquete.keyAuthorization}}</p>
+        <button mat-raised-button style="width: 100%; margin-bottom: 2%; background-color: rgb(255, 168, 168);" (click)="saveKeyAuthorizationedit(paquete)">Editar clave</button>
+      </div>
+      
+      <div *ngIf="editandoClave || !paquete.keyAuthorization">
+        <mat-form-field appearance="outline" class="key-auth-input" style="width: 100%;">
+          <mat-label>Crear clave de Autorizacion</mat-label>
+          <input matInput [(ngModel)]="paquete.keyAuthorization">
+        </mat-form-field>
+        <button mat-raised-button style="width: 100%; margin-bottom: 2%;" color="warn"
+          (click)="saveKeyAuthorization(paquete)">Guardar codigo de acceso</button>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; width: 100%;">
+        <mat-accordion style="width: 50%;">
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Materias de Paquete
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngFor="let subjectSchedule of paquete.subjectsAndSchedules">
+              <p><b>Materia:</b> {{subjectSchedule.subject}}</p>
+              <p><b>Horario:</b> {{subjectSchedule.schedule}}</p>
+              <p><b>Profesor:</b> {{subjectSchedule.teacher}}</p>
+              <mat-divider></mat-divider>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-accordion style="width: 50%;">
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Tutorados del paquete
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+
+      <hr>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #noPaquete>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Tutor</mat-card-title>
+      <mat-card-subtitle>Usted no tiene Paquetes asignados</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+</ng-template>

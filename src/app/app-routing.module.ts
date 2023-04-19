@@ -21,11 +21,13 @@ import { AlertSummaryComponent } from './pages/alert-summary/alert-summary.compo
 import { CreatePackageComponent } from './pages/create-package/create-package.component';
 import { ViewPackagesComponent } from './pages/view-packages/view-packages.component';
 import { PackageTutorComponent } from './pages/package-tutor/package-tutor.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
 
   {path: 'pages', 
+  canActivate: [AuthGuard],
   component:PagesComponent,
   children:[
     {path: 'pages/dashboard', component:DashboardComponent},

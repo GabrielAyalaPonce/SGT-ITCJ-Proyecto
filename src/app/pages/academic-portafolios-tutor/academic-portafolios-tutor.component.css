@@ -8,17 +8,30 @@ h5 {
   }
 .label{
     display: inline-block;
+    font-size: 12px;
 }
 .inputs{
+    width: 100%;
     display: flex;
     align-items: center;
+    margin-right: 2px;
 }
+
+
 .input{
     display: inline-block;
+    width: 30%;
     border-bottom: .5px solid black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 50px;
+    resize: vertical;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    text-align: center;
 }
-.table {
-    width: 70%;
+table {
+    width: 90%;
     border: 5px;
     border-color: black;
   }
@@ -29,6 +42,7 @@ h5 {
   .mat-elevation-z8 {
     width: 100%;
     overflow-x: auto;
+    margin-bottom: 20px;
   }
   .matColumnDef{
     border: 1px solid black;
@@ -38,7 +52,7 @@ h5 {
     max-width: 100%;
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: medium
+    font-size: medium;
   }
   
   .mat-cell {
@@ -66,11 +80,72 @@ h5 {
   }
   
   .mat-form-field {
-    width: 30%; 
+    width: 80%; 
   }
   
   .sin-linea .mat-form-field-outline {
     border:none;
   }
   
+  ::ng-deep .mat-tooltip {
+    background-color: #333;
+    color: #fff;
+    font-size: 14px;
+    font-family: cursive;
+  }
+  input {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    text-align: center;
+  }
+ 
+ 
+
+  .example-full-width{
+    width: 100%;
+  }
+  mat-form-field textarea.mat-input-element {
+    height: 70px; 
+  }
+  .mat-datepicker-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .no-outline .mat-form-field-appearance-outline .mat-form-field-outline {
+    border:none;
+  }
   
+  .containerInputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .mat-label{
+    margin-bottom: 5px;
+  }
+
+  #containerFirmas{
+    display: flex;
+    justify-content: center;
+  }
+
+  .divFirma {
+    display: inline-block;
+    margin: 15px;
+    text-align: center;
+}
+
+  .lineaFirma{
+    width: 100%;
+  }
+  #containerButtons{
+    display: flex;
+    justify-content: center;
+    margin: 2%;
+  }
+  .mat-raised-button {
+    margin-right: 2%;
+  }

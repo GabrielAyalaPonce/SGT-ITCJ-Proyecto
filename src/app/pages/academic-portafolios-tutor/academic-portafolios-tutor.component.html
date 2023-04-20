@@ -5,52 +5,23 @@ COORDINACIÓN DEL PROGRAMA INSTITUCIONAL DE TUTORÍA <br>
  REPORTE SEMESTRAL DEL TUTOR </h5> 
 </div>
 
-<div class="inputs">
-  <div class="containerInputs">
-    <mat-label class="label">Nombre del tutor</mat-label>
-      <input matInput placeholder="Juan Ramirez">
-  </div>
-
-  <div class="containerInputs">
-    <mat-label class="label">Departamento</mat-label>
-      <input class="input" matInput placeholder="Sistemas">
-  </div>
-
-  <div class="containerInputs">
-    <mat-form-field appearance="fill">
-      <mat-label class="label">Fecha</mat-label>
-      <input matInput [matDatepicker]="picker">
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+<div class="inputs" >
+      <input class="input" id="inputNombreTutor" matInput placeholder="Nombre del tutor" >
+      <input class="input" id="inputDepartamento" matInput placeholder="Departamento">
+ 
+    <mat-form-field  class="no-outline" appearance="fill" style="width: 7%; " >
+      
+      <input id="inputFecha" matInput [matDatepicker]="picker" style="font-size: 12px;">
+      <mat-datepicker-toggle style="border: none;" matIconSuffix [for]="picker" ></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     
-  </div>
-
-  <div class="containerInputs">
-    <mat-label class="label">Programa academico de los tutorados</mat-label>
-      <input class="input" matInput placeholder="Programa Academico">
-  </div>
-
-  <div class="containerInputs">
-    <mat-label class="label">Cohorte</mat-label>
-    <input class="input" matInput placeholder="Cohortes">
-  </div>
-
-  <div class="containerInputs">
-    <mat-label class="label">Hora</mat-label>
-      <input class="input" matInput placeholder="10 am">
-  </div>
-
-  <div class="containerInputs">
-    <mat-label class="label">Tut</mat-label>
-    <input class="input" matInput placeholder="Jose Martinez">
-  </div>
-
-  <div class="containerInputs">
-    <mat-label class="label">Grupal</mat-label>
-      <input class="input" matInput placeholder="Grupal">
-  </div>
- 
+      <input class="input" id="programaAcademico" matInput placeholder="Programa academico de los tutorados">
+      <input class="input" id="inputCohorte" matInput placeholder="Cohorte">
+      <input class="input" id="inputHora" matInput placeholder="Hora">
+      <input class="input" id="inputTut" matInput placeholder="Tut">
+      <input class="input" id="inputGrupal" matInput placeholder="Grupal">
+  
 </div>
 
 <div class="mat-elevation-z8">
@@ -64,111 +35,111 @@ COORDINACIÓN DEL PROGRAMA INSTITUCIONAL DE TUTORÍA <br>
     
   
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef >Nombre</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="NOMBRE" >Nombre</th>
         <td mat-cell *matCellDef="let element">{{element.name}}</td>
       </ng-container>
     
       <!-- Columna de edad -->
       <ng-container matColumnDef="Ncontrol">
-        <th mat-header-cell *matHeaderCellDef >No. Control</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="NUMERO DE CONTROL" matTooltipPosition="below">No. Control</th>
         <td mat-cell *matCellDef="let element">{{element.Ncontrol}}</td>
       </ng-container>
   
      <ng-container matColumnDef='grup'>
-        <th mat-header-cell *matHeaderCellDef >Grup</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="GRUPO" matTooltipPosition="below">Grup</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea">
-            <input matInput [(ngModel)]="element.EN$">
+            <input matInput [(ngModel)]="element.grup" #inputGrup>
           </mat-form-field>
         </td>
       </ng-container>
   
        <ng-container matColumnDef='ind'>
-        <th mat-header-cell *matHeaderCellDef >ind</th>
+        <th mat-header-cell *matHeaderCellDef >Ind</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea">
-            <input matInput [(ngModel)]="element.ind$">
+            <input matInput [(ngModel)]="element.ind" #inputInd>
           </mat-form-field>
         </td>
       </ng-container>
      
       <ng-container matColumnDef='conferencias'>
-        <th mat-header-cell *matHeaderCellDef >Conferencias</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="CONFERENCIAS" matTooltipPosition="below">Conferencias</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea">
-            <input matInput [(ngModel)]="element.conferencias">
+            <input matInput [(ngModel)]="element.conferencias" #inputConferencias>
           </mat-form-field>
         </td>
       </ng-container>
   
-      <ng-container matColumnDef='Beca'>
-        <th mat-header-cell *matHeaderCellDef >Beca</th>
+      <ng-container matColumnDef='Beca' style="width: 230px">
+        <th mat-header-cell *matHeaderCellDef matTooltip="BECA (cual)" matTooltipPosition="below">Beca</th>
         <td mat-cell *matCellDef="let element">
-          <mat-form-field appearance="outline" class="sin-linea">
-            <input matInput [(ngModel)]="element.Beca">
+          <mat-form-field appearance="outline" class="sin-linea" >
+            <input matInput [(ngModel)]="element.Beca" #inputBeca>
           </mat-form-field>
         </td>
       </ng-container>
   
       <ng-container matColumnDef='total'>
-        <th mat-header-cell *matHeaderCellDef >Total</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="TOTAL DE MATERIAS" matTooltipPosition="below">Total</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea">
-            <input matInput [(ngModel)]="element.total">
+            <input matInput [(ngModel)]="element.total" #inputTotalMaterias>
           </mat-form-field>
         </td>
       </ng-container>
   
-      <ng-container matColumnDef='apro' style="width: 230px;">
-        <th mat-header-cell *matHeaderCellDef >Apro</th>
+      <ng-container matColumnDef='apro' >
+        <th mat-header-cell *matHeaderCellDef matTooltip="MATERIAS APROBADAS" matTooltipPosition="below">Apro</th>
         <td mat-cell *matCellDef="let element">
-          <mat-form-field appearance="outline" class="sin-linea" style="width: 150px;">
-            <input matInput [(ngModel)]="element.apro">
+          <mat-form-field appearance="outline" class="sin-linea" > 
+            <input matInput [(ngModel)]="element.apro" #inputMateriasAprobadas>
           </mat-form-field>
         </td>
       </ng-container>
   
       <ng-container matColumnDef='prom'>
-        <th mat-header-cell *matHeaderCellDef >Prom</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="PROMEDIO" matTooltipPosition="below">Prom</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea">
-            <input matInput [(ngModel)]="element.prom">
+            <input matInput [(ngModel)]="element.prom" #inputPromedio>
           </mat-form-field>
         </td>
       </ng-container> 
 
       <ng-container matColumnDef='Acad'>
-        <th mat-header-cell *matHeaderCellDef >Acad</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="CANALIZACION ACADEMICA" matTooltipPosition="below">Acad</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea">
-            <input matInput [(ngModel)]="element.Acad">
+            <input matInput [(ngModel)]="element.Acad" #inputCanalizacionAcademica>
           </mat-form-field>
         </td>
       </ng-container> 
 
       <ng-container matColumnDef='Psic'>
-        <th mat-header-cell *matHeaderCellDef >Psic</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="CANALIZACION PSICOLOGICA" matTooltipPosition="below">Psic</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea">
-            <input matInput [(ngModel)]="element.Psicologia">
+            <input matInput [(ngModel)]="element.Psic" #inputCanalizacionPsicologica>
           </mat-form-field>
         </td>
       </ng-container> 
 
       <ng-container matColumnDef='Med'>
-        <th mat-header-cell *matHeaderCellDef >Med</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="CANALIZACION MEDICA" matTooltipPosition="below">Med</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea">
-            <input matInput [(ngModel)]="element.Med">
+            <input matInput [(ngModel)]="element.Med" #inputCanalizacionMedica>
           </mat-form-field>
         </td>
       </ng-container> 
 
       <ng-container matColumnDef='Adm'>
-        <th mat-header-cell *matHeaderCellDef >Adm</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="CANALIZACION ADMINISTRATIVA" matTooltipPosition="below">Adm</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea">
-            <input matInput [(ngModel)]="element.Adm">
+            <input matInput [(ngModel)]="element.Adm" #inputCanalizacionAdministrativa>
           </mat-form-field>
         </td>
       </ng-container> 
@@ -181,10 +152,53 @@ COORDINACIÓN DEL PROGRAMA INSTITUCIONAL DE TUTORÍA <br>
     </table>
     
     <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
-    
-    
   </div>
+
   
-  
+  <div id="containerInputsAdicionales">
+     <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Actividades adicionales realizadas en el semestre:</mat-label>
+      <textarea matInput placeholder="" id="actividadesAdicionales"></textarea>
+    </mat-form-field>
+  </form>
+
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Observaciones</mat-label>
+      <textarea matInput placeholder="" id="observaciones"></textarea>
+    </mat-form-field>
+  </form>
+  </div>
+
+ 
+  <div id="containerButtons">
+    <button  mat-raised-button color="warn" (click)="generatePDF()">Generar PDF</button>
+    <button mat-raised-button color="warn" (click)="vaciarInputs()">Vaciar inputs</button>
+  </div>
+
+ <div id="containerFirmas">
+    <div class="divFirma">
+      <hr class="lineaFirma">
+      <hr class="lineaFirma">
+      <p>Nombre y Firma Tutor</p>
+    </div>
+
+    <div class="divFirma">
+      <hr class="lineaFirma">
+      <hr class="lineaFirma">
+      <p>Nombre y firma <br>
+        Coordnador de Tutorias del Departamento
+      </p>
+     
+    </div>
+
+    <div class="divFirma">
+      <hr class="lineaFirma">
+      <hr class="lineaFirma">
+      <p>Nombre y Firma <br>
+      Jefe del Departamento Academico</p>
+    </div>  
+ </div>
   
   

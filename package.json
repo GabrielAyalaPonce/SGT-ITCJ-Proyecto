@@ -23,6 +23,8 @@
     "@angular/router": "^14.2.0",
     "file-saver": "^2.0.5",
     "firebase": "^9.10.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.28",
     "ngx-material-timepicker": "^5.5.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

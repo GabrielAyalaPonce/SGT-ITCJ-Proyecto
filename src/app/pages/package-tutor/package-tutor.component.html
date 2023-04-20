@@ -57,14 +57,18 @@
         </mat-accordion>
 
         <mat-accordion style="width: 50%;">
-          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Tutorados del paquete
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-          </mat-expansion-panel>
-        </mat-accordion>
+    <mat-expansion-panel *ngFor="let tutorado of paquete.tutoradospkg" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ tutorado.name }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>
+        <p><strong>Email:</strong> {{ tutorado.email }}</p>
+        <p><strong>Numero de control:</strong> {{ tutorado.Ncontrol }}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
       </div>
 
 

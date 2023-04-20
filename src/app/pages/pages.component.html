@@ -147,9 +147,21 @@
     </mat-accordion>
 
 
+
+    <mat-accordion  *ngIf="rol==='tutorado'">
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+           Grupos
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <button *ngIf="rol==='tutorado'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/view-packages-tutorado">Grupos</button>
+        <button *ngIf="rol==='tutorado'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/package-own-information">Mi grupo</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+
     <button *ngIf="rol==='tutor'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/view-packages-tutor">paquetes</button>
-
-
     <mat-toolbar class="foot-bar">
     </mat-toolbar>
   

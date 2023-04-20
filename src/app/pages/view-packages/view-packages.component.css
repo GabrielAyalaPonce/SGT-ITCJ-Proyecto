@@ -44,7 +44,7 @@
 
 @media (min-width: 1100px) {
   .card-view {
-    width: 30%;
+    width: auto;
    min-height: 0%;  
   }
 }

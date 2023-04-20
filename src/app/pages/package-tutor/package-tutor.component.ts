@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { PackagesService } from 'src/app/services/packages.service';
 import * as Notiflix from 'notiflix';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { timeout } from 'rxjs';
 
 @Component({
@@ -16,28 +17,41 @@ export class PackageTutorComponent implements OnInit {
   subjectsAndSchedules: any[] = [];
   editandoClave = false;
   publicados: { [packageId: string]: boolean } = {};
+  tutoradospkg = [];
 
   saveKeyAuthorizationedit(paquete: any) {
     this.editandoClave = true;
   }
 
-  constructor(private firestore: AngularFirestore, private packagesService: PackagesService) { }
+  constructor(private firestore: AngularFirestore,
+              private packagesService: PackagesService,
+              private afAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
+ // Inicializa Notiflix
+ Notiflix.Notify.init({
+  width: '50%',
+  position: 'center-center',
+  fontSize: '1em',
+  borderRadius: '5px',
+});
 
+this.packagesService.getPackages().subscribe(
+  resp => console.log('paquetes', resp)
+);
 
-    Notiflix.Notify.init({
-      width: '50%',
-      position: 'center-center',
-      fontSize: '1em',
-      borderRadius: '5px',
-    });
-
-    this.packagesService.getPackages().subscribe(
-      resp => console.log('paquetes', resp)
-    )
-    this.obtenerPaqueteAsignado('VVXGIPI4ttMZzTQRzLKuPxi0sDs1'); // Reemplaza esto con el ID del usuario actual.
+this.afAuth.authState.subscribe(user => {
+  if (user) {
+    const uid = user.uid;
+    this.obtenerPaqueteAsignado(uid);
+  } else {
+    console.error('No hay un usuario en sesión.');
   }
+});
+  }
+
+
+
   obtenerPaqueteAsignado(uid: string): void {
     console.log('UID:', uid);
     this.firestore.collection('packages', ref => ref.where('TutorAsignado.uid', '==', uid)).valueChanges().subscribe(data => {
@@ -45,7 +59,6 @@ export class PackageTutorComponent implements OnInit {
       if (data.length > 0) {
         this.paquetesAsignados = data;
         console.log(this.paquetesAsignados);
-        // Asignar el estado de publicación
         this.paquetesAsignados.forEach(paquete => {
           this.publicados[paquete.id] = paquete.post;
         });

@@ -42,7 +42,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
 
 
 
@@ -66,6 +67,8 @@ import { CreatePackageComponent } from './pages/create-package/create-package.co
 import {MatStepperModule} from '@angular/material/stepper';
 import { ViewPackagesComponent } from './pages/view-packages/view-packages.component';
 import { PackageTutorComponent } from './pages/package-tutor/package-tutor.component';
+import { ViewPackagesTutoradoComponent } from './pages/view-packages-tutorado/view-packages-tutorado.component';
+import { PackageOwnInformationComponent } from './pages/package-own-information/package-own-information.component';
 
 
 
@@ -97,6 +100,8 @@ import { PackageTutorComponent } from './pages/package-tutor/package-tutor.compo
     CreatePackageComponent,
     ViewPackagesComponent,
     PackageTutorComponent,
+    ViewPackagesTutoradoComponent,
+    PackageOwnInformationComponent,
   ],
   imports: [
     BrowserModule,
@@ -134,6 +139,7 @@ import { PackageTutorComponent } from './pages/package-tutor/package-tutor.compo
     MatSortModule,
     MatTooltipModule, 
     MatStepperModule, 
+    AngularFireAuthModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
   ],

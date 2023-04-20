@@ -23,19 +23,24 @@
                             <p><b>Materia:</b> {{subjectSchedule.subject}}</p>
                             <p><b>Horario:</b> {{subjectSchedule.schedule}}</p>
                             <p><b>Profesor:</b> {{subjectSchedule.teacher}}</p>
-                            <!-- Agrega un input para ingresar la calificación -->
-                            <ng-container *ngIf="!subjectSchedule.saved; else showGrade">
+                            <ng-container *ngIf="!subjectSchedule.showGrade">
+                                <p>
+                                    <b>Calificación:</b>
+                                    <span style="color: #03a340; font-weight: bold; margin-left: 5px; font-size: 1.2em;">
+                                      {{subjectSchedule.grade}}
+                                    </span>
+                                  </p>
+                              </ng-container>
+                              
+                              <ng-container *ngIf="subjectSchedule.showGrade">
                                 <mat-form-field appearance="outline" class="grade-input" style="width: 40%;">
-                                    <mat-label>Calificación</mat-label>
-                                    <input type="number" matInput [(ngModel)]="subjectSchedule.grade">
+                                  <mat-label>Calificación</mat-label>
+                                  <input type="number" matInput [(ngModel)]="subjectSchedule.grade">
                                 </mat-form-field>
-                                <!-- Agrega el botón para guardar la calificación -->
+                              
                                 <button mat-raised-button color="primary"
-                                    (click)="saveGrade(paquete.id, subjectSchedule)">Guardar calificación</button>
-                            </ng-container>
-                            <ng-template #showGrade>
-                                <p><b>Calificación:</b> {{subjectSchedule.grade}}</p>
-                            </ng-template>
+                                  (click)="saveGrade(paquete.id, subjectSchedule)">Guardar calificación</button>
+                              </ng-container>                    
                             <mat-divider></mat-divider>
                             <mat-divider></mat-divider>
                         </div>

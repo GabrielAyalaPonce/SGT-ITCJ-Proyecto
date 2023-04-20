@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { PackagesService } from 'src/app/services/packages.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { take } from 'rxjs/operators';
 import * as Notiflix from 'notiflix';
 
 @Component({
@@ -18,55 +19,69 @@ export class PackageOwnInformationComponent implements OnInit {
 
   
   async saveGrade(packageId: string, subjectSchedule: any): Promise<void> {
-
     const grade = subjectSchedule.grade;
     if (grade === undefined || grade === null || grade < 0 || grade > 100) {
       Notiflix.Notify.failure('Ingrese una calificación válida (0-100)');
       return;
     }
-
+  
     const currentUser = await this.afAuth.currentUser;
     if (!currentUser) {
       console.error('No hay un usuario en sesión.');
       return;
     }
     this.currentUserUid = currentUser.uid;
-
-    const packageIndex = this.paquetesAsignados.findIndex((pkg: any) => pkg.docId === packageId);
-    if (packageIndex >= 0) {
-      const tutoradoIndex = this.paquetesAsignados[packageIndex].tutoradospkg.findIndex((tutorado: any) => tutorado.uid === this.currentUserUid);
-
-      if (tutoradoIndex >= 0) {
-        if (!this.paquetesAsignados[packageIndex].tutoradospkg[tutoradoIndex].grades) {
-          this.paquetesAsignados[packageIndex].tutoradospkg[tutoradoIndex].grades = [];
+  
+    Notiflix.Confirm.show(
+      'Confirmar calificación',
+      'Una vez guardada, la calificación no se podrá cambiar. ¿Desea continuar?',
+      'Sí',
+      'No',
+      async () => {
+        // Acción cuando el usuario confirma (hace clic en "Sí")
+        const packageIndex = this.paquetesAsignados.findIndex((pkg: any) => pkg.docId === packageId);
+        if (packageIndex >= 0) {
+          const tutoradoIndex = this.paquetesAsignados[packageIndex].tutoradospkg.findIndex((tutorado: any) => tutorado.uid === this.currentUserUid);
+  
+          if (tutoradoIndex >= 0) {
+            if (!this.paquetesAsignados[packageIndex].tutoradospkg[tutoradoIndex].grades) {
+              this.paquetesAsignados[packageIndex].tutoradospkg[tutoradoIndex].grades = [];
+            }
+            const subjectIndex = this.paquetesAsignados[packageIndex].tutoradospkg[tutoradoIndex].grades.findIndex((ss: any) => ss.subject === subjectSchedule.subject && ss.schedule === subjectSchedule.schedule);
+  
+            if (subjectIndex >= 0) {
+              this.paquetesAsignados[packageIndex].tutoradospkg[tutoradoIndex].grades[subjectIndex].grade = grade;
+            } else {
+              this.paquetesAsignados[packageIndex].tutoradospkg[tutoradoIndex].grades.push({
+                ...subjectSchedule,
+                grade: grade
+              });
+            }
+          } else {
+            this.paquetesAsignados[packageIndex].tutoradospkg.push({
+              ...subjectSchedule,
+              grade: grade,
+              uid: this.currentUserUid
+            });
+          }
         }
-        const subjectIndex = this.paquetesAsignados[packageIndex].tutoradospkg[tutoradoIndex].grades.findIndex((ss: any) => ss.subject === subjectSchedule.subject && ss.schedule === subjectSchedule.schedule);
-
-        if (subjectIndex >= 0) {
-          this.paquetesAsignados[packageIndex].tutoradospkg[tutoradoIndex].grades[subjectIndex].grade = grade;
-        } else {
-          this.paquetesAsignados[packageIndex].tutoradospkg[tutoradoIndex].grades.push({
-            ...subjectSchedule,
-            grade: grade
-          });
-        }
-      } else {
-        this.paquetesAsignados[packageIndex].tutoradospkg.push({
-          ...subjectSchedule,
-          grade: grade,
-          uid: this.currentUserUid
+  
+        this.firestore.collection('packages').doc(packageId).update({
+          tutoradospkg: this.paquetesAsignados[packageIndex].tutoradospkg
+        }).then(() => {
+          Notiflix.Notify.success('Calificación guardada con éxito');
+          subjectSchedule.showGrade = false;
+        }).catch(error => {
+          console.error('Error al guardar la calificación:', error);
         });
+      },
+      () => {
+        // Acción cuando el usuario cancela (hace clic en "No")
+        // No es necesario realizar ninguna acción aquí.
       }
-    }
-
-    this.firestore.collection('packages').doc(packageId).update({
-      tutoradospkg: this.paquetesAsignados[packageIndex].tutoradospkg
-    }).then(() => {
-      Notiflix.Notify.success('Calificación guardada con éxito');
-    }).catch(error => {
-      console.error('Error al guardar la calificación:', error);
-    });
+    );
   }
+  
 
   ngOnInit(): void {
     Notiflix.Notify.init({
@@ -88,20 +103,34 @@ export class PackageOwnInformationComponent implements OnInit {
           console.error('No hay un usuario en sesión.');
         }
       });
-
     }
 
     obtenerPaqueteAsignado(uid: string): void {
-    console.log('UID:', uid);
-    this.firestore.collection('packages').valueChanges({ idField: 'docId' }).subscribe(packages => {
-    packages.forEach((packageData: any) => {
-    const tutorados = packageData.tutoradospkg || [];
-    const matchedTutorado = tutorados.find((tutorado: any) => tutorado.uid === uid);
-    if (matchedTutorado) {
-    this.paquetesAsignados.push({ ...packageData, docId: packageData.docId });
-    console.log(this.paquetesAsignados);
+      console.log('UID:', uid);
+      this.firestore.collection('packages').valueChanges({ idField: 'docId' })
+        .pipe(take(1)) 
+        .subscribe(packages => {
+          packages.forEach((packageData: any) => {
+            const tutorados = packageData.tutoradospkg || [];
+            const matchedTutorado = tutorados.find((tutorado: any) => tutorado.uid === uid);
+            if (matchedTutorado) {
+  
+              const grades = matchedTutorado.grades || [];
+    
+              const subjectsAndSchedules = packageData.subjectsAndSchedules.map((subjectSchedule: any) => {
+                const gradeData = grades.find((grade: any) => grade.subject === subjectSchedule.subject && grade.schedule === subjectSchedule.schedule);
+                return {
+                  ...subjectSchedule,
+                  showGrade: !gradeData,
+                  grade: gradeData ? gradeData.grade : undefined
+                };
+              });
+              this.paquetesAsignados.push({ ...packageData, docId: packageData.docId, subjectsAndSchedules });
+              console.log(this.paquetesAsignados);
+            }
+          });
+        });
     }
-  });
-});
-}}
+    
+  }    
 

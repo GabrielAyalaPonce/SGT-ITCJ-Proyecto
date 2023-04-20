@@ -50,8 +50,8 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .card-view {
-    width: calc(33.3333% - 1em); /* Tres tarjetas por fila con un espacio entre ellas */
+    width: calc(30% - 1em); /* Tres tarjetas por fila con un espacio entre ellas */
   }
 }

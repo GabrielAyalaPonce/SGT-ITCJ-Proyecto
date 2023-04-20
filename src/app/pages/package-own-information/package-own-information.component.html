@@ -1,0 +1,58 @@
+<mat-toolbar>
+    <span>GRUPO</span>
+</mat-toolbar>
+
+<div *ngIf="paquetesAsignados.length > 0; else noPaquete">
+    <div *ngFor="let paquete of paquetesAsignados">
+        <mat-card class="card-package-tutor" style="display: flex; flex-direction: column;">
+
+            <h3>Informacion de Grupo</h3>
+            <p><strong>Nombre de la carrera:</strong> {{paquete.NombreCarrera}}</p>
+            <p><strong>Tutor asignado:</strong> {{paquete.TutorAsignado.name}}</p>
+            <p><strong>Email del tutor:</strong> {{paquete.TutorAsignado.email}}</p>
+
+            <div style="display: flex; flex-wrap: wrap; width: 100%;">
+                <mat-accordion style="width: 100%;">
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Materias de Paquete
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div *ngFor="let subjectSchedule of paquete.subjectsAndSchedules">
+                            <p><b>Materia:</b> {{subjectSchedule.subject}}</p>
+                            <p><b>Horario:</b> {{subjectSchedule.schedule}}</p>
+                            <p><b>Profesor:</b> {{subjectSchedule.teacher}}</p>
+                            <!-- Agrega un input para ingresar la calificación -->
+                            <ng-container *ngIf="!subjectSchedule.saved; else showGrade">
+                                <mat-form-field appearance="outline" class="grade-input" style="width: 40%;">
+                                    <mat-label>Calificación</mat-label>
+                                    <input type="number" matInput [(ngModel)]="subjectSchedule.grade">
+                                </mat-form-field>
+                                <!-- Agrega el botón para guardar la calificación -->
+                                <button mat-raised-button color="primary"
+                                    (click)="saveGrade(paquete.id, subjectSchedule)">Guardar calificación</button>
+                            </ng-container>
+                            <ng-template #showGrade>
+                                <p><b>Calificación:</b> {{subjectSchedule.grade}}</p>
+                            </ng-template>
+                            <mat-divider></mat-divider>
+                            <mat-divider></mat-divider>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+
+            <hr>
+        </mat-card>
+    </div>
+</div>
+
+<ng-template #noPaquete>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>Tutorado</mat-card-title>
+            <mat-card-subtitle>Usted no tiene Paquetes asignados</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+</ng-template>

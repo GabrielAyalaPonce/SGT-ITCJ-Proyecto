@@ -14,6 +14,8 @@ export const environment = {
     measurementId: 'G-RCQVPXZ2KT',
   },
   production: false,
+  
+  KEYCOORDINATOR:'SGT2022',
   firebaseConfig:{
     apiKey: "AIzaSyA1L6c0racfI7Xiyiw9jxZ4KBlWDqYk5Bc",
     authDomain: "sgt-firebase-adb81.firebaseapp.com",

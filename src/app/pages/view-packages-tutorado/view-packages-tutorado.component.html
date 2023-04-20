@@ -1,0 +1,49 @@
+<div class="container-main">  
+  <div class="container-scroll">
+    <div class="container-view-package">
+      <mat-card class="card-view" *ngFor="let pkg of packages">
+        <mat-card-content style="text-align: center; font-size: 1.5em; font-weight: bold;">{{pkg.nombrePaquete}}</mat-card-content>
+        <mat-card-content class="package-info">
+          <mat-card-content class="package-info">
+            <h2>Paquete para carrera:</h2>  {{pkg.NombreCarrera}}
+          </mat-card-content>
+          <h2>Tutor Asignado:</h2> {{pkg.TutorAsignado.name}}
+        </mat-card-content>
+        <mat-card-content class="package-info">
+          <h2>Email:</h2> {{pkg.TutorAsignado.email}}
+        </mat-card-content>
+
+        <button *ngIf="!pkg.subscribed" style="width: 100%; margin-bottom: 3%;" mat-raised-button color="warn" (click)="toggleKeyInput(pkg.id)">Clave para inscribirse</button>
+
+        <div *ngIf="showKeyInput[pkg.id] && !pkg.subscribed">
+          <mat-form-field style="width: 100%;" appearance="outline">
+            <mat-label>Ingresa la clave</mat-label>
+            <input matInput placeholder="Introduce la clave" [(ngModel)]="keyAuthorization" />
+          </mat-form-field>
+          <button *ngIf="!pkg.subscribed"  mat-raised-button style="background-color: rgb(147, 150, 147); width: 100%; margin-bottom: 3%;" (click)="saveKey(pkg)">Inscribirse</button>
+        </div>
+        
+        <div *ngIf="pkg.subscribed">
+            <span style="color: green; width: 100%; font-weight: bold; font-size: 24px;">Inscrito</span>
+        </div>
+  
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Materias de Paquete
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngFor="let subjectSchedule of pkg.subjectsAndSchedules">
+              <p><b>Materia:</b> {{subjectSchedule.subject}}</p>
+              <p><b>Horario:</b> {{subjectSchedule.schedule}}</p>
+              <p><b>Profesor:</b> {{subjectSchedule.teacher}}</p>
+              <hr *ngIf="!last">
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card> 
+    </div>
+  </div>
+  </div>

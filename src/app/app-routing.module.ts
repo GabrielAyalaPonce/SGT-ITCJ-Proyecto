@@ -20,11 +20,16 @@ import { AcademicPortafoliosTutorComponent } from './pages/academic-portafolios-
 import { AlertSummaryComponent } from './pages/alert-summary/alert-summary.component';
 import { CreatePackageComponent } from './pages/create-package/create-package.component';
 import { ViewPackagesComponent } from './pages/view-packages/view-packages.component';
+import { PackageTutorComponent } from './pages/package-tutor/package-tutor.component';
+import { AuthGuard } from './guards/auth.guard';
+import { ViewPackagesTutoradoComponent } from './pages/view-packages-tutorado/view-packages-tutorado.component';
+import { PackageOwnInformationComponent } from './pages/package-own-information/package-own-information.component';
 
 
 const routes: Routes = [
 
   {path: 'pages', 
+  canActivate: [AuthGuard],
   component:PagesComponent,
   children:[
     {path: 'pages/dashboard', component:DashboardComponent},
@@ -43,6 +48,9 @@ const routes: Routes = [
     {path: 'pages/alert-summary', component:AlertSummaryComponent},
     {path: 'pages/create-package', component:CreatePackageComponent},
     {path: 'pages/view-packages', component:ViewPackagesComponent},
+    {path: 'pages/view-packages-tutor', component:PackageTutorComponent},
+    {path: 'pages/view-packages-tutorado', component:ViewPackagesTutoradoComponent},
+    {path: 'pages/package-own-information', component:PackageOwnInformationComponent},
     {path: '',redirectTo: 'dashboard', pathMatch:'full'},
   ]},
 {path: 'login', component: LoginComponent},

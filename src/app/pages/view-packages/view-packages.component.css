@@ -1,39 +1,89 @@
-.container-view-package{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2.5%;
-    flex-wrap: wrap;
+.container-view-package {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.container-scroll {
+  margin-top: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  max-height: 470px;
+  overflow-y: auto;
+  border: 1px solid #616161;
+  border-radius: 10px;
+  padding: 1em;
+  gap: 1em;
+}
+
+.card-view {
+  margin-top: 3%;
+  width: 100%;
+  height: auto;
+  box-shadow: inset 0 -3em 3em rgba(165, 163, 163, 0.1),
+    0 0 0 1px rgb(190, 190, 190),
+    0.3em 0.3em 1em rgba(175, 175, 175, 0.3);
+}
+
+.mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+
+/* Media queries */
+@media (min-width: 991px) {
+  .card-view {
+    width: 60%;
+    min-height: 0%;  
   }
-  
-  .card-view{
-    justify-content: center;
-    width: 30%;
-    margin-top: 1.5%;
-    box-shadow: inset 0 -3em 3em rgba(165, 163, 163, 0.1),
-      0 0  0 2px rgb(190, 190, 190),
-      0.3em 0.3em 1em rgba(175, 175, 175, 0.3);
-    align-items: center;
+}
+
+@media (min-width: 1100px) {
+  .card-view {
+    width: auto;
+   min-height: 0%;  
   }
-  
-  @media screen and (max-width: 1200px) {
-    .container-view-package {
-      justify-content: center;
-    }
-  
-    .card-view {
-      width: 40%;
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
-    .container-view-package {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .card-view {
-      width: 80%;
-      margin-top: 3%;
-    }
-  }
-  
+}
+
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: white;
+}
+
+.delete-active {
+  background-color: red;
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+.delete-mode {
+  border: 1px solid red;
+  cursor: pointer;
+  animation: shake 10s;
+  animation-iteration-count: infinite;
+}
+
+.delete-active-card {
+  background-color: rgba(155, 0, 0, 0.1);
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -1px) rotate(-1deg); }
+  10% { transform: translate(-1px, 1px) rotate(1deg); }
+  30% { transform: translate(1px, -1px) rotate(0deg); }
+  40% { transform: translate(1px, 1px) rotate(1deg); }
+  50% { transform: translate(-1px, 1px) rotate(-1deg); }
+  60% { transform: translate(-1px, -1px) rotate(0deg); }
+  70% { transform: translate(1px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 1px) rotate(0deg); }
+  100% { transform: translate(1px, -1px) rotate(-1deg); }
+}

@@ -1,4 +1,5 @@
 export const environment = {
+  production: true,
   firebase: {
     projectId: 'sgt-firebase-adb81',
     appId: '1:684061822800:web:6859f426a99edbb3732655',
@@ -9,5 +10,6 @@ export const environment = {
     messagingSenderId: '684061822800',
     measurementId: 'G-RCQVPXZ2KT',
   },
-  production: true
+
+  KEYCOORDINATOR:'SGT2022'
 };

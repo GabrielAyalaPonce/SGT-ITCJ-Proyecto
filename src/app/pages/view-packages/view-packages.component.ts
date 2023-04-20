@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { PackagesService } from 'src/app/services/packages.service';
+import * as Notiflix from 'notiflix';
+import { PackageI } from 'src/app/models/packages';
+
 
 @Component({
   selector: 'app-view-packages',
@@ -8,17 +11,55 @@ import { PackagesService } from 'src/app/services/packages.service';
   styleUrls: ['./view-packages.component.css']
 })
 export class ViewPackagesComponent implements OnInit {
+  packages!: PackageI[]; 
+  searchTerm: string = '';
+  panelOpenState = false;
+  last:any;
+  pkg!:any;
+  deleteModeActive: boolean = false;
 
-  packages!: any;
+  toggleDeleteMode(): void {
+    this.deleteModeActive = !this.deleteModeActive;
+  }
+
+  togglePackageToDelete(pkg: PackageI, event: MouseEvent): void {
+    if (this.deleteModeActive) {
+      pkg.toDelete = !pkg.toDelete;
+      this.deletePackage(pkg);
+    }
+  }
+  
 
   constructor(private packagesService: PackagesService, private router: Router) { }
 
-
   ngOnInit(): void {
+    Notiflix.Loading.init({ svgColor: '#FF0000' });
+    Notiflix.Loading.standard('Cargando paquetes...');
+  
     this.packagesService.getPackages().subscribe(resp => {
-      this.packages = resp;
-      console.log('vamos viendo que tengo', this.packages);
+      this.packages = resp.map(pkg => {
+        return { ...pkg, toDelete: false }; 
+      });
+      console.log('Respuesta', this.packages);
+    
+      Notiflix.Loading.remove();
     });
   }
+  
+
+    deletePackage(pkg: PackageI): void {
+    if (pkg.toDelete) {
+      this.packagesService.deletePackage(pkg.id).subscribe(() => {
+        const index = this.packages.indexOf(pkg);
+        this.packages.splice(index, 1);
+        Notiflix.Notify.success('Paquete eliminado exitosamente.');
+      }, error => {
+        console.log(error)
+        Notiflix.Notify.failure('Error al eliminar el paquete.');
+      });
+    }
+  }
+
+
   
 }

@@ -8,6 +8,7 @@ import { User } from 'src/app/models/user';
 import { UserFirebaseService } from 'src/app/services/user-firebase.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PasswordCoordinatorComponent } from './password-coordinator/password-coordinator.component';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -104,7 +105,7 @@ export class LoginComponent {
 openDialog(): void {
   const dialogRef = this.dialog.open(PasswordCoordinatorComponent, {});
   dialogRef.afterClosed().subscribe(result => {
-    if (result === 'SGT2022') {
+    if (result === environment.KEYCOORDINATOR) {
       this.disabled = true;
       this.datos.Rol = 'coordinador';
     } else {

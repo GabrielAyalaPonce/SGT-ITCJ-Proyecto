@@ -6,5 +6,6 @@ export interface User {
    uid:any;
    Ncontrol:any,
    Rol: 'administrador'|'coordinador'|'tutor'|'tutorado'; 
+   subscribed?: boolean; 
 }
 

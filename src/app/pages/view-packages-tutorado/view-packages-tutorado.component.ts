@@ -20,7 +20,6 @@ export class ViewPackagesTutoradoComponent implements OnInit {
   showKeyInput: { [key: string]: boolean } = {};
   keyAuthorization!: any;
   currentUser!: any;
-  subscribed:boolean =false;
 
   constructor(
     private packagesService: PackagesService,
@@ -47,21 +46,19 @@ export class ViewPackagesTutoradoComponent implements OnInit {
       this.showKeyInput[packageId] = !this.showKeyInput[packageId];
     }
   }
-  
-
 
   async saveKey(packageItem: PackageI): Promise<void> {
     if (!packageItem.keyAuthorization || this.keyAuthorization === packageItem.keyAuthorization) {
       Notiflix.Notify.success('Inscrito al grupo');
       console.log('Inscrito al grupo');
-      packageItem.subscribed = true;
 
-      // Actualiza el paquete en la base de datos
+      const tutorado: User = { ...this.currentUser, subscribed: true };
+
       const updatedPackage = {
         ...packageItem,
         tutoradospkg: packageItem.tutoradospkg
-          ? [...packageItem.tutoradospkg, this.currentUser]
-          : [this.currentUser],
+          ? [...packageItem.tutoradospkg, tutorado]
+          : [tutorado],
       };
 
       this.packagesService
@@ -98,14 +95,15 @@ export class ViewPackagesTutoradoComponent implements OnInit {
     // Obtén la información del usuario actual
     this.userFirebaseService.stateUser().subscribe((user) => {
       if (user) {
-        this.userFirebaseService.getDoc<User>('users', user.uid)        .subscribe(
-          (userData) => {
-            this.currentUser = userData;
-          },
-          (error) => {
-            console.error('Error al obtener datos del usuario', error);
-          }
-        );
+        this.userFirebaseService.getDoc<User>('users', user.uid)
+          .subscribe(
+            (userData) => {
+              this.currentUser = userData 
+            },
+            (error) => {
+              console.error('Error al obtener datos del usuario', error);
+            }
+          );
       } else {
         console.error('Usuario no autenticado');
       }
@@ -118,11 +116,19 @@ export class ViewPackagesTutoradoComponent implements OnInit {
   }
 
   goToPackage(packageItem: PackageI): void {
-    if (packageItem.subscribed) {
+    if (this.isSubscribed(packageItem)) {
       this.router.navigate(['/dashboard', packageItem.id]);
     } else {
-      Notiflix.Notify.warning('Aún no estás inscrito en este paquete.');
+    Notiflix.Notify.warning('Aún no estás inscrito en este paquete.');
     }
-  }
-}
-
+    }
+    
+    isSubscribed(packageItem: PackageI): boolean {
+    if (!packageItem.tutoradospkg || !this.currentUser) {
+    return false;
+    }
+    return packageItem.tutoradospkg.some(
+    (tutorado) => tutorado.uid === this.currentUser.uid && tutorado.subscribed
+    );
+    }
+    }

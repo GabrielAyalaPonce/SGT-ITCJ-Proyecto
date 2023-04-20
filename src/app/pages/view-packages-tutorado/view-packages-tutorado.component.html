@@ -13,17 +13,17 @@
           <h2>Email:</h2> {{pkg.TutorAsignado.email}}
         </mat-card-content>
 
-        <button *ngIf="!pkg.subscribed" style="width: 100%; margin-bottom: 3%;" mat-raised-button color="warn" (click)="toggleKeyInput(pkg.id)">Clave para inscribirse</button>
+        <button *ngIf="!isSubscribed(pkg)" style="width: 100%; margin-bottom: 3%;" mat-raised-button color="warn" (click)="toggleKeyInput(pkg.id)">Clave para inscribirse</button>
 
-        <div *ngIf="showKeyInput[pkg.id] && !pkg.subscribed">
+        <div *ngIf="showKeyInput[pkg.id] && !isSubscribed(pkg)">
           <mat-form-field style="width: 100%;" appearance="outline">
             <mat-label>Ingresa la clave</mat-label>
             <input matInput placeholder="Introduce la clave" [(ngModel)]="keyAuthorization" />
           </mat-form-field>
-          <button *ngIf="!pkg.subscribed"  mat-raised-button style="background-color: rgb(147, 150, 147); width: 100%; margin-bottom: 3%;" (click)="saveKey(pkg)">Inscribirse</button>
+          <button *ngIf="!isSubscribed(pkg)"  mat-raised-button style="background-color: rgb(147, 150, 147); width: 100%; margin-bottom: 3%;" (click)="saveKey(pkg)">Inscribirse</button>
         </div>
         
-        <div *ngIf="pkg.subscribed">
+        <div *ngIf="isSubscribed(pkg)">
             <span style="color: green; width: 100%; font-weight: bold; font-size: 24px;">Inscrito</span>
         </div>
   
@@ -46,4 +46,4 @@
       </mat-card> 
     </div>
   </div>
-  </div>
+</div>

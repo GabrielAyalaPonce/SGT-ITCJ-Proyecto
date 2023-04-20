@@ -16,7 +16,9 @@ export class PackageOwnInformationComponent implements OnInit {
 
   constructor(private firestore: AngularFirestore, private packagesService: PackagesService, private afAuth: AngularFireAuth) { }
 
+  
   async saveGrade(packageId: string, subjectSchedule: any): Promise<void> {
+
     const grade = subjectSchedule.grade;
     if (grade === undefined || grade === null || grade < 0 || grade > 100) {
       Notiflix.Notify.failure('Ingrese una calificación válida (0-100)');
@@ -99,9 +101,7 @@ export class PackageOwnInformationComponent implements OnInit {
     this.paquetesAsignados.push({ ...packageData, docId: packageData.docId });
     console.log(this.paquetesAsignados);
     }
-
   });
 });
 }}
-
 

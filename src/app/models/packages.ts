@@ -17,6 +17,7 @@ export interface PackageI {
       subject: string;
       schedule: string;
       teacher: string;
+      grade?: number;
     }>;
     toDelete?: boolean;
   }

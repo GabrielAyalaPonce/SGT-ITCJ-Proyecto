@@ -1,3 +1,27 @@
+<div class="titulo">
+  <h5>INSTITUTO TECNOLÓGICO DE CD. JUÁREZ <br>
+  DEPARTAMENTO DE DESARROLLO ACADÉMICO <br>
+   PROGRAMA INSTITUCIONAL DE TUTORIAS </h5> 
+  </div>
+
+  <div class="inputs" >
+    <input class="input" id="inputNombreTutor" matInput placeholder="Nombre del tutor" >
+    <input class="input" id="inputDepartamento" matInput placeholder="Departamento">
+    <input class="input" id="inputSemestreIngreso" matInput placeholder="Semestre de ingreso">
+    <input class="input" id="inputCarrera" matInput placeholder="Carrera">
+    <input class="input" id="inputGrupo" matInput placeholder="Grupo">
+    <input class="input" id="inputPeriodo" matInput placeholder="Periodo">
+
+  <mat-form-field  class="no-outline" appearance="fill" style="width: 7%; " >
+    <input id="inputFecha" matInput [matDatepicker]="picker" style="font-size: 12px;">
+    <mat-datepicker-toggle style="border: none;" matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  
+  <input class="input" id="inputHorario" matInput placeholder="Horario">
+
+</div>
+
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort class="mat-table-responsive">
 
@@ -93,5 +117,9 @@
   
 </div>
 
+<div id="containerButtons">
+  <button  mat-raised-button color="warn" (click)="generatePDF()">Generar PDF</button>
+  
+</div>
 
 

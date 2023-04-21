@@ -65,7 +65,8 @@ export class AcademicPortafoliosTutorComponent implements OnInit {
     this.userfirebaseservice.getUsers().subscribe(users => {
      this.dataSource = new MatTableDataSource();
      console.log('Mostrando usuarios',users);
-       this.dataSource = new MatTableDataSource(users);
+     this.users = users.filter(user => user.Rol === 'tutorado' && user.Ncontrol !== '');
+       this.dataSource = new MatTableDataSource(this.users);
        this.dataSource.paginator = this.paginator;
        this.dataSource.sort = this.sort;
       });
@@ -88,30 +89,42 @@ export class AcademicPortafoliosTutorComponent implements OnInit {
 
     doc.setFontSize(9);
 
+    const titulo = "REPORTE SEMESTRAL DEL TUTOR";
+
+    // Obtener la longitud del texto
+    const textWidth = doc.getTextWidth(titulo);
+
+    // Calcular el punto en el que se debe comenzar a dibujar el texto para centrarlo horizontalmente
+    const startX = (doc.internal.pageSize.width - textWidth) / 2;
+
+    // Dibujar el texto centrado en la página
+    doc.text(titulo, startX, 10);
+
+
 
     const nombreTutor = (document.getElementById('inputNombreTutor') as HTMLInputElement).value;
-    doc.text('Nombre del tutor: ' + nombreTutor, 10, 10);
+    doc.text('Nombre del tutor: ' + nombreTutor, 10, 15);
 
     const departamento = (document.getElementById('inputDepartamento') as HTMLInputElement).value;
-    doc.text('Departamento: ' + departamento, 10, 15);
+    doc.text('Departamento: ' + departamento, 10, 20);
     
     const fecha = (document.getElementById('inputFecha') as HTMLInputElement).value;
-    doc.text('Fecha: ' + fecha, 10, 20);
+    doc.text('Fecha: ' + fecha, 10, 25);
 
     const programaAcademico = (document.getElementById('programaAcademico') as HTMLInputElement).value;
-    doc.text('Programa Academico de los tutorados ' + programaAcademico, 10, 25);
+    doc.text('Programa Academico de los tutorados ' + programaAcademico, 10, 30);
 
     const cohorte = (document.getElementById('inputCohorte') as HTMLInputElement).value;
-    doc.text('Cohorte: ' + cohorte, 10, 30);
+    doc.text('Cohorte: ' + cohorte, 10, 35);
 
     const hora = (document.getElementById('inputHora') as HTMLInputElement).value;
-    doc.text('Hora: ' + hora, 10, 35);
+    doc.text('Hora: ' + hora, 10, 40);
 
     const tut = (document.getElementById('inputTut') as HTMLInputElement).value;
-    doc.text('Tut: ' + tut, 10, 40);
+    doc.text('Tut: ' + tut, 10, 45);
 
     const grupal = (document.getElementById('inputGrupal') as HTMLInputElement).value;
-    doc.text('Grupal: ' + grupal, 10, 45);
+    doc.text('Grupal: ' + grupal, 10, 50);
 
     
     
@@ -129,7 +142,7 @@ export class AcademicPortafoliosTutorComponent implements OnInit {
         });
         return row;
       }),
-      margin: { top: 50 },
+      margin: { top: 55 },
       headStyles: {
         halign: 'center',
         fillColor: [255, 255, 255 ],

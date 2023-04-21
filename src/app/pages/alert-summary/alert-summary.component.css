@@ -1,3 +1,27 @@
+.titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inputs{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-right: 2px;
+}
+.input{
+  display: inline-block;
+  width: 30%;
+  border-bottom: .5px solid black;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 50px;
+  resize: vertical;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  text-align: center;
+}
+
 .table {
   width: 100%;
   border: 7px;
@@ -12,8 +36,11 @@
 
 .mat-elevation-z8 {
   width: 100%;
+  height: auto;
   align-items: center;
   overflow-x: auto;
+  overflow-y: auto; 
+
 }
 .matColumnDef{
   margin: 1px 1px 1px 1px;
@@ -55,12 +82,12 @@
 }
 
 .mat-form-field {
-  width: 30%; 
+  width: 80%; 
 }
 
 input {
-  font-family: monospace;
-  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -68,3 +95,11 @@ input {
   border:none;
 }
 
+#containerButtons{
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+}
+.mat-raised-button {
+  margin-right: 2%;
+}

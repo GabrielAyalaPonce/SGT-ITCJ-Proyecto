@@ -56,20 +56,35 @@
             </div>
           </mat-expansion-panel>
         </mat-accordion>
-
         <mat-accordion style="width: 50%;">
-    <mat-expansion-panel *ngFor="let tutorado of paquete.tutoradospkg" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{ tutorado.name }}
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div>
-        <p><strong>Email:</strong> {{ tutorado.email }}</p>
-        <p><strong>Numero de control:</strong> {{ tutorado.Ncontrol }}</p>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+          <mat-expansion-panel *ngFor="let tutorado of paquete.tutoradospkg" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ tutorado.name }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+              <p><strong>Email:</strong> {{ tutorado.email }}</p>
+              <p><strong>Numero de control:</strong> {{ tutorado.Ncontrol }}</p>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Ver calificaciones de este alumno
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div *ngIf="tutorado.grades && tutorado.grades.length > 0; else noGrades">
+                  <p *ngFor="let grade of tutorado.grades">
+                    <strong>{{ grade.subject }}</strong> {{ grade.grade }}
+                  </p>
+                </div>
+                <ng-template #noGrades>
+                  <p>Este alumno no ha capturado calificaciones.</p>
+                </ng-template>
+              </mat-expansion-panel>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        
       </div>
 
 

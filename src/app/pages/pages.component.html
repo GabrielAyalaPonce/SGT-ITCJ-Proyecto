@@ -139,10 +139,11 @@
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
-           portafolios Academicos
+           Reportes
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <button *ngIf="rol==='tutor'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/academic-portafolios-tutor">Seguimiento portafolios</button>
+        <button *ngIf="rol==='tutor'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/academic-portafolios-tutor">Reporte semestral</button>
+        <button *ngIf="rol==='tutor'" style="margin-top:8px; width: 100%;" mat-stroked-button color="warn" routerLink="pages/alert-summary">Resumen de alertas</button>
       </mat-expansion-panel>
     </mat-accordion>
 

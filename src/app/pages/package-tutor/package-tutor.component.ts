@@ -3,7 +3,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { PackagesService } from 'src/app/services/packages.service';
 import * as Notiflix from 'notiflix';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { timeout } from 'rxjs';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-package-tutor',
@@ -127,5 +128,38 @@ this.afAuth.authState.subscribe(user => {
       console.error('Error al actualizar KeyAuthorization', error);
     });
   }
+
+
+  async generateReport(tutorado: any): Promise<void> {
+    const doc = new jsPDF('p', 'pt', 'letter');
+    const lineHeight = 20;
+    let currentLine = 60;
+    
+    doc.setFontSize(18);
+    doc.text(`Nombre Alumno: ${tutorado.name}`, 40, currentLine);
+    currentLine += lineHeight;
+  
+    doc.setFontSize(14);
+    doc.text(`Número de control: ${tutorado.Ncontrol}`, 40, currentLine);
+    currentLine += lineHeight;
+  
+    if (tutorado.grades && tutorado.grades.length > 0) {
+      doc.setFontSize(16);
+      doc.text('Calificaciones', 40, currentLine);
+      currentLine += lineHeight;
+  
+      doc.setFontSize(12);
+      for (const grade of tutorado.grades) {
+        doc.text(`${grade.subject}: ${grade.grade}`, 40, currentLine);
+        currentLine += lineHeight;
+      }
+    } else {
+      doc.text('Este alumno no ha capturado calificaciones.', 40, currentLine);
+    }
+  
+    doc.save(`${tutorado.name}_reporte.pdf`);
+  }
+  
+  
 
 }

@@ -30,6 +30,8 @@ export class PackageTutorComponent implements OnInit {
               private afAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
+
+    Notiflix.Loading.standard('Cargando paquetes...');
  // Inicializa Notiflix
  Notiflix.Notify.init({
   width: '50%',
@@ -41,6 +43,7 @@ export class PackageTutorComponent implements OnInit {
 this.packagesService.getPackages().subscribe(
   resp => console.log('paquetes', resp)
 );
+Notiflix.Loading.remove();
 
 this.afAuth.authState.subscribe(user => {
   if (user) {

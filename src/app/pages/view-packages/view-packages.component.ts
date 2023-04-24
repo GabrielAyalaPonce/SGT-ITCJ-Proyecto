@@ -48,11 +48,13 @@ export class ViewPackagesComponent implements OnInit {
   }
   
 
-    deletePackage(pkg: PackageI): void {
+  deletePackage(pkg: PackageI): void {
     if (pkg.toDelete) {
       this.packagesService.deletePackage(pkg.id).subscribe(() => {
         const index = this.packages.indexOf(pkg);
-        this.packages.splice(index, 1);
+        if (index > -1) {
+          this.packages.splice(index, 1);
+        }
         Notiflix.Notify.success('Paquete eliminado exitosamente.');
       }, error => {
         console.log(error)
@@ -60,6 +62,7 @@ export class ViewPackagesComponent implements OnInit {
       });
     }
   }
+  
 
 
   

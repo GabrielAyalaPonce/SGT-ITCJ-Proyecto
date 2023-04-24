@@ -76,12 +76,12 @@
               </div>
             </mat-expansion-panel>
             <button mat-raised-button color="primary" style="width: 100%; margin-top: 3%;"
-              (click)="generateReport(tutorado)">Crear reporte PDF</button>
+              (click)="generateReport(tutorado)">Crear reporte Individual PDF</button>
           </mat-expansion-panel>
-          <button mat-raised-button color="primary" style="width: 100%; margin-top: 3%;"
+          <button *ngIf="paquete.tutoradospkg && paquete.tutoradospkg.length > 0" mat-raised-button color="primary" style="width: 100%; margin-top: 3%;" 
             (click)="generateGeneralReport(paquete)">
             Crear reporte general
-          </button>
+          </button>          
         </mat-accordion>
       </div>
       <hr>

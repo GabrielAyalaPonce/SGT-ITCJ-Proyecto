@@ -11,7 +11,7 @@ COORDINACIÓN DEL PROGRAMA INSTITUCIONAL DE TUTORÍA <br>
  
     <mat-form-field  class="no-outline" appearance="fill" style="width: 7%; " >
       
-      <input id="inputFecha" matInput [matDatepicker]="picker" style="font-size: 12px;">
+      <input id="inputFecha" matInput [matDatepicker]="picker" style="font-size: 0.80rem;">
       <mat-datepicker-toggle style="border: none;" matIconSuffix [for]="picker" ></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -72,7 +72,7 @@ COORDINACIÓN DEL PROGRAMA INSTITUCIONAL DE TUTORÍA <br>
         </td>
       </ng-container>
   
-      <ng-container matColumnDef='Beca' style="width: 230px">
+      <ng-container matColumnDef='Beca'>
         <th mat-header-cell *matHeaderCellDef matTooltip="BECA (cual)" matTooltipPosition="below">Beca</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea" >

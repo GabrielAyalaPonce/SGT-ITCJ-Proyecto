@@ -44,6 +44,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { FirestoreModule } from '@angular/fire/firestore';
 
 
 
@@ -142,6 +143,7 @@ import { PackageOwnInformationComponent } from './pages/package-own-information/
     MatTooltipModule, 
     MatStepperModule, 
     AngularFireAuthModule,
+    FirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
   ],

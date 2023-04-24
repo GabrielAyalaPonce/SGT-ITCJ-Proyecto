@@ -1,13 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UserTableData } from 'src/app/models/summary-alert';
 import { UserFirebaseService } from 'src/app/services/user-firebase.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { User } from 'src/app/models/user';
+import {PackageI} from 'src/app/models/packages';
+import { AuthService } from 'src/app/services/usersAuthServices';
+import 'firebase/auth';
+import 'firebase/compat/auth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import 'firebase/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import { UserTutorI } from 'src/app/models/user-tutor-i';
 
 
 
@@ -15,29 +22,71 @@ import { UserTutorI } from 'src/app/models/user-tutor-i';
 @Component({
   selector: 'app-alert-summary',
   templateUrl: './alert-summary.component.html',
-  styleUrls: ['./alert-summary.component.css']
-
+  styleUrls: ['./alert-summary.component.css'],
+  providers: [AuthService]
   
 
 })
 export class AlertSummaryComponent implements OnInit {
-  users: User[] = [];
+  currentUser: User | null = null;
+  tutorados: User[] = [];
+  //users: User[] =[];
   dataSource = new MatTableDataSource<User>([]);
   columnsToDisplay : string[] = ['name','Ncontrol','EN$','N$','ADA','BDA','SM','AE','Psicologia'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  //,'EN$','N$','ADA','BDA','SM','AE','Psicologia'
-  constructor(private userfirebaseservice: UserFirebaseService) { }
+
+  constructor(private userfirebaseservice: UserFirebaseService,private authService: AuthService,private afs: AngularFirestore ) {
+    const auth = firebase.auth();
+    firebase.auth().onAuthStateChanged((user:any) => {
+      this.currentUser = user as User;
+      this.loadPackages();
+    });
+  }
+
+  private loadPackages() {
+    if (!this.currentUser) {
+      return;
+    }
+   }
+
+   
+
+    getPackagesForCurrentUser() {
+      this.authService.currentUser$.subscribe(currentUser => {
+        if (!currentUser) {
+          console.log('EL usuario no ha iniciado sesion');
+          return;
+        }
+        // Resto del código aquí, usando currentUser
+      });
+
+      if (this.currentUser) {
+        this.afs
+          .collection<PackageI>('packages', (ref) => ref.where('TutorAsignado.uid', '==', this.currentUser!.uid))
+          .valueChanges()
+          .subscribe((packages:any) => {
+            // Hacer algo con la lista de paquetes aquí
+          });
+      }
+      
+    }
 
   ngOnInit(): void {
-    this.userfirebaseservice.getUsers().subscribe(users => {
-      console.log('Mostrando usuarios',users);
-      this.users = users.filter(user => user.Rol === 'tutorado' && user.Ncontrol !== '');
-      this.dataSource = new MatTableDataSource(this.users);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+    if (this.currentUser) {
+      this.afs
+        .collection<PackageI>('packages', (ref) => ref.where('TutorAsignado.uid', '==', this.currentUser!.uid))
+        .valueChanges()
+        .subscribe((packages: PackageI[]) => {
+          const tutorados: User[] = packages
+          .map(pkg => pkg.tutoradospkg)
+          .flat()
+          .filter(tutorado => tutorado !== undefined && tutorado.Ncontrol !== undefined) as User[];
+        this.dataSource.data = tutorados;
+      });
+  }
+
   }
   generatePDF() {
     // Obtener los datos de la tabla

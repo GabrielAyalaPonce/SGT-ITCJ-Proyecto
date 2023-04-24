@@ -5,13 +5,19 @@ import { MatTable } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { User } from 'src/app/models/user';
+import {PackageI} from 'src/app/models/packages';
+import { AuthService } from 'src/app/services/usersAuthServices';
+import 'firebase/auth';
+import 'firebase/compat/auth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import 'firebase/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { ElementRef } from '@angular/core';
-import { NgIf } from '@angular/common';
-import { UsersFilterPipe } from 'src/app/pipes/users-filter.pipe';
-import { Observable } from 'rxjs';
-import { AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+
 
 declare module 'jspdf' {
   interface jsPDF {
@@ -22,15 +28,16 @@ declare module 'jspdf' {
 @Component({
   selector: 'app-academic-portafolios-tutor',
   templateUrl: './academic-portafolios-tutor.component.html',
-  styleUrls: ['./academic-portafolios-tutor.component.css']
-
+  styleUrls: ['./academic-portafolios-tutor.component.css'],
+  providers: [AuthService]
 })
 
 
 export class AcademicPortafoliosTutorComponent implements OnInit {
-  users: User[] = [];
+  currentUser: User | null = null;
+  tutorados: User[] = [];
  
-  dataSource = new MatTableDataSource<User>(this.users);
+  dataSource = new MatTableDataSource<User>([]);
   
 
   columnsToDisplay : string[] = ['name','Ncontrol','grup','ind','conferencias',
@@ -54,22 +61,56 @@ export class AcademicPortafoliosTutorComponent implements OnInit {
 
 
   //,'EN$','N$','ADA','BDA','SM','AE','Psicologia'
-  constructor(private userfirebaseservice: UserFirebaseService) {
-    
+  constructor(private userfirebaseservice: UserFirebaseService,private authService: AuthService,private afs: AngularFirestore ) {
+    const auth = firebase.auth();
+    firebase.auth().onAuthStateChanged((user:any) => {
+      this.currentUser = user as User;
+      this.loadPackages();
+    });
    }
+
+   private loadPackages() {
+    if (!this.currentUser) {
+      return;
+    }
+   }
+
+   getPackagesForCurrentUser() {
+    this.authService.currentUser$.subscribe(currentUser => {
+      if (!currentUser) {
+        console.log('EL usuario no ha iniciado sesion');
+        return;
+      }
+      // Resto del código aquí, usando currentUser
+    });
+    if (this.currentUser) {
+      this.afs
+        .collection<PackageI>('packages', (ref) => ref.where('TutorAsignado.uid', '==', this.currentUser!.uid))
+        .valueChanges()
+        .subscribe((packages:any) => {
+          // Hacer algo con la lista de paquetes aquí
+        });
+    }
+
+   }
+
 
   
 
   ngOnInit(): void {
-    
-    this.userfirebaseservice.getUsers().subscribe(users => {
-     this.dataSource = new MatTableDataSource();
-     console.log('Mostrando usuarios',users);
-     this.users = users.filter(user => user.Rol === 'tutorado' && user.Ncontrol !== '');
-       this.dataSource = new MatTableDataSource(this.users);
-       this.dataSource.paginator = this.paginator;
-       this.dataSource.sort = this.sort;
+    if (this.currentUser) {
+      this.afs
+        .collection<PackageI>('packages', (ref) => ref.where('TutorAsignado.uid', '==', this.currentUser!.uid))
+        .valueChanges()
+        .subscribe((packages: PackageI[]) => {
+          const tutorados: User[] = packages
+          .map(pkg => pkg.tutoradospkg)
+          .flat()
+          .filter(tutorado => tutorado !== undefined && tutorado.Ncontrol !== undefined) as User[];
+        this.dataSource.data = tutorados;
       });
+  }
+   
   }
 
   ngAfterViewInit() {
@@ -259,22 +300,7 @@ export class AcademicPortafoliosTutorComponent implements OnInit {
 
   }
 
-  vaciarInputs() {
-    this.dataSource.data.forEach(element => {
-      this.inputGrup.nativeElement.value = '';
-      this.inputInd.nativeElement.value = '';
-      this.inputConferencias.nativeElement.value = '';
-      this.inputBeca.nativeElement.value='';
-      this.inputTotalMaterias.nativeElement.value='';
-      this.inputMateriasAprobadas.nativeElement.value='';
-      this.inputPromedio.nativeElement.value='';
-      this.inputCanalizacionAcademica.nativeElement.value='';
-      this.inputCanalizacionPsicologica.nativeElement.value='';
-      this.inputCanalizacionMedica.nativeElement.value='';
-      this.inputCanalizacionAdministrativa.nativeElement.value='';
-    });
-
-  }
+  
   
   }
 

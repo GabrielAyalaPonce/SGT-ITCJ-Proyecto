@@ -28,7 +28,6 @@ export class FichaIdentificacionTutoradoComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    // Inicializar el formulario vacío
     this.fichaTecnicaForm = this.formBuilder.group({
       carrera: '',
       numControl: '',
@@ -87,7 +86,6 @@ export class FichaIdentificacionTutoradoComponent implements OnInit  {
   agregarFichaTecnica(): void {
     const fichaTecnica: FichaTecnica = this.fichaTecnicaForm.value;
     this.fichaTecnicaService.agregarFichaTecnica(fichaTecnica).subscribe(() => {
-      // Si se agrega correctamente
       console.log('Ficha técnica agregada exitosamente');
       this.snackBar.open('Guardado exitosamente', '', { duration: 1000 });
     }, error => {

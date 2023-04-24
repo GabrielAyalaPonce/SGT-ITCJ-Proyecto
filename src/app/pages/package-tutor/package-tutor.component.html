@@ -1,4 +1,3 @@
-
 <mat-toolbar>
   <span>GRUPOS</span>
 </mat-toolbar>
@@ -7,19 +6,12 @@
   <div *ngFor="let paquete of paquetesAsignados">
     <mat-card class="card-package-tutor" style="display: flex; flex-direction: column;">
 
-      <button
-      [ngClass]="{
+      <button [ngClass]="{
         'publish-button': true,
-        'published-button': publicados[paquete.id]
-      }"
-      mat-raised-button
-      [color]="publicados[paquete.id] ? 'accent' : 'primary'"
-      (click)="togglePublicarPaquete(paquete.id)"
-    >
-      {{ publicados[paquete.id] ? 'Publicado' : 'Publicar' }}
-    </button>
-    
-
+        'published-button': publicados[paquete.id]}" mat-raised-button [color]="publicados[paquete.id] ? 'accent' : 'primary'"
+        (click)="togglePublicarPaquete(paquete.id)">
+        {{ publicados[paquete.id] ? 'Publicado' : 'Publicar' }}
+      </button>
       <h3>Información del paquete asignado:</h3>
       <p><strong>Nombre del paquete:</strong> {{paquete.nombrePaquete}}</p>
       <p><strong>Nombre de la carrera:</strong> {{paquete.NombreCarrera}}</p>
@@ -28,9 +20,10 @@
 
       <div *ngIf="!editandoClave && paquete.keyAuthorization">
         <p><strong>Clave de autorización:</strong> {{paquete.keyAuthorization}}</p>
-        <button mat-raised-button style="width: 100%; margin-bottom: 2%; background-color: rgb(255, 168, 168);" (click)="saveKeyAuthorizationedit(paquete)">Editar clave</button>
+        <button mat-raised-button style="width: 100%; margin-bottom: 2%; background-color: rgb(255, 168, 168);"
+          (click)="saveKeyAuthorizationedit(paquete)">Editar clave</button>
       </div>
-      
+
       <div *ngIf="editandoClave || !paquete.keyAuthorization">
         <mat-form-field appearance="outline" class="key-auth-input" style="width: 100%;">
           <mat-label>Crear clave de Autorizacion</mat-label>
@@ -58,7 +51,8 @@
         </mat-accordion>
         <mat-accordion style="width: 50%;">
 
-          <mat-expansion-panel *ngFor="let tutorado of paquete.tutoradospkg" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel *ngFor="let tutorado of paquete.tutoradospkg" (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 {{ tutorado.name }}
@@ -81,18 +75,19 @@
                 <p>Este alumno no ha capturado calificaciones.</p>
               </div>
             </mat-expansion-panel>
-            <button mat-raised-button color="primary" style="width: 100%; margin-top: 3%;" (click)="generateReport(tutorado)">Crear reporte PDF</button>
+            <button mat-raised-button color="primary" style="width: 100%; margin-top: 3%;"
+              (click)="generateReport(tutorado)">Crear reporte PDF</button>
           </mat-expansion-panel>
+          <button mat-raised-button color="primary" style="width: 100%; margin-top: 3%;"
+            (click)="generateGeneralReport(paquete)">
+            Crear reporte general
+          </button>
         </mat-accordion>
-        
       </div>
-
-
       <hr>
     </mat-card>
   </div>
 </div>
-
 <ng-template #noPaquete>
   <mat-card class="example-card">
     <mat-card-header>

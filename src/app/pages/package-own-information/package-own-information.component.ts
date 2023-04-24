@@ -38,7 +38,6 @@ export class PackageOwnInformationComponent implements OnInit {
       'Sí',
       'No',
       async () => {
-        // Acción cuando el usuario confirma (hace clic en "Sí")
         const packageIndex = this.paquetesAsignados.findIndex((pkg: any) => pkg.docId === packageId);
         if (packageIndex >= 0) {
           const tutoradoIndex = this.paquetesAsignados[packageIndex].tutoradospkg.findIndex((tutorado: any) => tutorado.uid === this.currentUserUid);
@@ -76,8 +75,6 @@ export class PackageOwnInformationComponent implements OnInit {
         });
       },
       () => {
-        // Acción cuando el usuario cancela (hace clic en "No")
-        // No es necesario realizar ninguna acción aquí.
       }
     );
   }

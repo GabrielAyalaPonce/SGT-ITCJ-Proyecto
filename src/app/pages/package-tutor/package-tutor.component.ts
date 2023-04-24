@@ -4,7 +4,7 @@ import { PackagesService } from 'src/app/services/packages.service';
 import * as Notiflix from 'notiflix';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-package-tutor',
@@ -23,6 +23,7 @@ export class PackageTutorComponent implements OnInit {
   saveKeyAuthorizationedit(paquete: any) {
     this.editandoClave = true;
   }
+
 
   constructor(private firestore: AngularFirestore,
               private packagesService: PackagesService,
@@ -91,6 +92,8 @@ this.afAuth.authState.subscribe(user => {
     }
   }
 
+  
+
   publicarPaqueteConfirmado(packageId: string, post: boolean): void {
     const updatedData: any = {
       post: post
@@ -129,37 +132,111 @@ this.afAuth.authState.subscribe(user => {
     });
   }
 
-
   async generateReport(tutorado: any): Promise<void> {
     const doc = new jsPDF('p', 'pt', 'letter');
-    const lineHeight = 20;
-    let currentLine = 60;
-    
-    doc.setFontSize(18);
-    doc.text(`Nombre Alumno: ${tutorado.name}`, 40, currentLine);
-    currentLine += lineHeight;
-  
-    doc.setFontSize(14);
-    doc.text(`Número de control: ${tutorado.Ncontrol}`, 40, currentLine);
-    currentLine += lineHeight;
-  
-    if (tutorado.grades && tutorado.grades.length > 0) {
-      doc.setFontSize(16);
-      doc.text('Calificaciones', 40, currentLine);
-      currentLine += lineHeight;
-  
-      doc.setFontSize(12);
-      for (const grade of tutorado.grades) {
-        doc.text(`${grade.subject}: ${grade.grade}`, 40, currentLine);
-        currentLine += lineHeight;
-      }
-    } else {
-      doc.text('Este alumno no ha capturado calificaciones.', 40, currentLine);
-    }
-  
-    doc.save(`${tutorado.name}_reporte.pdf`);
-  }
-  
+    let finalY: number = 90 + 20; 
+    const logo = new Image();
+
+    logo.src = 'assets/img/itcj-img-report.png'; 
+    doc.addImage(logo, 'PNG', 400, 10, 170, 33);
   
 
+    doc.setFontSize(24);
+    doc.text('Reporte de Calificaciones', 40, 60);
+    doc.setLineWidth(1.5);
+    doc.line(40, 70, 555, 70); 
+
+    const studentInfo = [
+      { title: 'Alumno', data: tutorado.name },
+      { title: 'Número de control', data: tutorado.Ncontrol },
+    ];
+  
+    console.log('Alumno',tutorado.name,  'Número de control',tutorado.Ncontrol)
+    console.log('studentinfo',studentInfo)
+  
+    doc.autoTable({
+      startY: 90,
+      headStyles: { fillColor: [0, 0, 0] },
+      bodyStyles: { fillColor: [255, 255, 255] },
+      head: [['', 'Información Alumno']],
+      body: studentInfo.map((info) => [info.title, info.data]),
+      columnStyles: { 0: { cellWidth: '40%', halign: 'center' } },
+      willDrawCell: (data: any) => {
+        if (data.section === 'body' && data.row.index === studentInfo.length - 1) {
+          finalY = data.cell.y + data.cell.height;
+        }
+      },
+    });
+    
+  
+
+    const gradesData = tutorado.grades && tutorado.grades.length > 0 ? tutorado.grades : [{ subject: 'Sin calificaciones', grade: '' }];
+    console.log(gradesData)
+  
+    doc.autoTable({
+      startY: finalY + 20, 
+      headStyles: { fillColor: [0, 0, 0] },
+      bodyStyles: { fillColor: [255, 255, 255] },
+      head: [['Materias', 'Calificaciones']],
+      body: gradesData.map((grade: any) => [grade.subject,grade.grade]),
+      columnStyles: { 0: { cellWidth: '60%', halign: 'center' } },
+    });
+  
+    doc.save(`${tutorado.Ncontrol}-${tutorado.name}_reporte.pdf`);
+  }
+
+  async generateGeneralReport(paquete: any): Promise<void> {
+    const doc = new jsPDF('p', 'pt', 'letter');
+    let finalY: number = 90 + 20;
+
+    const logo = new Image();
+
+    logo.src = 'assets/img/itcj-img-report.png'; 
+    doc.addImage(logo, 'PNG', 400, 10, 170, 33);
+  
+    doc.setFontSize(24);
+    doc.text('Reporte General de Calificaciones', 40, 60);
+    doc.setLineWidth(1.5);
+    doc.line(40, 70, 555, 70); 
+  
+    for (const tutorado of paquete.tutoradospkg) {
+      const studentInfo = [
+        { title: 'Alumno', data: tutorado.name },
+        { title: 'Número de control', data: tutorado.Ncontrol },
+      ];
+  
+      doc.autoTable({
+        startY: finalY,
+        headStyles: { fillColor: [0, 0, 0] },
+        bodyStyles: { fillColor: [255, 255, 255] },
+        head: [['', 'Información Alumno']],
+        body: studentInfo.map((info) => [info.title, info.data]),
+        columnStyles: { 0: { cellWidth: '40%', halign: 'center' } },
+        willDrawCell: (data: any) => {
+          if (data.section === 'body' && data.row.index === studentInfo.length - 1) {
+            finalY = data.cell.y + data.cell.height;
+          }
+        },
+      });
+  
+      const gradesData = tutorado.grades && tutorado.grades.length > 0 ? tutorado.grades : [{ subject: 'Sin calificaciones', grade: '' }];
+  
+      doc.autoTable({
+        startY: finalY + 20,
+        headStyles: { fillColor: [0, 0, 0] },
+        bodyStyles: { fillColor: [255, 255, 255] },
+        head: [['Materias', 'Calificaciones']],
+        body: gradesData.map((grade: any) => [grade.subject, grade.grade]),
+        columnStyles: { 0: { cellWidth: '60%', halign: 'center' } },
+        willDrawCell: (data: any) => {
+          if (data.section === 'body' && data.row.index === gradesData.length - 1) {
+            finalY = data.cell.y + data.cell.height;
+          }
+        },
+      });
+      finalY += 40;
+    }
+    doc.save(`Reporte_General_paquete_${paquete.id}.pdf`);
+  }
+  
 }

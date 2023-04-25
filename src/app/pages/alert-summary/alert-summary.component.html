@@ -12,9 +12,9 @@
     <input class="input" id="inputGrupo" matInput placeholder="Grupo">
     <input class="input" id="inputPeriodo" matInput placeholder="Periodo">
 
-  <mat-form-field  class="no-outline" appearance="fill" style="width: 7%; " >
+  <mat-form-field  class="no-outline" appearance="outline" style="width: 7%; " >
     <input id="inputFecha" matInput [matDatepicker]="picker" style="font-size: 0.80rem;">
-    <mat-datepicker-toggle style="border: none;" matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+    <mat-datepicker-toggle style="border: none;" matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   

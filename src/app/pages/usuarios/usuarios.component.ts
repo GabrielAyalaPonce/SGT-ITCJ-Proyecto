@@ -26,6 +26,8 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
       this.dataSource = new MatTableDataSource(users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      // Actualizar el paginador con los datos del dataSource.
+      this.paginator.length = this.dataSource.data.length;
     });
   }
 

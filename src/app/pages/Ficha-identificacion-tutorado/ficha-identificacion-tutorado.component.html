@@ -1,3 +1,4 @@
+<ng-container *ngIf="!fichaTecnicaGuardada">
 <mat-card class="fichaTutorado">
   <form [formGroup]="fichaTecnicaForm">
     <h1 style="text-align: center;">Datos Tutorado</h1>
@@ -86,7 +87,7 @@
       <mat-radio-button  value="CASADO">Casado(a)</mat-radio-button>
       <mat-radio-button value="SOLTERO">Soltero(a)</mat-radio-button>
       <mat-radio-button value="OTRO">Otro</mat-radio-button>
-    </mat-radio-group>s
+    </mat-radio-group>
 
 
     <mat-form-field appearance="outline">
@@ -222,7 +223,15 @@
 </div>
 <button style="width: 100%;" mat-button mat-stroked-button color="warn" (click)="agregarFichaTecnica()">Guardar</button>
 
-  </form>
+  </form>  
+  </mat-card>
+</ng-container>
 
   
+<ng-container *ngIf="fichaTecnicaGuardada">
+  <mat-card>
+    <h2>Tu ficha técnica fue guardada con éxito</h2>
+    <p>¿Quieres editarla?</p>
+    <button mat-button mat-stroked-button color="primary" (click)="editarFichaTecnica()">Editar</button>
   </mat-card>
+</ng-container>

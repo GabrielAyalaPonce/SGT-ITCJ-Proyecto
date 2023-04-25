@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map, Observable } from 'rxjs';
 import { User } from '../models/user';
+import { FichaTecnica } from '../models/ficha-tecnica';
 
 
 
@@ -64,6 +65,17 @@ getCollection<tipo>(path:string){
 }
 
 
- 
+updateFichaTecnica(userId: string, fichaTecnicaData: FichaTecnica): Promise<void> {
+  return this.firestore.collection('users').doc(userId).update({ fichaTecnica: fichaTecnicaData });
+}
+
+
+
+getFichaTecnica(uid: string) {
+  return this.firestore
+    .collection('fichasTecnica')
+    .doc<FichaTecnica>(uid)
+    .valueChanges();
+}
 
 }

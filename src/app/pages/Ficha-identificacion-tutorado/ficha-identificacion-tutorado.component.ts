@@ -78,16 +78,18 @@ export class FichaIdentificacionTutoradoComponent implements OnInit  {
 
     this.user$.subscribe((user) => {
       if (user) {
-        this.userFirebaseService.getFichaTecnica(user.uid).subscribe((fichaTecnica) => {
-          if (fichaTecnica) {
+        this.userFirebaseService.getUserData(user.uid).subscribe((userData) => {
+          console.log(userData.fichaTecnica)
+          if (userData && userData.fichaTecnica) {
             this.fichaTecnicaGuardada = true;
-            this.fichaTecnica = fichaTecnica;
+            this.fichaTecnica = userData.fichaTecnica;
           } else {
             this.fichaTecnicaGuardada = false;
           }
         });
       }
     });
+
   }
 
   editarFichaTecnica() {

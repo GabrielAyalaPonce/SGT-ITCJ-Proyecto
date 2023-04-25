@@ -5,6 +5,7 @@ import * as Notiflix from 'notiflix';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
+import { FichaTecnica } from 'src/app/models/ficha-tecnica';
 
 @Component({
   selector: 'app-package-tutor',
@@ -19,6 +20,10 @@ export class PackageTutorComponent implements OnInit {
   editandoClave = false;
   publicados: { [packageId: string]: boolean } = {};
   tutoradospkg = [];
+  fichaTecnica!:FichaTecnica;
+  selectedUserUid!: string;
+
+  
 
   saveKeyAuthorizationedit(paquete: any) {
     this.editandoClave = true;
@@ -78,23 +83,35 @@ this.afAuth.authState.subscribe(user => {
     const paquete = this.paquetesAsignados.find(p => p.id === packageId);
     const postActual = paquete.post;
 
-    if (!paquete.keyAuthorization) {
+    if (postActual) {
       Notiflix.Confirm.show(
-        'Confirmación',
-        'El paquete no tiene clave de autorización, lo que significa que cualquier persona puede ingresar. ¿continuar?',
+        'Advertencia',
+        'El paquete se despublicara y los que esten suscriptos no podran verlo y perderan los datos. ¿Desea continuar?',
         'Sí',
         'No',
         () => {
           this.publicarPaqueteConfirmado(packageId, !postActual);
         },
-        () => {
-        }
+        () => {}
       );
     } else {
-      this.publicarPaqueteConfirmado(packageId, !postActual);
+      if (!paquete.keyAuthorization) {
+        Notiflix.Confirm.show(
+          'Confirmación',
+          'El paquete no tiene clave de autorización, lo que significa que cualquier persona puede ingresar. ¿continuar?',
+          'Sí',
+          'No',
+          () => {
+            this.publicarPaqueteConfirmado(packageId, !postActual);
+          },
+          () => {}
+        );
+      } else {
+        this.publicarPaqueteConfirmado(packageId, !postActual);
+      }
     }
   }
-
+  
   
 
   publicarPaqueteConfirmado(packageId: string, post: boolean): void {
@@ -185,7 +202,7 @@ this.afAuth.authState.subscribe(user => {
       columnStyles: { 0: { cellWidth: '60%', halign: 'center' } },
     });
   
-    doc.save(`${tutorado.Ncontrol}-${tutorado.name}_reporte.pdf`);
+    doc.save(`${tutorado.Ncontrol}-${tutorado.name}_reporte-calificaciones.pdf`);
   }
 
   async generateGeneralReport(paquete: any): Promise<void> {
@@ -198,7 +215,7 @@ this.afAuth.authState.subscribe(user => {
     doc.addImage(logo, 'PNG', 400, 10, 170, 33);
   
     doc.setFontSize(24);
-    doc.text('Reporte General de Calificaciones', 40, 60);
+    doc.text('Reporte Grupal de Calificaciones', 40, 60);
     doc.setLineWidth(1.5);
     doc.line(40, 70, 555, 70); 
   
@@ -239,7 +256,20 @@ this.afAuth.authState.subscribe(user => {
       });
       finalY += 40;
     }
-    doc.save(`Reporte_General_paquete_${paquete.id}.pdf`);
+    doc.save(`Reporte_Grupal_${paquete.nombrePaquete}.pdf`);
   }
+
+  getFichaTecnica(uid: string): void {
+    this.firestore.collection('users').doc(uid).get().subscribe((doc) => {
+      if (doc.exists) {
+        const data = doc.data() as any;
+        this.fichaTecnica = data.fichaTecnica;
+        console.log(this.fichaTecnica);
+      } else {
+        console.log('No se encontró la ficha técnica del usuario.');
+      }
+    });
+  }
+  
   
 }

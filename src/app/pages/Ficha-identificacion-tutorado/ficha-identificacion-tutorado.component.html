@@ -1,6 +1,13 @@
+<ng-container *ngIf="fichaTecnicaGuardada">
+  <mat-card style="margin-top: 10%;" class="fichaTutorado">
+    <h1 style="text-align: center;">Tu información fue guardada con éxito</h1>
+    <button mat-raised-button style="width: 100%; background-color: rgb(86, 243, 86);"  (click)="editarFichaTecnica()">Editar información</button>
+  </mat-card>
+</ng-container>
+
 <ng-container *ngIf="!fichaTecnicaGuardada">
-<mat-card class="fichaTutorado">
-  <form [formGroup]="fichaTecnicaForm">
+  <mat-card class="fichaTutorado">
+    <form [formGroup]="fichaTecnicaForm">
     <h1 style="text-align: center;">Datos Tutorado</h1>
     <div class="seccion-1">
       <mat-form-field appearance="outline">
@@ -221,17 +228,7 @@
     </mat-form-field>
   </div>
 </div>
-<button style="width: 100%;" mat-button mat-stroked-button color="warn" (click)="agregarFichaTecnica()">Guardar</button>
-
-  </form>  
-  </mat-card>
-</ng-container>
-
-  
-<ng-container *ngIf="fichaTecnicaGuardada">
-  <mat-card>
-    <h2>Tu ficha técnica fue guardada con éxito</h2>
-    <p>¿Quieres editarla?</p>
-    <button mat-button mat-stroked-button color="primary" (click)="editarFichaTecnica()">Editar</button>
-  </mat-card>
+</form>
+<button mat-raised-button style="width: 100%; background-color: rgb(86, 243, 86);"  (click)="agregarFichaTecnica()">Guardar</button>
+</mat-card>
 </ng-container>

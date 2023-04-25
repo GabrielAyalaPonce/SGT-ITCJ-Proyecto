@@ -70,12 +70,9 @@ updateFichaTecnica(userId: string, fichaTecnicaData: FichaTecnica): Promise<void
 }
 
 
-
-getFichaTecnica(uid: string) {
-  return this.firestore
-    .collection('fichasTecnica')
-    .doc<FichaTecnica>(uid)
-    .valueChanges();
+getUserData(uid: string): Observable<any> {
+  return this.firestore.collection('users').doc(uid).valueChanges();
 }
+
 
 }

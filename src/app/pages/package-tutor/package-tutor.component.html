@@ -17,7 +17,15 @@
       <p><strong>Nombre de la carrera:</strong> {{paquete.NombreCarrera}}</p>
       <p><strong>Tutor asignado:</strong> {{paquete.TutorAsignado.name}}</p>
       <p><strong>Email del tutor:</strong> {{paquete.TutorAsignado.email}}</p>
+      
+      <p *ngIf="paquete.keyAuthorization; else noKey">
+        <strong style="color: rgb(98, 161, 3);">CLAVE DE AUTORIZACION DE PAQUETE:</strong> {{paquete.keyAuthorization}}
+      </p>
+      <ng-template #noKey>
+        <strong  style="color: rgb(255, 11, 11); ">ESTE PAQUETE NO CONTIENE CLAVE</strong>
+      </ng-template>
 
+      <div *ngIf="!publicados[paquete.id]">
       <div *ngIf="!editandoClave && paquete.keyAuthorization">
         <p><strong>Clave de autorización:</strong> {{paquete.keyAuthorization}}</p>
         <button mat-raised-button style="width: 100%; margin-bottom: 2%; background-color: rgb(255, 168, 168);"
@@ -32,7 +40,7 @@
         <button mat-raised-button style="width: 100%; margin-bottom: 2%;" color="warn"
           (click)="saveKeyAuthorization(paquete)">Guardar codigo de acceso</button>
       </div>
-
+    </div>
       <div style="display: flex; flex-wrap: wrap; width: 100%;">
         <mat-accordion style="width: 50%;">
           <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -75,12 +83,13 @@
                 <p>Este alumno no ha capturado calificaciones.</p>
               </div>
             </mat-expansion-panel>
-            <button mat-raised-button color="primary" style="width: 100%; margin-top: 3%;"
-              (click)="generateReport(tutorado)">Crear reporte Individual PDF</button>
+              <button mat-stroked-button style="background-color: rgb(255, 190, 190); width: 100%; margin-top: 2%;"  (click)="getFichaTecnica(tutorado.uid)">Datos socioeconomicos <mat-icon>data_usage</mat-icon></button>
+            <button mat-stroked-button color="primary" style="width: 100%; margin-top: 3%;"
+              (click)="generateReport(tutorado)">Reporte Calificacionese Individual <mat-icon>picture_as_pdf</mat-icon></button>
           </mat-expansion-panel>
           <button *ngIf="paquete.tutoradospkg && paquete.tutoradospkg.length > 0" mat-raised-button color="primary" style="width: 100%; margin-top: 3%;" 
             (click)="generateGeneralReport(paquete)">
-            Crear reporte general
+            Reporte Calificaciones grupal <mat-icon>picture_as_pdf</mat-icon>
           </button>          
         </mat-accordion>
       </div>

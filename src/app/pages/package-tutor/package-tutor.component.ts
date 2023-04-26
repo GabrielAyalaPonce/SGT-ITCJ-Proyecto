@@ -6,6 +6,10 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 import { FichaTecnica } from 'src/app/models/ficha-tecnica';
+import { MatDialog } from '@angular/material/dialog';
+import { FichaTecnicaDialogComponent } from '../ficha-tecnica-dialog/ficha-tecnica-dialog.component';
+
+
 
 @Component({
   selector: 'app-package-tutor',
@@ -13,6 +17,7 @@ import { FichaTecnica } from 'src/app/models/ficha-tecnica';
   styleUrls: ['./package-tutor.component.css']
 })
 export class PackageTutorComponent implements OnInit {
+  
   paquetesAsignados: any[] = [];
   panelOpenState = false;
   last: any;
@@ -22,6 +27,8 @@ export class PackageTutorComponent implements OnInit {
   tutoradospkg = [];
   fichaTecnica!:FichaTecnica;
   selectedUserUid!: string;
+  selectedFichaTecnica: FichaTecnica | null = null;
+
 
   
 
@@ -32,7 +39,9 @@ export class PackageTutorComponent implements OnInit {
 
   constructor(private firestore: AngularFirestore,
               private packagesService: PackagesService,
-              private afAuth: AngularFireAuth) { }
+              private afAuth: AngularFireAuth,
+              private dialog: MatDialog
+              ) { }
 
   ngOnInit(): void {
 
@@ -258,18 +267,32 @@ this.afAuth.authState.subscribe(user => {
     }
     doc.save(`Reporte_Grupal_${paquete.nombrePaquete}.pdf`);
   }
+  
+ 
 
-  getFichaTecnica(uid: string): void {
-    this.firestore.collection('users').doc(uid).get().subscribe((doc) => {
-      if (doc.exists) {
-        const data = doc.data() as any;
+getFichaTecnica(uid: string): void {
+  this.firestore.collection('users').doc(uid).get().subscribe((doc) => {
+    if (doc.exists) {
+      const data = doc.data() as any;
+      if (data.fichaTecnica) {
         this.fichaTecnica = data.fichaTecnica;
         console.log(this.fichaTecnica);
+        this.openFichaTecnicaDialog(this.fichaTecnica)
+        this.selectedFichaTecnica = this.fichaTecnica;
       } else {
-        console.log('No se encontró la ficha técnica del usuario.');
+        Notiflix.Notify.failure('Esta ventana no se puede mostrar porque el alumno no ha registrado sus datos socioeconómicos.');
       }
+    } else {
+      console.log('No se encontró la ficha técnica del usuario.');
+    }
+  });
+}
+
+  openFichaTecnicaDialog(fichaTecnica: FichaTecnica): void {
+    this.dialog.open(FichaTecnicaDialogComponent, {
+      width: '80%',
+      data: fichaTecnica
     });
   }
-  
-  
+
 }

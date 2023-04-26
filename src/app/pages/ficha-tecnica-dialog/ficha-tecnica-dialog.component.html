@@ -1,0 +1,176 @@
+<ng-container *ngIf="dialogRef">
+    <div class="pdf-container">
+    <h2 mat-dialog-title class="highlighted-title">Ficha técnica</h2>
+    <mat-dialog-content>
+        <div class="info-group">
+            <h3 class="title">Información general</h3>
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">Fecha Capturación de datos: </span>
+                    <span>{{ timestampToMilliseconds(fichaTecnica.fecha) | date:'dd/MM/yyyy' }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Carrera ala que pertenece: </span>
+                    <span>{{ fichaTecnica.carrera }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Número de control: </span>
+                    <span>{{ fichaTecnica.numControl }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Semestre Actual: </span>
+                    <span>{{ fichaTecnica.semestre }}</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">Apellido Paterno: </span>
+                    <span>{{ fichaTecnica.apellidoPaterno }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Apellido Materno: </span>
+                    <span>{{ fichaTecnica.apellidoMaterno }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Nombres: </span>
+                    <span>{{ fichaTecnica.nombres }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Sexo: </span>
+                    <span>{{ fichaTecnica.sexo }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="info-group">
+            <h3 class="title">Contacto y otros detalles</h3>
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">Correo electrónico: </span>
+                    <span>{{ fichaTecnica.correoElectronico }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Teléfono: </span>
+                    <span>{{ fichaTecnica.telefono }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Domicilio: </span>
+                    <span>{{ fichaTecnica.domicilio }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Celular 1: </span>
+                    <span>{{ fichaTecnica.celular1 }}</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">Celular 2: </span>
+                    <span>{{ fichaTecnica.celular2 }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Lugar de nacimiento:</span>
+                    <span>{{ fichaTecnica.lugarNacimiento }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Fecha Nacimiento: </span>
+                    <span>{{ timestampToMilliseconds(fichaTecnica.fechaNacimiento) | date:'dd/MM/yyyy' }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Estado Civil: </span>
+                    <span>{{ fichaTecnica.estadoCivil }}</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">Domicilio Actual:  </span>
+                    <span>{{ fichaTecnica.domicilioActual }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Escolaridad: </span>
+                    <span>{{ fichaTecnica.escolaridad }}</span>
+                </div>
+            </div>
+        </div>        
+            <div class="info-group">
+                <h3 class="title">Información adicional</h3>
+                <div class="info-row">
+                    <div class="info-item">
+                        <span class="label">¿Haz estado becado?: </span>
+                        <span>{{ fichaTecnica.becado }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="label">Nombre de la institución: </span>
+                        <span>{{ fichaTecnica.nombreInstitucion }}</span>
+                    </div>
+                 
+                    <div class="info-item">
+                        <span class="label">Nombre de la institución esfuerzoz: </span>
+                        <span>{{ fichaTecnica.nombreInstitucionEsfuerzos }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">En el transcurso de tus estudios vivirás: </span>
+                        <span>{{ fichaTecnica.vivirTranscursoEstudios }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Trabajas: </span>
+                        <span>{{ fichaTecnica.trabajas }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Nombre de la empresa: </span>
+                        <span>{{ fichaTecnica.nombreEmpresaTrabajo }}</span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-item">
+                        <span class="label">Horarios de Trabajo: </span>
+                        <span>{{ fichaTecnica.horarioTrabajo }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Máximo Grado escolaridad Padre: </span>
+                        <span>{{ fichaTecnica.maxGradoEscolaridadPadre }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Máximo Grado escolaridad Madre: </span>
+                        <span>{{ fichaTecnica.maxGradoEscolaridadMadre }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">¿Tu padre vive?: </span>
+                        <span>{{ fichaTecnica.padreVive }}</span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-item">
+                        <span class="label">¿Tu madrevive?: </span>
+                        <span>{{ fichaTecnica.madreVive }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Nombre de lugar trabajo padre: </span>
+                        <span>{{ fichaTecnica.nombreLugarTrabajoPadre }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Nombre de lugar trabajo Madre: </span>
+                        <span>{{ fichaTecnica.nombreLugarTrabajoMadre }}</span>
+                    </div>
+                </div>
+                <!-- Agregue más filas y elementos de información según sea necesario -->
+            </div>
+            <div class="info-group">
+                <h3>En caso de emergencia comunicarse con: </h3>
+                <div class="info-row">
+                    <div class="info-item">
+                        <span class="label">Nombre contacto de emergencia: </span>
+                        <span>{{ fichaTecnica.nombreContactoEmergencia }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Teléfono contacto de emergencia: </span>
+                        <span>{{ fichaTecnica.telefonoContactoEmergencia }}</span>
+                    </div>
+                </div>
+                <!-- Agregue más filas y elementos de información según sea necesario -->
+            </div>
+    
+        <button mat-button style="width: 100%;" (click)="printPDF()">Imprimir Informacion<mat-icon>picture_as_pdf</mat-icon></button>
+
+    <mat-dialog-actions>
+        <button class="close-button" mat-raised-button color="warn" (click)="dialogRef.close()">Cerrar</button>
+    </mat-dialog-actions>

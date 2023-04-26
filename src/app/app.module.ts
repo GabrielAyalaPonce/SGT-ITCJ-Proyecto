@@ -72,6 +72,7 @@ import { ViewPackagesComponent } from './pages/view-packages/view-packages.compo
 import { PackageTutorComponent } from './pages/package-tutor/package-tutor.component';
 import { ViewPackagesTutoradoComponent } from './pages/view-packages-tutorado/view-packages-tutorado.component';
 import { PackageOwnInformationComponent } from './pages/package-own-information/package-own-information.component';
+import { FichaTecnicaDialogComponent } from './pages/ficha-tecnica-dialog/ficha-tecnica-dialog.component';
 
 
 
@@ -105,6 +106,7 @@ import { PackageOwnInformationComponent } from './pages/package-own-information/
     PackageTutorComponent,
     ViewPackagesTutoradoComponent,
     PackageOwnInformationComponent,
+    FichaTecnicaDialogComponent,
   ],
   imports: [
     BrowserModule,

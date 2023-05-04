@@ -19,7 +19,7 @@ COORDINACIÓN DEL PROGRAMA INSTITUCIONAL DE TUTORÍA <br>
       <input class="input" id="programaAcademico" matInput placeholder="Programa academico de los tutorados">
       <input class="input" id="inputCohorte" matInput placeholder="Cohorte">
       <input class="input" id="inputHora" matInput placeholder="Hora">
-      <input class="input" id="inputTut" matInput placeholder="Tut">
+      <input class="input" id="inputTut" matInput placeholder="Tutorado">
       <input class="input" id="inputGrupal" matInput placeholder="Grupal">
   
 </div>
@@ -46,7 +46,7 @@ COORDINACIÓN DEL PROGRAMA INSTITUCIONAL DE TUTORÍA <br>
       </ng-container>
   
      <ng-container matColumnDef='grup'>
-        <th mat-header-cell *matHeaderCellDef matTooltip="GRUPO" matTooltipPosition="below">Grup</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="GRUPAL" matTooltipPosition="below">Grup</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea">
             <input matInput [(ngModel)]="element.grup" #inputGrup>
@@ -55,7 +55,7 @@ COORDINACIÓN DEL PROGRAMA INSTITUCIONAL DE TUTORÍA <br>
       </ng-container>
   
        <ng-container matColumnDef='ind'>
-        <th mat-header-cell *matHeaderCellDef >Ind</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="INDIVIDUAL" matTooltipPosition="below" >Ind</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea">
             <input matInput [(ngModel)]="element.ind" #inputInd>
@@ -82,7 +82,7 @@ COORDINACIÓN DEL PROGRAMA INSTITUCIONAL DE TUTORÍA <br>
       </ng-container>
   
       <ng-container matColumnDef='total'>
-        <th mat-header-cell *matHeaderCellDef matTooltip="TOTAL DE MATERIAS" matTooltipPosition="below">Total</th>
+        <th mat-header-cell *matHeaderCellDef matTooltip="MATERIAS CURSADAS" matTooltipPosition="below">Total</th>
         <td mat-cell *matCellDef="let element">
           <mat-form-field appearance="outline" class="sin-linea">
             <input matInput [(ngModel)]="element.total" #inputTotalMaterias>

@@ -39,7 +39,7 @@ export class ViewPackagesComponent implements OnInit {
       this.packages = resp.map(pkg => {
         return { ...pkg, toDelete: false }; 
       });
-      console.log('Respuesta', this.packages);
+      // console.log('Respuesta', this.packages);
     
       Notiflix.Loading.remove();
     });
@@ -63,7 +63,7 @@ deletePackage(pkg: PackageI): void {
           }
           Notiflix.Notify.success('Paquete eliminado exitosamente.');
         }, error => {
-          console.log(error);
+          // console.log(error);
           Notiflix.Notify.failure('Error al eliminar el paquete.');
         });
       },

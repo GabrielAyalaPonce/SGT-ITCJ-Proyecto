@@ -48,3 +48,95 @@
   .container-card-welcome.hidden {
     display: none;
   }
+
+/* 
+  ------------------------- */
+
+
+  .card {
+    width: 50%;
+    height: 50%;
+    background: rgb(38, 38, 38);
+    box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.333);
+  }
+  
+  .imge {
+    height: 90px;
+    background-color: #ff5858;
+  }
+  
+  .imge .Usericon {
+    background-color: #ff5858;
+    transform: translateX(10px) translateY(10px);
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+  }
+  
+  .imge .UserName {
+    background-color: #ffffff;
+    margin-left: 25%;
+    width: 40%;
+    height: 3vh;
+    border-width: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    transform: translateX(70px) translateY(-35px);
+  }
+  
+  .imge .Id {
+    background-color: #ffffff;
+    margin-left: 25%;
+    width: 40%;
+    height: 3vh;
+    border-width: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    transform: translateX(70px) translateY(-25px);
+  }
+  
+  .Description {
+    border-color: #870000;
+    margin-left: 25%;
+    background-color: #000000;
+    transform: translate(5px, 6px);
+    width: 50%;
+    height: 50%;
+    border-radius: 5px;
+    display: flex;       
+    justify-content: center; 
+    align-items: center;
+  }
+
+  .myImage {
+    max-width: 100%;
+    max-height: 100%;
+}
+  
+  .social-media{
+    margin-top: 10px;
+    content: " ";
+    display: block;
+    width: 100%;  
+  }
+
+
+  /* Media queries */
+@media screen and (max-width: 800px) {
+  .card {
+      width: 90%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+      width: 100%;
+  }
+  .sidenav{
+    width: 80% ;
+  }
+  
+}
+  

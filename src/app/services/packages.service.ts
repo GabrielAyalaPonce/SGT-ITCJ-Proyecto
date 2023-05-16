@@ -24,7 +24,7 @@ export class PackagesService {
         
             return docRef.id;
           } catch (error) {
-            console.error("Error al agregar el documento: ", error);
+            // console.error("Error al agregar el documento: ", error);
             return null;
           }
         };

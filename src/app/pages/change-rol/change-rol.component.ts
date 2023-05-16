@@ -40,7 +40,9 @@ export class ChangeRolComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+  }
+
 
 
   applyFilter(event: Event) {

@@ -79,7 +79,7 @@ export class FichaIdentificacionTutoradoComponent implements OnInit  {
     this.user$.subscribe((user) => {
       if (user) {
         this.userFirebaseService.getUserData(user.uid).subscribe((userData) => {
-          console.log(userData.fichaTecnica)
+          // console.log(userData.fichaTecnica)
           if (userData && userData.fichaTecnica) {
             this.fichaTecnicaGuardada = true;
             this.fichaTecnica = userData.fichaTecnica;
@@ -108,11 +108,11 @@ export class FichaIdentificacionTutoradoComponent implements OnInit  {
         this.userFirebaseService
           .updateFichaTecnica(user.uid, fichaTecnicaData)
           .then(() => {
-            console.log('Ficha técnica actualizada con éxito');
+            // console.log('Ficha técnica actualizada con éxito');
             Notiflix.Notify.success('Ficha tecnica guardada con exito')
           })
           .catch((error) => {
-            console.error('Error al actualizar la ficha técnica', error);
+            // console.error('Error al actualizar la ficha técnica', error);
           });
       }
     });

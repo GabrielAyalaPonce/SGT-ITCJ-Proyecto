@@ -10,3 +10,13 @@ table {
 td, th {
   width: 25%;
 }
+
+
+
+
+@media screen and (max-width: 600px) {
+  .titles-table-user{
+    width: 20%;
+  }
+}
+  

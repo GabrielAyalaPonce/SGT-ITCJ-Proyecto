@@ -47,11 +47,11 @@ export class TutorRequestComponent {
       };
       this.tutorRequestService.addTutorRequest(data)
       .then(res => {
-        console.log('Solicitud enviada con éxito', res);
+        // console.log('Solicitud enviada con éxito', res);
         this.solicitudForm.reset();
       })
       .catch(error => {
-        console.log('Error al enviar solicitud:', error);
+        // console.log('Error al enviar solicitud:', error);
       });
   });
 }

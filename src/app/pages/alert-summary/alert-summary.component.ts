@@ -56,7 +56,7 @@ export class AlertSummaryComponent implements OnInit {
     getPackagesForCurrentUser() {
       this.authService.currentUser$.subscribe(currentUser => {
         if (!currentUser) {
-          console.log('EL usuario no ha iniciado sesion');
+          // console.log('EL usuario no ha iniciado sesion');
           return;
         }
         // Resto del código aquí, usando currentUser
@@ -142,9 +142,6 @@ export class AlertSummaryComponent implements OnInit {
     doc.text('Horario: ' + horario, 10, 50);
 
     
-    
-
-
     // Crear la tabla en el documento PDF
     doc.autoTable({
       head: [

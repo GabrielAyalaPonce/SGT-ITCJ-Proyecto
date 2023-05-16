@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from '../models/user';
-import { PackageI } from '../models/packages';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -11,16 +10,24 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth) {
     this.currentUser$ = this.afAuth.authState.pipe(
-      map((user: firebase.default.User | null) => {
+      switchMap((user: firebase.default.User | null) => {
         if (user) {
-          return {
-            uid: user.uid, // Agrega la propiedad uid con el valor de user.uid
-            name: user.displayName || '',
-            email: user.email || '',
-            Rol: 'tutor'
-          } as User;
+          return user.getIdToken().then((token: string) => {
+            // // Almacena el token en localStorage
+            // localStorage.setItem('userToken', token);
+
+            return {
+              uid: user.uid, 
+              name: user.displayName || '',
+              email: user.email || '',
+              Rol: 'tutor',
+              token: token 
+            } as User;
+          });
         } else {
-          return null;
+          // Si el usuario no está autenticado, borra el token de localStorage
+          localStorage.removeItem('userToken');
+          return Promise.resolve(null);
         }
       })
     );

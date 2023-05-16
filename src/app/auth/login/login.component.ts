@@ -9,6 +9,8 @@ import { UserFirebaseService } from 'src/app/services/user-firebase.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PasswordCoordinatorComponent } from './password-coordinator/password-coordinator.component';
 import { environment } from 'src/environments/environment';
+import { TimeTrackService } from 'src/app/services/time-track.service';
+
 
 
 @Component({
@@ -43,7 +45,9 @@ export class LoginComponent {
     private router: Router,
     private firebaseErrors: FirebaseCodeErrorsService,
     private userfirebase: UserFirebaseService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private timetrack: TimeTrackService
+   ) {
     
     //form reactive register
     this.registerUser = this.fb.group({
@@ -62,10 +66,6 @@ export class LoginComponent {
       logpassword: ['', Validators.required],
     })
   }
-
-
-
-
 
   //registration method 1
   register()  {
@@ -98,7 +98,7 @@ export class LoginComponent {
     this.verificarCorreo(); 
   }).catch((err) => {
     this.loading = false;
-  this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
+  this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar',  { duration: 1000 });
   });
 }
 
@@ -114,13 +114,11 @@ openDialog(): void {
   });
 }
 
-
-
   verificarCorreo() {
     this.afAuth.currentUser.then((user) => user?.sendEmailVerification())
       .then(() => {
         this.router.navigate(['/verify-email']);
-        this.snackBar.open('Le enviamos un correo electronico para su verificacion', 'Aceptar'
+        this.snackBar.open('Le enviamos un correo electronico para su verificacion', 'Aceptar',{ duration: 3000 }
         );
       });
   }
@@ -132,6 +130,8 @@ openDialog(): void {
     this.loading = true;
     this.afAuth.signInWithEmailAndPassword(email, password).then((user)=> {
       if (user.user?.emailVerified) {
+        localStorage.setItem('loginTimestamp', Date.now().toString());
+         this.timetrack.startTimer(); // Iniciar el temporizador de inactividad
         this.router.navigate(['/pages'])
       } else {
         this.router.navigate(['/verify-email'])
@@ -139,7 +139,7 @@ openDialog(): void {
       this.emailUser = user.user?.email
     }).catch((err) => {
       this.loading = false;
-      this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar');
+      this.snackBar.open(this.firebaseErrors.codeError(err.code), 'Aceptar',  { duration: 2000 });
     })
 
   }  

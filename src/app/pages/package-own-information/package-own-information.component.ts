@@ -27,7 +27,7 @@ export class PackageOwnInformationComponent implements OnInit {
   
     const currentUser = await this.afAuth.currentUser;
     if (!currentUser) {
-      console.error('No hay un usuario en sesión.');
+      // console.error('No hay un usuario en sesión.');
       return;
     }
     this.currentUserUid = currentUser.uid;
@@ -71,7 +71,7 @@ export class PackageOwnInformationComponent implements OnInit {
           Notiflix.Notify.success('Calificación guardada con éxito');
           subjectSchedule.showGrade = false;
         }).catch(error => {
-          console.error('Error al guardar la calificación:', error);
+          // console.error('Error al guardar la calificación:', error);
         });
       },
       () => {
@@ -89,7 +89,6 @@ export class PackageOwnInformationComponent implements OnInit {
       });
 
       this.packagesService.getPackages().subscribe(
-        resp => console.log('paquetes', resp)
       );
       
       this.afAuth.authState.subscribe(user => {
@@ -97,13 +96,13 @@ export class PackageOwnInformationComponent implements OnInit {
           const uid = user.uid;
           this.obtenerPaqueteAsignado(uid);
         } else {
-          console.error('No hay un usuario en sesión.');
+          // console.error('No hay un usuario en sesión.');
         }
       });
     }
 
     obtenerPaqueteAsignado(uid: string): void {
-      console.log('UID:', uid);
+      // console.log('UID:', uid);
       this.firestore.collection('packages').valueChanges({ idField: 'docId' })
         .pipe(take(1)) 
         .subscribe(packages => {
@@ -123,7 +122,7 @@ export class PackageOwnInformationComponent implements OnInit {
                 };
               });
               this.paquetesAsignados.push({ ...packageData, docId: packageData.docId, subjectsAndSchedules });
-              console.log(this.paquetesAsignados);
+              // console.log(this.paquetesAsignados);
             }
           });
         });

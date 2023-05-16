@@ -10,5 +10,6 @@ export interface User {
    fichaTecnica?: FichaTecnica; 
    Rol: 'administrador'|'coordinador'|'tutor'|'tutorado'; 
    subscribed?: boolean; 
+   token?: string;  
 }
 

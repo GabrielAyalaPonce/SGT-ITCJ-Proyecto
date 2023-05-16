@@ -5,6 +5,7 @@
 </mat-form-field> 
 
 <div class="mat-elevation-z8">
+  <div class="titles-table-user">
   <table mat-table [dataSource]="dataSource" matSort>
     <!-- Define las columnas de la tabla -->
     <ng-container matColumnDef="name">
@@ -27,7 +28,9 @@
     <!-- Renderiza las filas de datos -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
   </table>
+</div>
   
   <!-- Agrega el paginator y el buscador filtrado -->
   <mat-paginator [pageSizeOptions]="[4, 10, 20,50,100]" [pageSize]="4" [length]="dataSource.data.length"></mat-paginator>

@@ -33,7 +33,7 @@ export class RecoverPasswordComponent implements OnInit {
   recover() {
     const email = this.recoverUser.value.recemail;
     this.loading = true;
-    console.log(email)
+    // console.log(email)
     this.afAuth.sendPasswordResetEmail(email)
       .then(() => {
         this.snackBar.open('Le enviamos un correo para restablecer su password', 'Aceptar')

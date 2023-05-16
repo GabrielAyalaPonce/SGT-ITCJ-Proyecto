@@ -55,7 +55,6 @@ export class PackageTutorComponent implements OnInit {
 });
 
 this.packagesService.getPackages().subscribe(
-  resp => console.log('paquetes', resp)
 );
 Notiflix.Loading.remove();
 
@@ -64,7 +63,7 @@ this.afAuth.authState.subscribe(user => {
     const uid = user.uid;
     this.obtenerPaqueteAsignado(uid);
   } else {
-    console.error('No hay un usuario en sesión.');
+    // console.error('No hay un usuario en sesión.');
   }
 });
   }
@@ -72,17 +71,17 @@ this.afAuth.authState.subscribe(user => {
 
 
   obtenerPaqueteAsignado(uid: string): void {
-    console.log('UID:', uid);
+    // console.log('UID:', uid);
     this.firestore.collection('packages', ref => ref.where('TutorAsignado.uid', '==', uid)).valueChanges().subscribe(data => {
-      console.log('Data:', data);
+      // console.log('Data:', data);
       if (data.length > 0) {
         this.paquetesAsignados = data;
-        console.log(this.paquetesAsignados);
+        // console.log(this.paquetesAsignados);
         this.paquetesAsignados.forEach(paquete => {
           this.publicados[paquete.id] = paquete.post;
         });
       } else {
-        console.log('No se encontró paquete asignado.');
+        // console.log('No se encontró paquete asignado.');
       }
     });
   }
@@ -129,7 +128,7 @@ this.afAuth.authState.subscribe(user => {
     };
     this.packagesService.updatePackage(packageId, updatedData).subscribe(
       () => {
-        console.log('Paquete actualizado correctamente');
+        // console.log('Paquete actualizado correctamente');
         this.publicados[packageId] = post;
         if (post) {
           Notiflix.Notify.success(`El paquete se publicó exitosamente`, {
@@ -142,7 +141,7 @@ this.afAuth.authState.subscribe(user => {
         }
       },
       (error) => {
-        console.error('Error actualizando el paquete:', error);
+        // console.error('Error actualizando el paquete:', error);
       }
     );
   }
@@ -153,11 +152,11 @@ this.afAuth.authState.subscribe(user => {
       keyAuthorization: paquete.keyAuthorization
     };
     this.packagesService.updatePackage(paquete.id, updatedData).subscribe(() => {
-      console.log('KeyAuthorization actualizada con éxito');
+      // console.log('KeyAuthorization actualizada con éxito');
       this.editandoClave = false;
       Notiflix.Notify.success('Clave guardada con exito');
     }, error => {
-      console.error('Error al actualizar KeyAuthorization', error);
+      // console.error('Error al actualizar KeyAuthorization', error);
     });
   }
 
@@ -180,8 +179,8 @@ this.afAuth.authState.subscribe(user => {
       { title: 'Número de control', data: tutorado.Ncontrol },
     ];
   
-    console.log('Alumno',tutorado.name,  'Número de control',tutorado.Ncontrol)
-    console.log('studentinfo',studentInfo)
+    // console.log('Alumno',tutorado.name,  'Número de control',tutorado.Ncontrol)
+    // console.log('studentinfo',studentInfo)
   
     doc.autoTable({
       startY: 90,
@@ -200,7 +199,7 @@ this.afAuth.authState.subscribe(user => {
   
 
     const gradesData = tutorado.grades && tutorado.grades.length > 0 ? tutorado.grades : [{ subject: 'Sin calificaciones', grade: '' }];
-    console.log(gradesData)
+    // console.log(gradesData)
   
     doc.autoTable({
       startY: finalY + 20, 
@@ -276,14 +275,14 @@ getFichaTecnica(uid: string): void {
       const data = doc.data() as any;
       if (data.fichaTecnica) {
         this.fichaTecnica = data.fichaTecnica;
-        console.log(this.fichaTecnica);
+        // console.log(this.fichaTecnica);
         this.openFichaTecnicaDialog(this.fichaTecnica)
         this.selectedFichaTecnica = this.fichaTecnica;
       } else {
         Notiflix.Notify.failure('Esta ventana no se puede mostrar porque el alumno no ha registrado sus datos socioeconómicos.');
       }
     } else {
-      console.log('No se encontró la ficha técnica del usuario.');
+      // console.log('No se encontró la ficha técnica del usuario.');
     }
   });
 }

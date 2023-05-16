@@ -15,7 +15,6 @@ import { TutorRequestComponent } from './pages/tutor-request/tutor-request.compo
 import { FichaIdentificacionTutoradoComponent } from './pages/Ficha-identificacion-tutorado/ficha-identificacion-tutorado.component';
 import { TutorHistoryComponent } from './pages/tutor-history/tutor-history.component';
 import { StudentRequestsComponent } from './pages/student-requests/student-requests.component';
-import { AcademicPortfolioComponent } from './pages/academic-portfolio/academic-portfolio.component';
 import { AcademicPortafoliosTutorComponent } from './pages/academic-portafolios-tutor/academic-portafolios-tutor.component';
 import { AlertSummaryComponent } from './pages/alert-summary/alert-summary.component';
 import { CreatePackageComponent } from './pages/create-package/create-package.component';
@@ -43,7 +42,6 @@ const routes: Routes = [
     {path: 'pages/FichaIdentificacionTutoradoComponent', component:FichaIdentificacionTutoradoComponent},
     {path: 'pages/tutor-history', component:TutorHistoryComponent},
     {path: 'pages/student-requests', component:StudentRequestsComponent},
-    {path: 'pages/academic-portafolio', component:AcademicPortfolioComponent},
     {path: 'pages/academic-portafolios-tutor', component:AcademicPortafoliosTutorComponent},
     {path: 'pages/alert-summary', component:AlertSummaryComponent},
     {path: 'pages/create-package', component:CreatePackageComponent},

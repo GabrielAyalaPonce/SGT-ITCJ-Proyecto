@@ -42,7 +42,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatSortModule } from '@angular/material/sort';
-import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import {  MatTooltipModule } from '@angular/material/tooltip';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { FirestoreModule } from '@angular/fire/firestore';
 
@@ -61,7 +61,6 @@ import { TutorRequestComponent } from './pages/tutor-request/tutor-request.compo
 import { FichaIdentificacionTutoradoComponent } from './pages/Ficha-identificacion-tutorado/ficha-identificacion-tutorado.component';
 import { TutorHistoryComponent } from './pages/tutor-history/tutor-history.component';
 import { StudentRequestsComponent } from './pages/student-requests/student-requests.component';
-import { AcademicPortfolioComponent } from './pages/academic-portfolio/academic-portfolio.component';
 import { AcademicPortafoliosTutorComponent } from './pages/academic-portafolios-tutor/academic-portafolios-tutor.component';
 import { PasswordCoordinatorComponent } from './auth/login/password-coordinator/password-coordinator.component';
 import { UsersFilterPipe } from './pipes/users-filter.pipe';
@@ -73,8 +72,6 @@ import { PackageTutorComponent } from './pages/package-tutor/package-tutor.compo
 import { ViewPackagesTutoradoComponent } from './pages/view-packages-tutorado/view-packages-tutorado.component';
 import { PackageOwnInformationComponent } from './pages/package-own-information/package-own-information.component';
 import { FichaTecnicaDialogComponent } from './pages/ficha-tecnica-dialog/ficha-tecnica-dialog.component';
-
-
 
 
 @NgModule({
@@ -95,7 +92,6 @@ import { FichaTecnicaDialogComponent } from './pages/ficha-tecnica-dialog/ficha-
     TutorRequestComponent,
     TutorHistoryComponent,
     StudentRequestsComponent,
-    AcademicPortfolioComponent,
     AcademicPortafoliosTutorComponent,
     PasswordCoordinatorComponent,
     FichaIdentificacionTutoradoComponent,
@@ -107,6 +103,7 @@ import { FichaTecnicaDialogComponent } from './pages/ficha-tecnica-dialog/ficha-
     ViewPackagesTutoradoComponent,
     PackageOwnInformationComponent,
     FichaTecnicaDialogComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -120,7 +117,6 @@ import { FichaTecnicaDialogComponent } from './pages/ficha-tecnica-dialog/ficha-
     MatIconModule,
     FormsModule,
     MatSnackBarModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
     MatProgressSpinnerModule,

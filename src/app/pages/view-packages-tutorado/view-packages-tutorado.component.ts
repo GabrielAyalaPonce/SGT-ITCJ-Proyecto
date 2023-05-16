@@ -50,7 +50,7 @@ export class ViewPackagesTutoradoComponent implements OnInit {
   async saveKey(packageItem: PackageI): Promise<void> {
     if (!packageItem.keyAuthorization || this.keyAuthorization === packageItem.keyAuthorization) {
       Notiflix.Notify.success('Inscrito al grupo');
-      console.log('Inscrito al grupo');
+      // console.log('Inscrito al grupo');
 
       const tutorado: User = { ...this.currentUser, subscribed: true };
 
@@ -65,14 +65,14 @@ export class ViewPackagesTutoradoComponent implements OnInit {
         .updatePackage(packageItem.id, updatedPackage as PackageI)
         .subscribe(
           () => {
-            console.log('Paquete actualizado correctamente');
+            // console.log('Paquete actualizado correctamente');
           },
           (error) => {
-            console.error('Error al actualizar el paquete', error);
+            // console.error('Error al actualizar el paquete', error);
           }
         );
     } else {
-      console.log('Clave incorrecta');
+      // console.log('Clave incorrecta');
       Notiflix.Notify.failure('Clave incorrecta. Intente de nuevo.');
     }
   }
@@ -87,7 +87,7 @@ export class ViewPackagesTutoradoComponent implements OnInit {
         .map((pkg) => {
           return { ...pkg, toDelete: false };
         });
-      console.log('Respuesta', this.packages);
+      // console.log('Respuesta', this.packages);
 
       Notiflix.Loading.remove();
     });
@@ -101,11 +101,11 @@ export class ViewPackagesTutoradoComponent implements OnInit {
               this.currentUser = userData 
             },
             (error) => {
-              console.error('Error al obtener datos del usuario', error);
+              // console.error('Error al obtener datos del usuario', error);
             }
           );
       } else {
-        console.error('Usuario no autenticado');
+        // console.error('Usuario no autenticado');
       }
     });
   }

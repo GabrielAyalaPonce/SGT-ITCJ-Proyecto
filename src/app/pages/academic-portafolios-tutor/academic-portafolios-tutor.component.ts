@@ -78,7 +78,7 @@ export class AcademicPortafoliosTutorComponent implements OnInit {
    getPackagesForCurrentUser() {
     this.authService.currentUser$.subscribe(currentUser => {
       if (!currentUser) {
-        console.log('EL usuario no ha iniciado sesion');
+        // console.log('EL usuario no ha iniciado sesion');
         return;
       }
       // Resto del código aquí, usando currentUser
@@ -114,9 +114,9 @@ export class AcademicPortafoliosTutorComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.inputGrup); // Comprueba si inputGrup es nulo
-    console.log(this.inputInd); // Comprueba si inputInd es nulo
-    console.log(this.inputConferencias); // Comprueba si inputConferencias es nulo
+    // console.log(this.inputGrup); // Comprueba si inputGrup es nulo
+    // console.log(this.inputInd); // Comprueba si inputInd es nulo
+    // console.log(this.inputConferencias); // Comprueba si inputConferencias es nulo
     // ...comprueba otras referencias a los elementos del DOM
   }
 

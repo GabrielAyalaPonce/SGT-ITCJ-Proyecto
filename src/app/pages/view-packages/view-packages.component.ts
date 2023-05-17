@@ -61,7 +61,7 @@ deletePackage(pkg: PackageI): void {
           if (index > -1) {
             this.packages.splice(index, 1);
           }
-          Notiflix.Notify.success('Paquete eliminado exitosamente.');
+          Notiflix.Notify.success('Paquete eliminado exitosamente.', );
         }, error => {
           // console.log(error);
           Notiflix.Notify.failure('Error al eliminar el paquete.');

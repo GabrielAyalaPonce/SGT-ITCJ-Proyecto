@@ -94,8 +94,8 @@
     
           <mat-form-field style="width: 33%; margin-left: 2px" appearance="outline">
             <mat-label>Horario</mat-label>
-            <mat-select formControlName="schedule">
-              <mat-option *ngFor="let hour of hours" [value]="hour">
+            <mat-select formControlName="schedule" (selectionChange)="onHourSelected($event.value)">
+              <mat-option *ngFor="let hour of hours" [value]="hour" [disabled]="selectedHours.includes(hour)">
                 {{hour}}
               </mat-option>
             </mat-select>

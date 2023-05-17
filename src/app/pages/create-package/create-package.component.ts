@@ -29,7 +29,9 @@ export class CreatePackageComponent implements OnInit {
   schedule!: string;
   subjectsAndSchedules!: FormGroup;
   hours: string[] = [];
-  career!: string; // Agrega esta línea
+  career!: string; 
+  selectedHours: string[] = [];
+
 
 
 
@@ -71,6 +73,9 @@ export class CreatePackageComponent implements OnInit {
     this.aaddInputs(5); // Agrega esta línea para inicializar el FormArray con 3 grupos
   }
 
+  onHourSelected(hour: string) {
+    this.selectedHours.push(hour);
+  }
   
 
   get inputControls(): FormArray {
@@ -137,28 +142,38 @@ export class CreatePackageComponent implements OnInit {
   }
     
   
-  savePackage() {
-    Notiflix.Loading.init({ svgColor: 'red' });
-    Notiflix.Loading.pulse('Creando paquete...');
-    const packageName = this.newPackage.get('namePackage')?.value;
-    const career = this.newPackage.get('career')?.value; // Accede directamente al valor de la carrera aquí
-    if (this.existingPackages.includes(packageName)) {
-      this.snackBar.open('Ya existe un paquete con el mismo nombre', 'Cerrar', { duration: 3000 });
-    } else {
-      const inputs = this.subjectsAndSchedules.get('inputs')?.value;
-      const data = {
-        nombrePaquete: packageName,
-        TutorAsignado: this.dataTutor,
-        NombreCarrera: career, // Añade esta línea
-        subjectsAndSchedules: inputs // Incluye los datos del formulario newPackage2
-      };
-      this.packagesservice.createPackage(data).then(() => {
-        Notiflix.Loading.remove();
-        this.snackBar.open(`El Paquete : ${this.packageName} se creo exitosamente`, 'Cerrar', { duration: 3000 });
-      }).catch(() => {
-        Notiflix.Loading.remove();
-        this.snackBar.open('Error al crear el paquete', 'Cerrar', { duration: 3000 });
-      });
-    }
+  
+savePackage() {
+  const packageName = this.newPackage.get('namePackage')?.value.toUpperCase();
+  const career = this.newPackage.get('career')?.value;
+
+   if (this.existingPackages.map(packageName => packageName.toUpperCase()).includes(packageName)) {
+    this.snackBar.open(`Ya existe un paquete con el nombre ${packageName}`, 'Cerrar', { duration: 3000 });
+    return; // Detener la ejecución si el paquete ya existe
+  }
+  
+  Notiflix.Loading.init({ svgColor: 'red' });
+  Notiflix.Loading.pulse('Creando paquete...');
+  
+  const inputs = this.subjectsAndSchedules.get('inputs')?.value;
+  const data = {
+    nombrePaquete: packageName,
+    TutorAsignado: this.dataTutor,
+    NombreCarrera: career,
+    subjectsAndSchedules: inputs
+  };
+
+  this.packagesservice.createPackage(data)
+    .then(() => {
+      Notiflix.Loading.remove();
+      this.snackBar.open(`El Paquete : ${packageName} se creó exitosamente`, 'Cerrar', { duration: 2000 });
+      setTimeout(() => {
+        location.reload(); 
+      }, 2000);    })
+    .catch(() => {
+      Notiflix.Loading.remove();
+      this.snackBar.open('Error al crear el paquete', 'Cerrar', { duration: 3000 });
+    });
 }
+
 }

@@ -29,8 +29,7 @@ export class TimeTrackService {
 
   startTimer() {
     // No iniciar el temporizador si la ruta actual es '/login'
-    if (this.router.url === '/login') {
-     
+    if (this.router.url === '/login') { 
     }else{
     this.clearTimer();
     this.timeout = setTimeout(() => {

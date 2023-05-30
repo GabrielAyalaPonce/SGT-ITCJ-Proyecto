@@ -28,14 +28,15 @@ export class PackageTutorComponent implements OnInit {
   fichaTecnica!:FichaTecnica;
   selectedUserUid!: string;
   selectedFichaTecnica: FichaTecnica | null = null;
+  temporaryKeys: { [packageId: string]: string } = {};
+  loadingPackages: boolean = true; 
 
-
-  
 
   saveKeyAuthorizationedit(paquete: any) {
-    this.editandoClave = true;
+    this.temporaryKeys[paquete.id] = paquete.keyAuthorization; 
+    this.editandoClave = true; 
   }
-
+  
 
   constructor(private firestore: AngularFirestore,
               private packagesService: PackagesService,
@@ -46,6 +47,7 @@ export class PackageTutorComponent implements OnInit {
   ngOnInit(): void {
 
     Notiflix.Loading.standard('Cargando paquetes...');
+
  // Inicializa Notiflix
  Notiflix.Notify.init({
   width: '50%',
@@ -55,8 +57,12 @@ export class PackageTutorComponent implements OnInit {
 });
 
 this.packagesService.getPackages().subscribe(
+  () => {
+      Notiflix.Loading.remove();
+      this.loadingPackages = false;
+  }
 );
-Notiflix.Loading.remove();
+
 
 this.afAuth.authState.subscribe(user => {
   if (user) {
@@ -149,7 +155,7 @@ this.afAuth.authState.subscribe(user => {
   saveKeyAuthorization(paquete: any): void {
     const updatedData: any = {
       ...paquete,
-      keyAuthorization: paquete.keyAuthorization
+      keyAuthorization: this.temporaryKeys[paquete.id]
     };
     this.packagesService.updatePackage(paquete.id, updatedData).subscribe(() => {
       // console.log('KeyAuthorization actualizada con éxito');

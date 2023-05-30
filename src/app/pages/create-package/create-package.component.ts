@@ -33,8 +33,6 @@ export class CreatePackageComponent implements OnInit {
   selectedHours: string[] = [];
 
 
-
-
   constructor(private packagesservice: PackagesService,
     private userfirebaseservice: UserFirebaseService,
     private snackBar: MatSnackBar,
@@ -142,12 +140,11 @@ export class CreatePackageComponent implements OnInit {
   }
     
   
-  
-savePackage() {
+  savePackage() {
   const packageName = this.newPackage.get('namePackage')?.value.toUpperCase();
   const career = this.newPackage.get('career')?.value;
 
-   if (this.existingPackages.map(packageName => packageName.toUpperCase()).includes(packageName)) {
+  if (this.existingPackages.map(pkg => pkg.toUpperCase()).includes(packageName)) {
     this.snackBar.open(`Ya existe un paquete con el nombre ${packageName}`, 'Cerrar', { duration: 3000 });
     return; // Detener la ejecución si el paquete ya existe
   }
@@ -175,5 +172,4 @@ savePackage() {
       this.snackBar.open('Error al crear el paquete', 'Cerrar', { duration: 3000 });
     });
 }
-
 }

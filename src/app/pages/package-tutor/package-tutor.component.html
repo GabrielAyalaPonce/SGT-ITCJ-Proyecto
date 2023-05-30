@@ -2,7 +2,7 @@
   <span>GRUPOS</span>
 </mat-toolbar>
 
-<div *ngIf="paquetesAsignados.length > 0; else noPaquete">
+<div *ngIf="!loadingPackages && paquetesAsignados.length > 0; else noPaquete">
   <div *ngFor="let paquete of paquetesAsignados">
     <mat-card class="card-package-tutor" style="display: flex; flex-direction: column;">
 
@@ -35,7 +35,7 @@
       <div *ngIf="editandoClave || !paquete.keyAuthorization">
         <mat-form-field appearance="outline" class="key-auth-input" style="width: 100%;">
           <mat-label>Crear clave de Autorizacion</mat-label>
-          <input matInput [(ngModel)]="paquete.keyAuthorization">
+          <input matInput [(ngModel)]="temporaryKeys[paquete.id]">
         </mat-form-field>
         <button mat-raised-button style="width: 100%; margin-bottom: 2%;" color="warn"
           (click)="saveKeyAuthorization(paquete)">Guardar codigo de acceso</button>
@@ -98,7 +98,7 @@
   </div>
 </div>
 <ng-template #noPaquete>
-  <mat-card class="example-card">
+  <mat-card *ngIf="!loadingPackages" class="example-card">
     <mat-card-header>
       <mat-card-title>Tutor</mat-card-title>
       <mat-card-subtitle>Usted no tiene Paquetes asignados</mat-card-subtitle>

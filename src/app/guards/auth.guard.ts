@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
             this.ngZone.run(() => {
               Notiflix.Notify.warning('No intentes acceder a las rutas sin autorizacion!');
             });
-            console.log('access denied');
+            // console.log('access denied');
             this.router.navigate(['/login']);
           }
         })

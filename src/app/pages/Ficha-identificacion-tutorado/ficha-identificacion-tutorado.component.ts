@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FichaTecnica } from 'src/app/models/ficha-tecnica';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import firebase from 'firebase/compat/app';
 import { MatDialog } from '@angular/material/dialog';
 import { UserFirebaseService } from 'src/app/services/user-firebase.service';
 import { FichaTecnicaService } from 'src/app/services/ficha-identifiacion.service';
+import { takeUntil } from 'rxjs/operators';
 import * as Notiflix from 'notiflix';
 
 
@@ -22,6 +23,8 @@ export class FichaIdentificacionTutoradoComponent implements OnInit  {
   fichaTecnicaForm!: FormGroup;
   fichaTecnicaGuardada: boolean = false;
   fichaTecnica: FichaTecnica | null = null;
+  unsubscribe$ = new Subject<void>();
+
 
   constructor(private formBuilder: FormBuilder,
     private afAuth: AngularFireAuth,
@@ -33,15 +36,15 @@ export class FichaIdentificacionTutoradoComponent implements OnInit  {
   
   ngOnInit(): void {
     this.fichaTecnicaForm = this.formBuilder.group({
-      carrera: '',
-      numControl: '',
-      semestre: '',
+      carrera: ['', Validators.required],
+      numControl: ['', Validators.required],
+      semestre: ['', Validators.required],
       fecha: '',
-      apellidoPaterno: '',
-      apellidoMaterno: '',
-      nombres: '',
+      apellidoPaterno: ['', Validators.required],
+      apellidoMaterno: ['', Validators.required],
+      nombres: ['', Validators.required],
       sexo: '',
-      correoElectronico: '',
+      correoElectronico: ['', Validators.required],
       telefono: '',
       domicilio: '',
       celular1: '',
@@ -57,18 +60,18 @@ export class FichaIdentificacionTutoradoComponent implements OnInit  {
       gobiernoEstatal: '',
       esfuerzosBachillerato: '',
       nombreInstitucionEsfuerzos: '',
-      vivirTranscursoEstudios: '',
-      vivirConFamilia: '',
-      vivirConFamiliaresCercanos: '',
-      vivirConOtrosEstudiantes: '',
-      vivirSolo: '',
-      trabajas: '',
-      nombreEmpresaTrabajo: '',
-      horarioTrabajo: '',
+      vivirTranscursoEstudios: ['', Validators.required],
+      vivirConFamilia:['', Validators.required],
+      vivirConFamiliaresCercanos: ['', Validators.required],
+      vivirConOtrosEstudiantes: ['', Validators.required],
+      vivirSolo:['', Validators.required],
+      trabajas:['', Validators.required],
+      nombreEmpresaTrabajo: ['', Validators.required],
+      horarioTrabajo: ['', Validators.required],
       maxGradoEscolaridadPadre: '',
       maxGradoEscolaridadMadre: '',
-      padreVive: '',
-      madreVive: '',
+      padreVive: ['', Validators.required],
+      madreVive: ['', Validators.required],
       nombreLugarTrabajoPadre: '',
       nombreLugarTrabajoMadre: '',
       nombreContactoEmergencia: '',
@@ -76,7 +79,7 @@ export class FichaIdentificacionTutoradoComponent implements OnInit  {
       uid: ''
     });
 
-    this.user$.subscribe((user) => {
+    this.user$.pipe(takeUntil(this.unsubscribe$)).subscribe((user) => {
       if (user) {
         this.userFirebaseService.getUserData(user.uid).subscribe((userData) => {
           // console.log(userData.fichaTecnica)
@@ -101,7 +104,7 @@ export class FichaIdentificacionTutoradoComponent implements OnInit  {
 
 
   agregarFichaTecnica() {
-    this.user$.subscribe((user) => {
+    this.user$.pipe(takeUntil(this.unsubscribe$)).subscribe((user) => {
       if (user) {
         const fichaTecnicaData: FichaTecnica = this.fichaTecnicaForm.value;
         fichaTecnicaData.uid = user.uid;
@@ -116,6 +119,11 @@ export class FichaIdentificacionTutoradoComponent implements OnInit  {
           });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 

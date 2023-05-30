@@ -94,6 +94,7 @@ export class PagesComponent implements OnInit {
     this.router.navigate(['login']);
     this.snackBar.open('Sesion finalizada', 'Aceptar', { duration: 2000 });
     sessionStorage.removeItem('welcomeMessageShown');
+    localStorage.removeItem('loginTimestamp');
   }
 
   toggleBadgeVisibility() {

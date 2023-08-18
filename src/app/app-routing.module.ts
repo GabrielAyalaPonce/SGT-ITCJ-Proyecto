@@ -12,7 +12,6 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ChangeRolComponent } from './pages/change-rol/change-rol.component';
 import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
 import { TutorRequestComponent } from './pages/tutor-request/tutor-request.component';
-import { FichaIdentificacionTutoradoComponent } from './pages/Ficha-identificacion-tutorado/ficha-identificacion-tutorado.component';
 import { TutorHistoryComponent } from './pages/tutor-history/tutor-history.component';
 import { StudentRequestsComponent } from './pages/student-requests/student-requests.component';
 import { AcademicPortafoliosTutorComponent } from './pages/academic-portafolios-tutor/academic-portafolios-tutor.component';
@@ -23,6 +22,8 @@ import { PackageTutorComponent } from './pages/package-tutor/package-tutor.compo
 import { AuthGuard } from './guards/auth.guard';
 import { ViewPackagesTutoradoComponent } from './pages/view-packages-tutorado/view-packages-tutorado.component';
 import { PackageOwnInformationComponent } from './pages/package-own-information/package-own-information.component';
+import { SocioEconomicStudyComponent } from './pages/tab-identifiation-tutored/socio-economic-study/socio-economic-study.component';
+import { TutoredInterviewComponent } from './pages/tab-identifiation-tutored/tutored-interview/tutored-interview.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,8 @@ const routes: Routes = [
     {path: 'pages/change-rol', component:ChangeRolComponent},
     {path: 'pages/delete-user', component:DeleteUserComponent},
     {path: 'pages/tutor-request', component:TutorRequestComponent},
-    {path: 'pages/FichaIdentificacionTutoradoComponent', component:FichaIdentificacionTutoradoComponent},
+    {path: 'pages/EstudioSocioeconomico', component:SocioEconomicStudyComponent},
+    {path: 'pages/Entrevista-tutor', component:TutoredInterviewComponent},
     {path: 'pages/tutor-history', component:TutorHistoryComponent},
     {path: 'pages/student-requests', component:StudentRequestsComponent},
     {path: 'pages/academic-portafolios-tutor', component:AcademicPortafoliosTutorComponent},

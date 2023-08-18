@@ -87,9 +87,18 @@ export class ViewPackagesTutoradoComponent implements OnInit {
         .map((pkg) => {
           return { ...pkg, toDelete: false };
         });
-      // console.log('Respuesta', this.packages);
+        
+        this.packages.forEach(pkg => {
+          console.log('tutor asignado', pkg.TutorAsignado)
+          if (pkg.TutorAsignado) {
+            this.userFirebaseService.getTutorById(pkg.TutorAsignado).subscribe(tutorInfo => {
+              pkg.infoTutor = tutorInfo;
+              console.log(pkg.infoTutor)
+            });
+          }
+        });
 
-      Notiflix.Loading.remove();
+      Notiflix.Loading.remove(); // Moved this inside the subscribe callback
     });
 
     // Obtén la información del usuario actual
@@ -108,7 +117,8 @@ export class ViewPackagesTutoradoComponent implements OnInit {
         // console.error('Usuario no autenticado');
       }
     });
-  }
+}
+
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;

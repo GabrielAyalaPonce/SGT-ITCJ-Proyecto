@@ -8,8 +8,8 @@
 
             <h3>Informacion de Grupo</h3>
             <p><strong>Nombre de la carrera:</strong> {{paquete.NombreCarrera}}</p>
-            <p><strong>Tutor asignado:</strong> {{paquete.TutorAsignado.name}}</p>
-            <p><strong>Email del tutor:</strong> {{paquete.TutorAsignado.email}}</p>
+            <p><strong>Tutor asignado:</strong> {{paquete.infoTutor?.name}}</p>
+            <p><strong>Email del tutor:</strong> {{paquete.infoTutor?.email}}</p>
 
             <div style="display: flex; flex-wrap: wrap; width: 100%;">
                 <mat-accordion style="width: 100%;">
@@ -34,8 +34,10 @@
                               
                               <ng-container *ngIf="subjectSchedule.showGrade">
                                 <mat-form-field appearance="outline" class="grade-input" style="width: 40%;">
-                                  <mat-label>Calificación</mat-label>
-                                  <input type="number" matInput [(ngModel)]="subjectSchedule.grade">
+                                    <mat-label>Calificación</mat-label>
+                                    <mat-select [(value)]="subjectSchedule.grade">
+                                        <mat-option *ngFor="let grade of gradesList" [value]="grade">{{ grade }}</mat-option>
+                                    </mat-select>
                                 </mat-form-field>
                               
                                 <button mat-raised-button color="primary"
@@ -47,6 +49,8 @@
                     </mat-expansion-panel>
                 </mat-accordion>
             </div>
+
+            
 
             <hr>
         </mat-card>

@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map, Observable } from 'rxjs';
 import { User } from '../models/user';
-import { FichaTecnica } from '../models/ficha-tecnica';
+
 
 
 
@@ -53,20 +53,22 @@ updateDoc(data: any, collection: string, docId: string): Promise<void> {
 getUsers(): Observable<User[]> {
   return this.firestore.collection<User>('users').valueChanges();
 }
+
+
 //get users where rol is equal tutor
 getTutorUsers() {
   return this.firestore.collection('users', ref => ref.where('Rol', '==', 'tutor')).valueChanges();
 }
 
+getTutorById(id: string): Observable<any> {
+  return this.firestore.collection('users').doc(id).valueChanges();
+}
+
+
 
 getCollection<tipo>(path:string){
  const collection = this.firestore.collection<tipo>(path)
  return collection.valueChanges()
-}
-
-
-updateFichaTecnica(userId: string, fichaTecnicaData: FichaTecnica): Promise<void> {
-  return this.firestore.collection('users').doc(userId).update({ fichaTecnica: fichaTecnicaData });
 }
 
 

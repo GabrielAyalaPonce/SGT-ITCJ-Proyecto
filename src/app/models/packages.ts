@@ -8,16 +8,15 @@ export interface PackageI {
     nombrePaquete: string;
     NombreCarrera: string;
     tutoradospkg?: User[];
-    TutorAsignado: {
-      name: string;
-      email: string;
-      post:boolean;
-    };
+    TutorAsignado:string;
+    infoTutor:any
+    tutorInfo?: User;
     subjectsAndSchedules: Array<{
       subject: string;
       schedule: string;
       teacher: string;
       grade?: number;
     }>;
+
     toDelete?: boolean;
   }

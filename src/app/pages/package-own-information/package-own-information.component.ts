@@ -4,6 +4,7 @@ import { PackagesService } from 'src/app/services/packages.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { take } from 'rxjs/operators';
 import * as Notiflix from 'notiflix';
+import { UserFirebaseService } from 'src/app/services/user-firebase.service';
 
 @Component({
   selector: 'app-package-own-information',
@@ -14,8 +15,11 @@ export class PackageOwnInformationComponent implements OnInit {
   paquetesAsignados: any[] = [];
   panelOpenState = false;
   currentUserUid: string | null = null;
+  infoTutor: any
+  gradesList: number[] = Array.from({length: 91}, (_, i) => i + 10);
 
-  constructor(private firestore: AngularFirestore, private packagesService: PackagesService, private afAuth: AngularFireAuth) { }
+
+  constructor(private firestore: AngularFirestore, private packagesService: PackagesService, private afAuth: AngularFireAuth, private userfirebaseervice: UserFirebaseService) { }
 
   
   async saveGrade(packageId: string, subjectSchedule: any): Promise<void> {
@@ -81,15 +85,12 @@ export class PackageOwnInformationComponent implements OnInit {
   
 
   ngOnInit(): void {
-    Notiflix.Notify.init({
+  Notiflix.Notify.init({
       width: '50%',
       position:'center-center',
       fontSize: '1em',
       borderRadius: '5px',
       });
-
-      this.packagesService.getPackages().subscribe(
-      );
       
       this.afAuth.authState.subscribe(user => {
         if (user) {
@@ -107,6 +108,12 @@ export class PackageOwnInformationComponent implements OnInit {
         .pipe(take(1)) 
         .subscribe(packages => {
           packages.forEach((packageData: any) => {
+
+            if (packageData.TutorAsignado) {
+              this.userfirebaseervice.getTutorById(packageData.TutorAsignado).subscribe(tutorInfo => {
+                packageData.infoTutor = tutorInfo;})}
+
+
             const tutorados = packageData.tutoradospkg || [];
             const matchedTutorado = tutorados.find((tutorado: any) => tutorado.uid === uid);
             if (matchedTutorado) {
@@ -122,7 +129,16 @@ export class PackageOwnInformationComponent implements OnInit {
                 };
               });
               this.paquetesAsignados.push({ ...packageData, docId: packageData.docId, subjectsAndSchedules });
-              // console.log(this.paquetesAsignados);
+
+
+
+              
+              this.userfirebaseervice.getTutorById(packageData.TutorAsignado).subscribe(tutorInfo => {
+                // console.log('informacion tutor', tutorInfo)
+                   this.infoTutor = tutorInfo
+              })
+              // console.log('datapackages', packageData.TutorAsignado)
+
             }
           });
         });

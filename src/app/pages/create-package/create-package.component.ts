@@ -20,7 +20,7 @@ export class CreatePackageComponent implements OnInit {
   newPackage!: FormGroup;
   tutorControl!: any;
   packageName!: any;
-  dataTutor!: object;
+  dataTutor!: string;
   nameTutor!: string;
   users: UserTutorI[] = [];
   existingPackages: string[] = [];
@@ -120,15 +120,13 @@ export class CreatePackageComponent implements OnInit {
   seleccionarTutor(user: UserTutorI) {
     this.tutorControl = this.newPackage.get('tutor');
     if (this.tutorControl) {
-      this.tutorControl.setValue(user);
-     
+      this.tutorControl.setValue(user.uid); // solo guardamos el ID
+  
       this.dataTutor = this.tutorControl.value;
-      this.nameTutor = this.tutorControl.value.name;
-    
-      // Mostrar el snackbar con el mensaje
+      this.nameTutor = user.name; // obtenemos directamente el nombre del usuario
+  
       this.snackBar.open(`Tutor Seleccionado: ${this.nameTutor}`, 'Cerrar', { duration: 3000 });
     }
-
   }
 
   savePackageName() {
@@ -153,23 +151,37 @@ export class CreatePackageComponent implements OnInit {
   Notiflix.Loading.pulse('Creando paquete...');
   
   const inputs = this.subjectsAndSchedules.get('inputs')?.value;
+
+
   const data = {
     nombrePaquete: packageName,
-    TutorAsignado: this.dataTutor,
+    TutorAsignado: this.dataTutor, 
     NombreCarrera: career,
     subjectsAndSchedules: inputs
   };
 
   this.packagesservice.createPackage(data)
-    .then(() => {
-      Notiflix.Loading.remove();
-      this.snackBar.open(`El Paquete : ${packageName} se creó exitosamente`, 'Cerrar', { duration: 2000 });
-      setTimeout(() => {
-        location.reload(); 
-      }, 2000);    })
-    .catch(() => {
-      Notiflix.Loading.remove();
-      this.snackBar.open('Error al crear el paquete', 'Cerrar', { duration: 3000 });
-    });
+  .then((packageId) => { // asumo que el método createPackage devuelve el ID del paquete creado
+    if (packageId) {
+      // Ahora actualizamos el tutor con el ID del paquete
+      this.packagesservice.updateTutorWithPackageId(this.dataTutor, packageId).subscribe(() => {
+        Notiflix.Loading.remove();
+        this.snackBar.open(`El Paquete : ${packageName} se creó exitosamente`, 'Cerrar', { duration: 2000 });
+        setTimeout(() => {
+          location.reload(); 
+        }, 2000);
+      }, error => {
+        Notiflix.Loading.remove();
+        this.snackBar.open('Error al actualizar el tutor', 'Cerrar', { duration: 3000 });
+      });
+    }
+  })
+  .catch(() => {
+    Notiflix.Loading.remove();
+    this.snackBar.open('Error al crear el paquete', 'Cerrar', { duration: 3000 });
+  });
 }
+
+
+
 }

@@ -28,6 +28,19 @@ export class PackagesService {
             return null;
           }
         };
+
+        //funcion para actualizar el tutor con el id del package que se le asigno.
+        updateTutorWithPackageId(tutorId: string, packageId: string): Observable<void> {
+          return new Observable<void>(observer => {
+            this.firestore.collection("users").doc(tutorId).update({ packageId: packageId }).then(() => {
+              observer.next();
+              observer.complete();
+            }).catch((error) => {
+              observer.error(error);
+              observer.complete();
+            });
+          });
+        }
         
 
       // Método para obtener todos los paquetes

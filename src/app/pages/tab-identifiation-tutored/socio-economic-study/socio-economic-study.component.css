@@ -5,9 +5,28 @@
     margin: 0 auto;
   }
   
-  .seccion-1, .seccion-2, .seccion-3 {
+
+.TitleSection {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  color: #333; 
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 2px solid #ddd; 
+}
+
+.custom-alert {
+  background-color: rgb(252, 252, 6);
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+  .secciones {
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 2px solid #b9b8b8;
     margin-bottom: 20px;
   }
   

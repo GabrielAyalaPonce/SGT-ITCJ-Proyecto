@@ -1,0 +1,253 @@
+<ng-container *ngIf="interviewTutoredFormSave">
+    <mat-card style="margin-top: 10%;" class="fichaTutorado">
+      <h1 style="text-align: center;">Tu información fue guardada con éxito</h1>
+      <button mat-raised-button style="width: 100%; background-color: rgb(86, 243, 86);"  (click)="editInterview()">Editar información</button>
+    </mat-card>
+  </ng-container>
+  
+  <ng-container *ngIf="!interviewTutoredFormSave">
+    <mat-card class="fichaTutorado">
+      <form [formGroup]="interviewTutoredForm">
+      <h1 style="text-align: center;">Datos Tutorado</h1>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{currentDate}}</mat-label>
+        <input matInput formControlName="fecha" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div class="secciones">
+        <h2 class="TitleSection">INFORMACION COMPLEMENTARIA</h2>
+
+        <H2>con quien te sientes mas ligado afectiva-mente? </H2>
+        <mat-radio-group  formControlName="ligadoafectivamente">
+          <mat-radio-button  value="Padre">Padre</mat-radio-button>
+          <mat-radio-button value="Madre">Madre</mat-radio-button>
+          <mat-radio-button value="Hermano(a)">Hermano(a)</mat-radio-button>
+          <mat-radio-button value="Otros">Otros</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Menciona por que te sientes mas ligado afectiva-mente a la persona que mencionaste en la pregunta anterior.</mat-label>
+            <input matInput formControlName="Descripciondeligadoafectivamente">
+          </mat-form-field>
+    
+          <mat-form-field appearance="outline">
+            <mat-label>¿Quién se ocupa más directamente de tu educación</mat-label>
+            <input matInput formControlName="masocupadoeducacion">
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline">
+            <mat-label>¿Quién ha influido más directamente en tu decisión para estudiar esta carrera?</mat-label>
+            <input matInput formControlName="infuidoencarrera">
+          </mat-form-field>
+
+          <H2>¿Cómo es tu relación con los compañeros?</H2>
+          <mat-radio-group  formControlName="Relacionconcompañeros">
+            <mat-radio-button  value="Buena">Buena</mat-radio-button>
+            <mat-radio-button value="Mala">Mala</mat-radio-button>
+            <mat-radio-button value="Regular">Mala</mat-radio-button>
+          </mat-radio-group>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Describe por que crees que tu relación con tus compañeros es como la elegiste anteriormente?</mat-label>
+            <input matInput formControlName="Descripcionrelacioncompañeros">
+          </mat-form-field>
+
+
+          <H2>Tiene Pareja?</H2>
+          <mat-radio-group formControlName="Tenerpareja">
+            <mat-radio-button value="SI">SI</mat-radio-button>
+            <mat-radio-button value="NO">NO</mat-radio-button>
+          </mat-radio-group>
+  
+            <mat-form-field style="margin-top: 2.5%;" *ngIf="interviewTutoredForm.get('Tenerpareja')?.value === 'SI'" appearance="outline">
+              <mat-label>como es tu relacion?</mat-label>
+              <input matInput formControlName="Descripcionrelacion">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Como es tu relacion con tus profesores (Describela)?</mat-label>
+                <input matInput formControlName="Relacionconprofesores">
+              </mat-form-field>
+
+
+              <mat-form-field appearance="outline">
+                <mat-label>¿Cómo es tu relación con las autoridades académicas?</mat-label>
+                <input matInput formControlName="Relacionconautoridadesacademicas">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label> ¿Qué haces en tu tiempo libre?</mat-label>
+                <input matInput formControlName="tiempolibre">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label> ¿Cuál es tu actividad recreativa?</mat-label>
+                <input matInput formControlName="actividadrecreativa">
+              </mat-form-field>
+      </div>
+
+
+
+      <div class="secciones">
+        <h2 class="TitleSection">CARACTERÍSTICAS PERSONALES (MADUREZ Y EQUILIBRIO)</h2>
+
+      <div class="seccion2-2" style="justify-content: center;">
+
+        <div formGroupName="comportamientoUsuario">
+            <div *ngFor="let caract of caracteristicas" class="radio-group">
+              <label style="color: rgb(233, 62, 62);">{{caract}}</label>
+              <mat-radio-group class="radio-options" formControlName="{{caract}}">
+                <mat-radio-button value="NO">NO</mat-radio-button>
+                <mat-radio-button value="POCO">POCO</mat-radio-button>
+                <mat-radio-button value="FRECUENTE">FRECUENTE</mat-radio-button>
+                <mat-radio-button value="MUCHO">MUCHO</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="secciones">
+        <h2 class="TitleSection">ÁREA PSICO - PEDAGÓGICA</h2>
+
+      <div class="seccion2-2" style="justify-content: center;">
+
+        <mat-form-field appearance="outline">
+            <mat-label>¿Cómo te gustaría ser?</mat-label>
+            <input matInput formControlName="Cómotegustaríaser">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>¿Recibes ayuda en tu casa para la realización de tareas escolares?</mat-label>
+            <input matInput formControlName="Ayudacontarea">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>¿Qué problemas personales intervienen en tus estudios?</mat-label>
+            <input matInput formControlName="intervencionConestudios">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>¿Cuál es tu rendimiento escolar?</mat-label>
+            <input matInput formControlName="rendimientoEscolar">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>Menciona las asignaturas que cursas en el semestre actual.</mat-label>
+            <input matInput formControlName="materiasActuales">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>¿Cuál es tu asignatura preferida?  ¿Por qué?</mat-label>
+            <input matInput formControlName="asignaturaPreferida">
+          </mat-form-field>
+
+
+          
+          <mat-form-field appearance="outline">
+            <mat-label> ¿Cuál es la asignatura en la que sobresales?  ¿Por qué?</mat-label>
+            <input matInput formControlName="asignaturaSobresaliente">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label> ¿Qué asignatura te desagrada?   ¿Por qué?</mat-label>
+            <input matInput formControlName="asignaturaDesagradable">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>¿Cuál es tu asignatura con más bajo promedio del semestre anterior?  ¿Por qué?</mat-label>
+            <input matInput formControlName="asignaturaBajoPromedio">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>¿Por qué vienes al tecnológico?</mat-label>
+            <input matInput formControlName="porquevienesalTEC">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>¿Qué te motiva a venir al Tecnológico?</mat-label>
+            <input matInput formControlName="motivacionAsistiralTec">
+          </mat-form-field>
+
+
+        </div>
+      </div>
+
+
+      <div class="secciones">
+        <h2 class="TitleSection">PLAN DE VIDA Y CARRERA</h2>
+
+      <div class="seccion2-2" style="justify-content: center;">
+
+        <mat-form-field appearance="outline">
+            <mat-label>¿Cuáles son tus planes inmediatos?</mat-label>
+            <input matInput formControlName="planesinmediatos">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>¿Cuáles son tus metas en la vida?</mat-label>
+            <input matInput formControlName="metasenlavida">
+          </mat-form-field>
+
+        
+        </div>
+      </div>
+
+
+
+      <div class="secciones">
+        <h2 class="TitleSection">CARACTERÍSTICAS PERSONALES</h2>
+
+      <div class="seccion2-2" style="justify-content: center;">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Yo soy…</mat-label>
+            <input matInput formControlName="YoSoy">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Mi carácter es…</mat-label>
+            <input matInput formControlName="Micaracteres">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>A mí me gusta que…</mat-label>
+            <input matInput formControlName="Megustaque">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Yo aspiro en la vida…</mat-label>
+            <input matInput formControlName="yoAspiroenlavida">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Yo tengo miedo que….</mat-label>
+            <input matInput formControlName="Yotengomiedoque">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>¿Deseas hacer algún comentario adicional?</mat-label>
+            <input matInput formControlName="comentarioadicional">
+          </mat-form-field>
+
+        
+        </div>
+      </div>
+
+    
+
+
+  </form>
+<button mat-raised-button style="width: 100%; background-color: rgb(86, 243, 86); margin-top: 2%;" [disabled]="!interviewTutoredForm.valid" (click)="addInterview()">Guardar</button>
+  <H5 class="custom-alert" *ngIf="!interviewTutoredForm.valid">*EL BOTON PARA GUARDAR SE HABILITARA CUANDO LLENES TODOS LOS CAMPOS*</H5>
+</mat-card>
+  </ng-container>

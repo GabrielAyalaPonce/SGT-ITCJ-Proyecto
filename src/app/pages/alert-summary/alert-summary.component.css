@@ -1,177 +1,38 @@
-.titulo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.inputs{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin-right: 2px;
-}
-.input{
-  display: inline-block;
-  width: 30%;
-  border-bottom: .5px solid black;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  height: 50px;
-  resize: vertical;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  text-align: center;
-}
-
-.table {
-  width: 100%;
-  border: 7px;
-  border-color: black;
-}
-::ng-deep .mat-tooltip {
-  background-color: #333;
-  color: #fff;
-  font-size: 14px;
-  font-family: cursive;
-}
-
-.mat-elevation-z8 {
-  width: 100%;
-  height: auto;
-  align-items: center;
-  overflow-x: auto;
-  overflow-y: auto; 
-
-}
-.matColumnDef{
-  margin: 1px 1px 1px 1px;
-  border: 1px solid black;
-}
-
-.mat-header-cell {
-  /*width: 70px;
-  max-width: 100%;*/
-  text-align: center;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: medium
-}
-
-.mat-cell {
- /* width: 70px;
-  max-width: 100%;*/
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-align: center;
-}
-td.mat-cell {
-  padding: 5px;
-}
 
 
-.matColumnDef-ADA {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 20%;
+
+/* Estilo para el encabezado con los campos de entrada */
+.header p {
+  margin: 10px;
   width: 20%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  box-sizing: border-box;
 }
 
-
-.mat-form-field-appearance-outline .mat-form-field-outline {
-  border:none;
+.header input[matInput] {
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.mat-form-field {
-  width: 80%; 
+/* Estilo para la tabla */
+table {
+  width: 100%;
 }
 
-input {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  text-align: center;
+table input[matInput] {
+  width: 100%;
 }
 
-.sin-linea .mat-form-field-outline {
-  border:none;
-}
-
-#containerButtons{
+/* Usando flexbox para .header y .title */
+.header, .title {
   display: flex;
-  justify-content: center;
-  margin: 2%;
-}
-.mat-raised-button {
-  margin-right: 2%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
-@media (max-width: 767px) {
-  .inputs {
-    display: flex;
-    flex-direction:grid;
-    font-size: smaller;
-  }
-  .mat-table-responsive {
-    overflow-x: auto;
-    display: block;
-  }
-  .matColumnDef{
-    width: 30%;
-    border: 1px solid black;
-    font-size: smaller;
-  }
-  .mat-header-cell {
-    width: 30%;
-    text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: smaller;
-  }
-  .mat-cell {
-    width: 30px;
-    max-width: 30%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: smaller;
-    white-space: nowrap;
-    text-align: center;
-  }
-  td.mat-cell {
-    padding: 1.5px;
-  }
-  
-  .mat-form-field {
-    width: 70%; 
-  }
-  .matInput{
-    width: 30%;
-  }
-  .example-full-width{
+/* Media queries para la responsividad */
+@media only screen and (max-width: 768px) {
+  .header p {
     width: 100%;
   }
-  .divFirma {
-    display: inline-block;
-    margin: 7px;
-    text-align: center;
 }
-  .input{
-    display: inline-block;
-    width: 30%;
-    border-bottom: .5px solid black;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    height: 30px;
-    resize: vertical;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 8px;
-    text-align: center;
-}
-input {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: smaller;
-  text-align: center;
-}
-
-}
-

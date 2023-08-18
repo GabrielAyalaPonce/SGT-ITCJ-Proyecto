@@ -8,6 +8,7 @@ import 'jspdf-autotable';
 import { FichaTecnica } from 'src/app/models/ficha-tecnica';
 import { MatDialog } from '@angular/material/dialog';
 import { FichaTecnicaDialogComponent } from '../ficha-tecnica-dialog/ficha-tecnica-dialog.component';
+import { UserFirebaseService } from 'src/app/services/user-firebase.service';
 
 
 
@@ -30,6 +31,7 @@ export class PackageTutorComponent implements OnInit {
   selectedFichaTecnica: FichaTecnica | null = null;
   temporaryKeys: { [packageId: string]: string } = {};
   loadingPackages: boolean = true; 
+  infotutor:any
 
 
   saveKeyAuthorizationedit(paquete: any) {
@@ -41,7 +43,8 @@ export class PackageTutorComponent implements OnInit {
   constructor(private firestore: AngularFirestore,
               private packagesService: PackagesService,
               private afAuth: AngularFireAuth,
-              private dialog: MatDialog
+              private dialog: MatDialog,
+              private userfirebaseservice: UserFirebaseService
               ) { }
 
   ngOnInit(): void {
@@ -74,16 +77,18 @@ this.afAuth.authState.subscribe(user => {
 });
   }
 
-
-
   obtenerPaqueteAsignado(uid: string): void {
     // console.log('UID:', uid);
-    this.firestore.collection('packages', ref => ref.where('TutorAsignado.uid', '==', uid)).valueChanges().subscribe(data => {
+    this.firestore.collection('packages', ref => ref.where('TutorAsignado', '==', uid)).valueChanges().subscribe(data => {
       // console.log('Data:', data);
       if (data.length > 0) {
         this.paquetesAsignados = data;
-        // console.log(this.paquetesAsignados);
+        // console.log('pkg asignados',this.paquetesAsignados);
         this.paquetesAsignados.forEach(paquete => {
+          // console.log(paquete.TutorAsignado)
+          this.userfirebaseservice.getTutorById(paquete.TutorAsignado).subscribe(tutorInfo =>{
+            this.infotutor = tutorInfo
+          })
           this.publicados[paquete.id] = paquete.post;
         });
       } else {

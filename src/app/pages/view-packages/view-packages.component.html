@@ -12,12 +12,12 @@
       <mat-card-content style="text-align: center; font-size: 1.5em; font-weight: bold;">{{pkg.nombrePaquete}}</mat-card-content>
       <mat-card-content class="package-info">
         <mat-card-content class="package-info">
-          <h2>Paquete para carrera:</h2>  {{pkg.NombreCarrera}}
+          <h2>Paquete para carrera:</h2> {{pkg.NombreCarrera}}
         </mat-card-content>
-        <h2>Tutor Asignado:</h2> {{pkg.TutorAsignado.name}}
+        <h2>Tutor Asignado:</h2> {{pkg.infoTutor?.name}}
       </mat-card-content>
       <mat-card-content class="package-info">
-        <h2>Email:</h2> {{pkg.TutorAsignado.email}}
+        <h2>Email:</h2> {{pkg.infoTutor?.email}}
       </mat-card-content>
 
       <mat-accordion>

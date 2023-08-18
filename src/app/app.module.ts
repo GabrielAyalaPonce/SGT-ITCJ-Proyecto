@@ -58,7 +58,6 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ChangeRolComponent } from './pages/change-rol/change-rol.component';
 import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
 import { TutorRequestComponent } from './pages/tutor-request/tutor-request.component';
-import { FichaIdentificacionTutoradoComponent } from './pages/Ficha-identificacion-tutorado/ficha-identificacion-tutorado.component';
 import { TutorHistoryComponent } from './pages/tutor-history/tutor-history.component';
 import { StudentRequestsComponent } from './pages/student-requests/student-requests.component';
 import { AcademicPortafoliosTutorComponent } from './pages/academic-portafolios-tutor/academic-portafolios-tutor.component';
@@ -72,6 +71,8 @@ import { PackageTutorComponent } from './pages/package-tutor/package-tutor.compo
 import { ViewPackagesTutoradoComponent } from './pages/view-packages-tutorado/view-packages-tutorado.component';
 import { PackageOwnInformationComponent } from './pages/package-own-information/package-own-information.component';
 import { FichaTecnicaDialogComponent } from './pages/ficha-tecnica-dialog/ficha-tecnica-dialog.component';
+import { SocioEconomicStudyComponent } from './pages/tab-identifiation-tutored/socio-economic-study/socio-economic-study.component';
+import { TutoredInterviewComponent } from './pages/tab-identifiation-tutored/tutored-interview/tutored-interview.component';
 
 
 @NgModule({
@@ -94,7 +95,6 @@ import { FichaTecnicaDialogComponent } from './pages/ficha-tecnica-dialog/ficha-
     StudentRequestsComponent,
     AcademicPortafoliosTutorComponent,
     PasswordCoordinatorComponent,
-    FichaIdentificacionTutoradoComponent,
     UsersFilterPipe,
     AlertSummaryComponent,
     CreatePackageComponent,
@@ -103,6 +103,8 @@ import { FichaTecnicaDialogComponent } from './pages/ficha-tecnica-dialog/ficha-
     ViewPackagesTutoradoComponent,
     PackageOwnInformationComponent,
     FichaTecnicaDialogComponent,
+    SocioEconomicStudyComponent,
+    TutoredInterviewComponent,
   
   ],
   imports: [

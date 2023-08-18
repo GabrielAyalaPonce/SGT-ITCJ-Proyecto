@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { PackagesService } from 'src/app/services/packages.service';
 import * as Notiflix from 'notiflix';
 import { PackageI } from 'src/app/models/packages';
+import { UserFirebaseService } from 'src/app/services/user-firebase.service';
+import { UserTutorI } from 'src/app/models/user-tutor-i';
 
 @Component({
   selector: 'app-view-packages',
@@ -16,6 +18,7 @@ export class ViewPackagesComponent implements OnInit {
   last:any;
   pkg!:any;
   deleteModeActive: boolean = false;
+  infoTutor!: any
 
   toggleDeleteMode(): void {
     this.deleteModeActive = !this.deleteModeActive;
@@ -29,7 +32,7 @@ export class ViewPackagesComponent implements OnInit {
   }
   
 
-  constructor(private packagesService: PackagesService, private router: Router) { }
+  constructor(private packagesService: PackagesService, private router: Router,  private userFirebaseService: UserFirebaseService) { }
 
   ngOnInit(): void {
     Notiflix.Loading.init({ svgColor: '#FF0000' });
@@ -37,10 +40,21 @@ export class ViewPackagesComponent implements OnInit {
   
     this.packagesService.getPackages().subscribe(resp => {
       this.packages = resp.map(pkg => {
-        return { ...pkg, toDelete: false }; 
+        return { ...pkg, toDelete: false };
       });
-      // console.log('Respuesta', this.packages);
+     console.log('todos los paquetes existentes', this.packages)
+
+      this.packages.forEach(pkg => {
+         console.log('tutor asignado', pkg.TutorAsignado)
+        if (pkg.TutorAsignado) {
+          this.userFirebaseService.getTutorById(pkg.TutorAsignado).subscribe(tutorInfo => {
+            pkg.infoTutor = tutorInfo;
+            console.log(pkg.infoTutor)
+          });
+        }
+    });
     
+  
       Notiflix.Loading.remove();
     });
   }
@@ -74,6 +88,7 @@ deletePackage(pkg: PackageI): void {
     );
   }
 }
+
 
 
 

@@ -4,5 +4,6 @@ export interface UserTutorI {
     password:any,
     repeatPassword: any,
     uid:any;
-    Rol: string; 
+    Rol: string;
+    packageId?: string;
 }

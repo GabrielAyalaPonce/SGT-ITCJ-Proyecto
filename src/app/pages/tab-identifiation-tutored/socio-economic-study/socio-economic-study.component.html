@@ -1,0 +1,435 @@
+<ng-container *ngIf="studySocioeconomicSave">
+  <mat-card style="margin-top: 10%;" class="fichaTutorado">
+    <h1 style="text-align: center;">Tu información fue guardada con éxito</h1>
+    <button mat-raised-button style="width: 100%; background-color: rgb(86, 243, 86);"
+      (click)="editarFichaTecnica()">Editar información</button>
+  </mat-card>
+</ng-container>
+
+<ng-container *ngIf="!studySocioeconomicSave">
+  <mat-card class="fichaTutorado">
+    <form [formGroup]="studySocioeconomicForm">
+      <h1 style="text-align: center;">Datos Tutorado</h1>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{currentDate}}</mat-label>
+        <input matInput formControlName="fecha" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div class="secciones">
+        <h2 class="TitleSection">INFORMACION PERSONAL</h2>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre(s)</mat-label>
+          <input matInput formControlName="nombres">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido Paterno</mat-label>
+          <input matInput formControlName="apellidoPaterno">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido Materno</mat-label>
+          <input matInput formControlName="apellidoMaterno">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Número de Control</mat-label>
+          <input matInput formControlName="numControl">
+        </mat-form-field>
+
+        <H2>Carrera a la que pertenece</H2>
+        <mat-radio-group formControlName="carrera">
+          <mat-radio-button value="Licenciatura en Administración">Licenciatura en Administración</mat-radio-button>
+          <mat-radio-button value="Contador Público">Contador Público</mat-radio-button>
+          <mat-radio-button value="Ingeniería Electromecánica">Ingeniería Electromecánica</mat-radio-button>
+          <mat-radio-button value="Ingeniería Mecánica">Ingeniería Mecánica</mat-radio-button>
+          <mat-radio-button value="Ingeniería en Sistemas Computacionales">Ingeniería en Sistemas
+            Computacionales</mat-radio-button>
+          <mat-radio-button value="Ingeniería Electrónica">Ingeniería Electrónica</mat-radio-button>
+          <mat-radio-button value="Ingeniería en Tecnologías de la Información y Comunicaciones">Ingeniería en
+            Tecnologías de la Información y Comunicaciones</mat-radio-button>
+          <mat-radio-button value="Ingeniería en Gestión Empresarial">Ingeniería en Gestión
+            Empresarial</mat-radio-button>
+          <mat-radio-button value="Ingeniería Eléctrica">Ingeniería Eléctrica</mat-radio-button>
+          <mat-radio-button value="Ingeniería Industrial">Ingeniería Industrial</mat-radio-button>
+          <mat-radio-button value="Ingeniería en Logística">Ingeniería en Logística</mat-radio-button>
+          <mat-radio-button value="Ingeniería en Mecatrónica">Ingeniería en Mecatrónica</mat-radio-button>
+          <mat-radio-button value="Ingeniería  Industrial (EAD)">Ingeniería Industrial (EAD)</mat-radio-button>
+          <mat-radio-button value="Ingeniería en Sistemas Computacionales (EAD)">Ingeniería en Sistemas Computacionales
+            (EAD)</mat-radio-button>
+          <mat-radio-button value="Ingeniería en Gestión Empresarial (EAD)">Ingeniería en Gestión Empresarial
+            (EAD)</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field style="margin-top: 2.5%;" appearance="outline">
+          <mat-label>Domicilio</mat-label>
+          <input matInput formControlName="domicilio">
+        </mat-form-field>
+
+        <div class="campus" style="justify-content:center;">
+          <h2>Campus:</h2>
+          <mat-radio-group formControlName="campus">
+            <mat-radio-button value="1">1</mat-radio-button>
+            <mat-radio-button value="2">2</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <mat-form-field style="margin-top: 2.5%;" appearance="outline">
+          <mat-label>Correo Electrónico</mat-label>
+          <input matInput formControlName="correoElectronico">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Teléfono</mat-label>
+          <input matInput formControlName="telefono">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de Nacimiento</mat-label>
+          <input matInput formControlName="fechaNacimiento" [matDatepicker]="picker2">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <div class="sexo" style="justify-content:center;">
+          <h2>Sexo:</h2>
+          <mat-radio-group formControlName="sexo">
+            <mat-radio-button value="H">Hombre</mat-radio-button>
+            <mat-radio-button value="M">Mujer</mat-radio-button>
+          </mat-radio-group>
+
+          <H2>Estado civil:</H2>
+          <mat-radio-group formControlName="estadoCivil">
+            <mat-radio-button value="CASADO">Casado(a)</mat-radio-button>
+            <mat-radio-button value="SOLTERO">Soltero(a)</mat-radio-button>
+            <mat-radio-button value="OTRO">Otro</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>Celular:</mat-label>
+          <input matInput formControlName="celular1">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>Lugar de Nacimiento</mat-label>
+          <input matInput formControlName="lugarNacimiento">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>Semestre</mat-label>
+          <input matInput formControlName="semestre">
+        </mat-form-field>
+
+      </div>
+
+
+
+      <div class="secciones">
+        <h2 class="TitleSection">SALUD</h2>
+
+        <div class="seccion2-2" style="justify-content: center;">
+
+          <H2>Padeces alguna enfermedad cronica:</H2>
+          <mat-radio-group formControlName="enfermedadcronica">
+            <mat-radio-button value="SI">SI</mat-radio-button>
+            <mat-radio-button value="NO">NO</mat-radio-button>
+          </mat-radio-group>
+
+          <mat-form-field style="margin-top: 2.5%;"
+            *ngIf="studySocioeconomicForm.get('enfermedadcronica')?.value === 'SI'" appearance="outline">
+            <mat-label>Cual enfermedad cronica padeces</mat-label>
+            <input matInput formControlName="nombreenfermedadcronica">
+          </mat-form-field>
+
+
+          <H2>¿Tomas algún tipo de medicamento?</H2>
+          <mat-radio-group formControlName="tomamedicamento">
+            <mat-radio-button value="SI">SI</mat-radio-button>
+            <mat-radio-button value="NO">NO</mat-radio-button>
+          </mat-radio-group>
+
+          <mat-form-field *ngIf="studySocioeconomicForm.get('tomamedicamento')?.value === 'SI'" appearance="outline">
+            <mat-label>Que tipo de medicamento?.</mat-label>
+            <input matInput formControlName="nombremedicamento">
+          </mat-form-field>
+
+          <div class="vivircon" style="justify-content: center;">
+            <H2>En el transcurso de tus estudios viviras:</H2>
+            <mat-radio-group formControlName="vivirtranscursoestudios">
+              <mat-radio-button value="conPadres">Con Padres</mat-radio-button>
+              <mat-radio-button value="soloMadre">Solo Madre</mat-radio-button>
+              <mat-radio-button value="soloPadre">Solo Padre</mat-radio-button>
+              <mat-radio-button value="Cónyugeopareja">Cónyuge o pareja</mat-radio-button>
+              <mat-radio-button value="ConmiPadreYsuNuevapareja">Con mi padre y su nueva pareja</mat-radio-button>
+              <mat-radio-button value="ConmiMadreYsuNuevapareja">Con mi Madre y su nueva pareja</mat-radio-button>
+              <mat-radio-button value="SoloConMisHermanos">Solo con mis hermanos</mat-radio-button>
+              <mat-radio-button value="Compañeros">Compañeros</mat-radio-button>
+              <mat-radio-button value="OtrosFamiliares">Otros familiares</mat-radio-button>
+              <mat-radio-button value="vivirSolo">Solo</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <H2>Haces uso de alguna droga:</H2>
+          <mat-radio-group formControlName="usodedrogas">
+            <mat-radio-button value="SI">SI</mat-radio-button>
+            <mat-radio-button value="NO">NO</mat-radio-button>
+          </mat-radio-group>
+
+        </div>
+      </div>
+
+      <div class="secciones">
+        <h2 class="TitleSection">INFORMACION ESCOLAR</h2>
+        <div class="seccion3-2" style="justify-content: center;">
+          <H2>Escolaridad:</H2>
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre de la preparatoria de procedencia:</mat-label>
+            <input matInput formControlName="nombreinstitucion">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>Promedio General de preparatoria:</mat-label>
+            <input matInput formControlName="promgralprep">
+          </mat-form-field>
+
+          <H2>Cuentas con beca de manutencion?:</H2>
+          <mat-radio-group formControlName="becamanutencion">
+            <mat-radio-button value="SI">SI</mat-radio-button>
+            <mat-radio-button value="NO">NO</mat-radio-button>
+          </mat-radio-group>
+
+          <H2>Cuentas con beca de transporte?:</H2>
+          <mat-radio-group formControlName="becatransporte">
+            <mat-radio-button value="SI">SI</mat-radio-button>
+            <mat-radio-button value="NO">NO</mat-radio-button>
+          </mat-radio-group>
+
+          <H2>Cuentas con beca de alimentacion?:</H2>
+          <mat-radio-group formControlName="becaalimentacion">
+            <mat-radio-button value="SI">SI</mat-radio-button>
+            <mat-radio-button value="NO">NO</mat-radio-button>
+          </mat-radio-group>
+
+
+          <H2>Cuentas con alguna otra beca que no se mencione aquí?:</H2>
+          <mat-radio-group formControlName="becanomencionada">
+            <mat-radio-button value="SI">SI</mat-radio-button>
+            <mat-radio-button value="NO">NO</mat-radio-button>
+          </mat-radio-group>
+
+
+
+          <H2>Cuántos libros ha leído en los últimos seis meses?:</H2>
+          <mat-radio-group formControlName="booksread">
+            <mat-radio-button value="1">1</mat-radio-button>
+            <mat-radio-button value="2">2</mat-radio-button>
+            <mat-radio-button value="3">3</mat-radio-button>
+            <mat-radio-button value="4">4</mat-radio-button>
+            <mat-radio-button value="5 O MAS">5 O MAS</mat-radio-button>
+          </mat-radio-group>
+
+        </div>
+
+      </div>
+
+      <div class="secciones">
+        <h2 class="TitleSection">PARTICIPACION EN GRUPOS</h2>
+        <H2>¿Formaste parte de grupos representativos deportivos o culturales en la preparatoria?</H2>
+        <mat-radio-group formControlName="gruposrepresentativosenpreparatoria">
+          <mat-radio-button value="SI">SI</mat-radio-button>
+          <mat-radio-button value="NO">NO</mat-radio-button>
+        </mat-radio-group>
+
+        <div class="seccion3-2" style="justify-content: center;">
+          <mat-form-field *ngIf="studySocioeconomicForm.get('gruposrepresentativosenpreparatoria')?.value === 'SI'"
+            appearance="outline">
+            <mat-label>¿Menciona cual o cuales?</mat-label>
+            <input matInput formControlName="nombregruposrepresentativosenpreparatoria">
+          </mat-form-field>
+        </div>
+
+        <H2>¿Perteneces a algún club o grupo (iglesia, social, del barrio, deportivo, etc)?</H2>
+        <mat-radio-group formControlName="pertenecegrupooclub">
+          <mat-radio-button value="SI">SI</mat-radio-button>
+          <mat-radio-button value="NO">NO</mat-radio-button>
+        </mat-radio-group>
+
+        <div class="seccion3-2" style="justify-content: center;">
+          <mat-form-field *ngIf="studySocioeconomicForm.get('pertenecegrupooclub')?.value === 'SI'"
+            appearance="outline">
+            <mat-label>¿Menciona cual o cuales?</mat-label>
+            <input matInput formControlName="nombrepertenecegrupooclub">
+          </mat-form-field>
+        </div>
+
+        <div class="seccion3-2" style="justify-content: center;">
+          <mat-form-field style="margin-top: 2.5%;" appearance="outline">
+            <mat-label>¿Cuál es la razón que te impulsa a estudiar?</mat-label>
+            <input matInput formControlName="razonparaestudiar">
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="secciones">
+        <h2 class="TitleSection">SITUACION LABORAL</h2>
+        <div class="trabajas" style="justify-content: center;">
+          <H2>En la actualiad Trabajas?:</H2>
+          <mat-radio-group formControlName="trabajasenlactualidad">
+            <mat-radio-button value="Nunca eh trabajado">Nunca eh trabajado</mat-radio-button>
+            <mat-radio-button value="He trabajado anteriormente pero actualmente no">He trabajado anteriormente pero
+              actualmente no</mat-radio-button>
+            <mat-radio-button value="Sí, con más de 20 hrs. a la semana">Sí, con más de 20 hrs. a la
+              semana</mat-radio-button>
+            <mat-radio-button value="Si, con menos de 20 hrs. a la semana">Si, con menos de 20 hrs. a la
+              semana</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="trabajas" style="justify-content: center;">
+          <H2>¿Dependes económicamente de tus padres o tutores:</H2>
+          <mat-radio-group formControlName="dependesdetuspadres">
+            <mat-radio-button value="Sí, totalmente">Sí, totalmente</mat-radio-button>
+            <mat-radio-button value="Sí medianamente">Sí medianamente</mat-radio-button>
+            <mat-radio-button value="No  dependo de mis padres.">No dependo de mis padres.</mat-radio-button>
+            <mat-radio-button value="No, ya que soy el principal sostén de mi familia.">No, ya que soy el principal
+              sostén de mi familia.</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+      </div>
+
+      <div class="secciones">
+        <h2 class="TitleSection">CONSTITUCIÓN FAMILIAR</h2>
+        
+        <div class="trabajas" style="justify-content: center;">
+          <H2>(ANOTA LAS PERSONAS CON QUIENES VIVES Y CON LAS QUE EXISTE UNA CO-DEPENDENCIA ECONÓMICA. INCLÚYETE TÚ TAMBIÉN)</H2>
+
+          <div formArrayName="viveconeingresos">
+            
+            <div *ngFor="let persona of viveConIngresos.controls; let i = index" [formGroupName]="i">
+              <h2>persona: {{i+1}}</h2>
+              <mat-form-field appearance="outline"> <input  matInput formControlName="nombre" placeholder="Nombre" ></mat-form-field>       
+              <mat-form-field appearance="outline">  <input matInput formControlName="edad" placeholder="Edad" appearance="outline"></mat-form-field>   
+                <mat-form-field appearance="outline"> <input matInput formControlName="parentesco" placeholder="Parentesco" appearance="outline"></mat-form-field>   
+                  <mat-form-field appearance="outline"> <input matInput formControlName="gradoEstudios" placeholder="Grado máximo de estudios" appearance="outline"></mat-form-field>   
+                    <mat-form-field appearance="outline">  <input matInput formControlName="ocupacion" placeholder="Ocupación" appearance="outline"></mat-form-field>   
+                      <mat-form-field appearance="outline">   <input matInput formControlName="ingresoMensual" placeholder="Ingreso mensual (Utiliza solo numeros)" appearance="outline"></mat-form-field>   
+            </div>
+         
+        </div>
+        
+        <button mat-raised-button style="width: 50%; background-color: rgb(216, 255, 158); " (click)="agregarPersona()">Agregar persona +</button>
+        <button  mat-raised-button style="width: 50%; background-color: rgb(255, 146, 146);"  (click)="eliminarPersona()">Eliminar persona -</button>
+
+        </div>
+
+      </div>
+
+
+      <div class="secciones">
+        <h2 class="TitleSection">MEDIO DE TRANSPORTE.</h2>
+        <div class="medioTrasnporte" style="justify-content: center;">
+          <H2>Medios de transporte que utilizas para trasladarte de tu casa a la escuela y viceversa.</H2>
+          <mat-radio-group formControlName="mediotransporte">
+            <mat-radio-button value="Auto propio">Auto propio</mat-radio-button>
+            <mat-radio-button value="Auto familiar">Auto familiar</mat-radio-button>
+            <mat-radio-button value="Motocicleta">Motocicleta</mat-radio-button>
+            <mat-radio-button value="Bicicleta">Bicicleta</mat-radio-button>
+            <mat-radio-button value="Transporte público">Transporte público</mat-radio-button>
+            <mat-radio-button value="Caminando">Caminando</mat-radio-button>
+            <mat-radio-button value="Otro">Otro</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="llegadacasaaescuela" style="justify-content: center;">
+          <H2>¿Cuánto tiempo te toma llegar de tu casa a a la escuela?</H2>
+          <mat-radio-group formControlName="tiempollegadacasaescuela">
+            <mat-radio-button value="Menos de 15 minutos">Menos de 15 minutos</mat-radio-button>
+            <mat-radio-button value="De 15  a 30 minutos.">De 15 a 30 minutos.</mat-radio-button>
+            <mat-radio-button value="De 31 min a 1 hr.">De 31 min a 1 hr.</mat-radio-button>
+            <mat-radio-button value="De 1 hr a 1:30  hrs">De 1 hr a 1:30 hrs</mat-radio-button>
+            <mat-radio-button value="De 1:30 hrs a 2 hrs">De 1:30 hrs a 2 hrs</mat-radio-button>
+            <mat-radio-button value="Más de 2  hrs">Más de 2 hrs</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+      </div>
+
+
+
+      <div class="secciones">
+        <h2 class="TitleSection">SECCION DE INCLUSION</h2>
+        <div class="discapacidadquepadece" style="justify-content: center;">
+          <H2>Señala la discapacidad que padeces</H2>
+          <mat-radio-group formControlName="discapacidadquepadece">
+            <mat-radio-button value="Visual">Visual (solo si padeces ceguera)</mat-radio-button>
+            <mat-radio-button value="Auditiva">Auditiva</mat-radio-button>
+            <mat-radio-button value="Motriz">Motocicleta</mat-radio-button>
+            <mat-radio-button value="Física">Física</mat-radio-button>
+            <mat-radio-button value="Intelectual">Intelectual</mat-radio-button>
+            <mat-radio-button value="Mental">Mental</mat-radio-button>
+            <mat-radio-button value="Múltiple">Múltiple (dos o mas de las anteriores)</mat-radio-button>
+            <mat-radio-button value="Ninguna de las anteriores">Ninguna de las anteriores</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="Discapacidad Psicosocial" style="justify-content: center;">
+          <H2>¿Discapacidad Psicosocial: Es la limitación de las personas que presentan disfunciones temporales o
+            permanentes de la mente. Señala si padeces alguna discapacidad psicosocial.</H2>
+          <mat-radio-group formControlName="discapacidadpsicosocial">
+            <mat-radio-button value="Depresión">Depresión</mat-radio-button>
+            <mat-radio-button value="Trastorno de Ansiedad">Trastorno de Ansiedad</mat-radio-button>
+            <mat-radio-button value="Trastorno Bipolar">Trastorno Bipolar.</mat-radio-button>
+            <mat-radio-button value="Esquizofrenia">Esquizofrenia</mat-radio-button>
+            <mat-radio-button value="Psicosis">Psicosis</mat-radio-button>
+            <mat-radio-button value="Trastorno Alimenticio">Trastorno Alimenticio</mat-radio-button>
+            <mat-radio-button value="Trastorno de Espectro Autista">Trastorno de Espectro Autista
+              (TEA)</mat-radio-button>
+            <mat-radio-button value="Trastorno por Déficit de Atención">Trastorno por Déficit de Atención
+              (TDA)</mat-radio-button>
+            <mat-radio-button value="Epilepsia">Epilepsia</mat-radio-button>
+            <mat-radio-button value="Ninguna de las anteriores">Ninguna de las anteriores</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div *ngIf="studySocioeconomicForm.get('discapacidadpsicosocial')?.value !== 'Ninguna de las anteriores'"
+          class="diagnosticado por un profesional" style="justify-content: center;">
+          <H2>La discapacidad que padeces ¿fue diagnosticado por un profesional del área? </H2>
+          <mat-radio-group formControlName="diagnosticadoporunprofesional">
+            <mat-radio-button value="SI">SI</mat-radio-button>
+            <mat-radio-button value="NO">NO</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="Perteneces a una etnia" style="justify-content: center;">
+          <H2>Perteneces a una etnia</H2>
+          <mat-radio-group formControlName="perteneciaaetnia">
+            <mat-radio-button value="SI">SI</mat-radio-button>
+            <mat-radio-button value="NO">NO</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="Cualetnia" *ngIf="studySocioeconomicForm.get('perteneciaaetnia')?.value === 'SI'"
+          style="justify-content: center;">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre de etnia a la que perteneces?</mat-label>
+            <input matInput formControlName="nombreetnia">
+          </mat-form-field>
+        </div>
+
+      </div>
+    </form>
+    <button mat-raised-button style="width: 100%; background-color: rgb(86, 243, 86); margin-top: 2%;"
+      [disabled]="!studySocioeconomicForm.valid" (click)="agregarFichaTecnica()">Guardar</button>
+    <H5 class="custom-alert" *ngIf="!studySocioeconomicForm.valid">*EL BOTON PARA GUARDAR SE HABILITARA CUANDO LLENES
+      TODOS LOS CAMPOS*</H5>
+  </mat-card>
+</ng-container>

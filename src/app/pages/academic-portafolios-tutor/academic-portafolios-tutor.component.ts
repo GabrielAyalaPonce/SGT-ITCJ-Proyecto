@@ -100,7 +100,7 @@ export class AcademicPortafoliosTutorComponent implements OnInit {
   ngOnInit(): void {
     if (this.currentUser) {
       this.afs
-        .collection<PackageI>('packages', (ref) => ref.where('TutorAsignado.uid', '==', this.currentUser!.uid))
+        .collection<PackageI>('packages', (ref) => ref.where('TutorAsignado', '==', this.currentUser!.uid))
         .valueChanges()
         .subscribe((packages: PackageI[]) => {
           const tutorados: User[] = packages

@@ -35,4 +35,5 @@ yoAspiroenlavida: string
 Yotengomiedoque: string
 comentarioadicional: string
 uid: any;
+id: any;
 }

@@ -1,4 +1,5 @@
 import { FichaTecnica } from "./ficha-tecnica";
+import { interviewTutoredI } from "./interview-tutored";
 
 export interface User {
    name: any,
@@ -7,7 +8,8 @@ export interface User {
    repeatPassword: any,
    uid:any;
    Ncontrol:any,
-   fichaTecnica?: FichaTecnica; 
+   fichaTecnica?: any;
+   interview?: any;
    Rol: 'administrador'|'coordinador'|'tutor'|'tutorado'; 
    subscribed?: boolean; 
    token?: string;  

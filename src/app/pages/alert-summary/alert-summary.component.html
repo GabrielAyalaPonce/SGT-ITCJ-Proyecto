@@ -8,7 +8,13 @@
 </div>
 <div class="header" style=" background-image: linear-gradient(163deg, #2bff0063 0%, #fcfbff 100%);
 border-radius: 15px;">
-  <p>FECHA: <input matInput></p>
+<p><mat-form-field>
+  <mat-label>Fecha</mat-label>
+  <input matInput [matDatepicker]="picker">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+ </mat-form-field></p> 
   <p>DEPARTAMENTO: <input matInput></p>
   <p>HORARIO DE TUTORÍA: <input matInput></p> 
   <p>SEMESTRE DE INGRESO: <input matInput></p>
@@ -20,59 +26,61 @@ border-radius: 15px;">
 <table mat-table [dataSource]="dataSource">
   <!-- Nombre del Alumno Column -->
   <ng-container matColumnDef="NOMBRE">
-    <th mat-header-cell *matHeaderCellDef > NOMBRE DEL ALUMNO </th>
-    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.nombre" > </td>
+    <th mat-header-cell *matHeaderCellDef [title]="columnDescriptions['NOMBRE']">NOMBRE</th>
+    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.name"> </td>
   </ng-container>`
 
   <ng-container matColumnDef="#CONTROL">
-    <th mat-header-cell *matHeaderCellDef> # CONTROL</th>
-    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.nombre" > </td>
+    <th mat-header-cell *matHeaderCellDef [title]="columnDescriptions['#CONTROL']"># CONTROL</th>
+    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.Ncontrol" > </td>
   </ng-container>
 
 
   <ng-container matColumnDef="EN$">
-    <th mat-header-cell *matHeaderCellDef>EN$</th>
-    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.nombre"> </td>
+    <th mat-header-cell *matHeaderCellDef [title]="columnDescriptions['EN$']">EN$</th>
+    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.EN$"> </td>
   </ng-container>
 
+
+
   <ng-container matColumnDef="N$">
-    <th mat-header-cell *matHeaderCellDef>N$</th>
-    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.nombre"> </td>
+    <th mat-header-cell *matHeaderCellDef [title]="columnDescriptions['N$']">N$</th>
+    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.N$"> </td>
   </ng-container>
 
   <ng-container matColumnDef="ADA">
-    <th mat-header-cell *matHeaderCellDef>ADA</th>
-    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.nombre"> </td>
+    <th mat-header-cell *matHeaderCellDef [title]="columnDescriptions['ADA']">ADA</th>
+    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.ADA"> </td>
   </ng-container>
 
   <ng-container matColumnDef="BDA">
-    <th mat-header-cell *matHeaderCellDef>BDA</th>
-    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.nombre"> </td>
+    <th mat-header-cell *matHeaderCellDef [title]="columnDescriptions['BDA']">BDA</th>
+    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.BDA"> </td>
   </ng-container>
 
   <ng-container matColumnDef="SM">
-    <th mat-header-cell *matHeaderCellDef>SM</th>
-    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.nombre"> </td>
+    <th mat-header-cell *matHeaderCellDef [title]="columnDescriptions['SM']">SM</th>
+    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.SM"> </td>
   </ng-container>
 
   <ng-container matColumnDef="AE">
-    <th mat-header-cell *matHeaderCellDef>AE</th>
-    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.nombre"> </td>
+        <th mat-header-cell *matHeaderCellDef [title]="columnDescriptions['AE']">AE</th>
+    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.AE"> </td>
   </ng-container>
 
   <ng-container matColumnDef="PSICOLOGIA">
-    <th mat-header-cell *matHeaderCellDef>PSICOLOGIA</th>
-    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.nombre"> </td>
+    <th mat-header-cell *matHeaderCellDef [title]="columnDescriptions['PSICOLOGIA']">PSICOLOGIA</th>
+    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.PSICOLOGIA"> </td>
   </ng-container>
 
-  <ng-container matColumnDef="USODEDROGAS">
-    <th mat-header-cell *matHeaderCellDef>USODEDROGAS</th>
-    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.nombre"> </td>
+  <ng-container matColumnDef="DROGAS">
+    <th mat-header-cell *matHeaderCellDef [title]="columnDescriptions['DROGAS']">DROGAS</th>
+    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.DROGAS"> </td>
   </ng-container>
 
   <ng-container matColumnDef="DISCAPACIDAD">
-    <th mat-header-cell *matHeaderCellDef>DISCAPACIDAD</th>
-    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.nombre"> </td>
+    <th mat-header-cell *matHeaderCellDef [title]="columnDescriptions['DISCAPACIDAD']">DISCAPACIDAD</th>
+    <td mat-cell *matCellDef="let element"> <input matInput [(ngModel)]="element.DISCAPACIDAD"> </td>
   </ng-container>
 
 

@@ -90,8 +90,8 @@ export class SocioEconomicStudyComponent implements OnInit {
     this.user$.pipe(takeUntil(this.unsubscribe$)).subscribe((user) => {
       if (user) {
         this.userFirebaseService.getUserData(user.uid).subscribe((userData) => {
-           console.log(userData);
-          console.log(userData.fichaTecnica);
+          //  console.log(userData);
+          // console.log(userData.fichaTecnica);
           if (userData && userData.fichaTecnica) {
             this.fichaTecnicaService.getFichaTecnica(userData.fichaTecnica).subscribe((fichaInfo) => {
               this.studySocioeconomic = fichaInfo;
@@ -164,7 +164,7 @@ eliminarPersona(): void {
             .subscribe(() => {
               Notiflix.Notify.success('Tu estudio socioeconomico fue actualizado con éxito');
             }, error => {
-              console.error('Error al actualizar la ficha técnica', error);
+              // console.error('Error al actualizar la ficha técnica', error);
             });
         } else {
           // Si no existe una ficha técnica, la creamos
@@ -175,7 +175,7 @@ eliminarPersona(): void {
                   Notiflix.Notify.success('Tu estudio socioeconomico fue creado con éxito');
                 });
             }, error => {
-              console.error('Error al guardar la ficha técnica', error);
+              // console.error('Error al guardar la ficha técnica', error);
             });
         }
       }

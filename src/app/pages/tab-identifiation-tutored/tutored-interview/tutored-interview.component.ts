@@ -132,7 +132,7 @@ export class TutoredInterviewComponent implements OnInit {
             .subscribe(() => {
               Notiflix.Notify.success('Tu entrevista fue actualizada con éxito');
             }, error => {
-              console.error('Error al actualizar la entrevista', error);
+              // console.error('Error al actualizar la entrevista', error);
             });
         } else {
           this.fichaTecnicaService.addInterview(interviewData)
@@ -142,7 +142,7 @@ export class TutoredInterviewComponent implements OnInit {
                   Notiflix.Notify.success('Tu entrevista fue creada con éxito');
                 });
             }, error => {
-              console.error('Error al guardar la entrevista', error);
+              // console.error('Error al guardar la entrevista', error);
             });
         }
       }

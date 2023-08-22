@@ -9,6 +9,7 @@ import { FichaTecnica } from 'src/app/models/ficha-tecnica';
 import { MatDialog } from '@angular/material/dialog';
 import { FichaTecnicaDialogComponent } from '../ficha-tecnica-dialog/ficha-tecnica-dialog.component';
 import { UserFirebaseService } from 'src/app/services/user-firebase.service';
+import { FichaTecnicaService } from 'src/app/services/tab-identifiation-tutored.service';
 
 
 
@@ -26,12 +27,13 @@ export class PackageTutorComponent implements OnInit {
   editandoClave = false;
   publicados: { [packageId: string]: boolean } = {};
   tutoradospkg = [];
-  fichaTecnica!:FichaTecnica;
+  fichatecnicauserId!:string;
   selectedUserUid!: string;
   selectedFichaTecnica: FichaTecnica | null = null;
   temporaryKeys: { [packageId: string]: string } = {};
   loadingPackages: boolean = true; 
   infotutor:any
+  infoficha:any
 
 
   saveKeyAuthorizationedit(paquete: any) {
@@ -44,7 +46,8 @@ export class PackageTutorComponent implements OnInit {
               private packagesService: PackagesService,
               private afAuth: AngularFireAuth,
               private dialog: MatDialog,
-              private userfirebaseservice: UserFirebaseService
+              private userfirebaseservice: UserFirebaseService,
+              private fichatecnicaservice:FichaTecnicaService
               ) { }
 
   ngOnInit(): void {
@@ -282,13 +285,21 @@ this.afAuth.authState.subscribe(user => {
 
 getFichaTecnica(uid: string): void {
   this.firestore.collection('users').doc(uid).get().subscribe((doc) => {
+    
     if (doc.exists) {
       const data = doc.data() as any;
       if (data.fichaTecnica) {
-        this.fichaTecnica = data.fichaTecnica;
-        // console.log(this.fichaTecnica);
-        this.openFichaTecnicaDialog(this.fichaTecnica)
-        this.selectedFichaTecnica = this.fichaTecnica;
+        this.fichatecnicauserId = data.fichaTecnica;
+
+        // console.log(this.fichatecnicauserId);
+
+      this.fichatecnicaservice.getFichaTecnica(this.fichatecnicauserId).subscribe(fichaTecnicaInfo =>{
+        // console.log(fichaTecnicaInfo)
+        this.infoficha = fichaTecnicaInfo
+        this.openFichaTecnicaDialog(this.infoficha)
+        this.selectedFichaTecnica = this.infoficha;
+      })
+    
       } else {
         Notiflix.Notify.failure('Esta ventana no se puede mostrar porque el alumno no ha registrado sus datos socioeconómicos.');
       }

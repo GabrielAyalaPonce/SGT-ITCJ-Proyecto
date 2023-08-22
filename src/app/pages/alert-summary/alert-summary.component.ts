@@ -31,6 +31,7 @@ export class AlertSummaryComponent  {
 
   currentUser: User | null = null;
   tutorados: User[] = [];
+  TotalfilteredTutorados:any
    
   dataSource = new MatTableDataSource<User>([]);
   
@@ -74,84 +75,73 @@ export class AlertSummaryComponent  {
           // console.log('usuario actual', this.currentUser!.email)      
            const tutorados: User[] = packages
           .map(pkg => pkg.tutoradospkg)
+          .filter(tutorado => !!tutorado)  // Agregar este filtro
           .flat()
           .filter(tutorado => tutorado !== undefined && tutorado.Ncontrol !== undefined) as User[];
 
-          this.dataSource.data = tutorados;
-          // console.log('tutorados de este tutor', this.dataSource.data);
-
+          this.dataSource.data = tutorados
+          
           tutorados.forEach(tutorado => {
             this.getFichaTecnicaForTutorado(tutorado.fichaTecnica);
             this.getInterviewForTutorado(tutorado.interview);
           });
       });
     }
+    
 }
 
-shouldIncludeTutorado(tutorado: any): boolean {
-  return tutorado['EN$'] === 'X' || 
-         tutorado['N$'] === 'X' || 
-         tutorado['DROGAS'] === 'X' || 
-         tutorado['DISCAPACIDAD'] === 'X';
-}
 
-getFichaTecnicaForTutorado(fichaTecnicaID: string): void {
+getFichaTecnicaForTutorado(fichaTecnicaID: string): any {
   this.fichaTecnicaService.getFichaTecnica(fichaTecnicaID).subscribe((fichaInfo) => {
+    let tutorados: any[] = this.dataSource.data;
 
+    const tutoradosinfo = tutorados.find(t => t.fichaTecnica === fichaTecnicaID);
 
-    
-      // console.log('fichatecnica', fichaInfo);
+    if (tutoradosinfo) {
+      let cumplioCondiciones = false;
+      let ingresoTotal = 0;
 
-    
-
-      // Obtener tutorados actuales.
-      let tutorados = this.dataSource.data;
-
-      // Buscar tutorado actual basado en fichaTecnicaID (puedes adaptarlo si hay otra forma más directa).
-      let tutorado:any = tutorados.find(t => t.fichaTecnica === fichaTecnicaID);
-
-      // console.log('variable de tutorado',tutorado)
-
-      if (tutorado) {
-      
-        let ingresoTotal = 0;
-        if (fichaInfo.viveconeingresos && fichaInfo.viveconeingresos.length > 0) {
-            ingresoTotal = fichaInfo.viveconeingresos.reduce((acc: number, curr: any) => acc + Number(curr.ingresoMensual), 0);
-        }
-
-              console.log('ingresos',ingresoTotal)
-
-          // Agrega X en las columnas adecuadas.
-          if (ingresoTotal <= 4000) {
-              tutorado['EN$'] = 'X';
-          }
-          if (ingresoTotal >= 4000 && ingresoTotal <= 6000) {
-              tutorado['N$'] = 'X';
-          }
-          if (fichaInfo.usodedrogas === 'SI') {
-              tutorado['DROGAS'] = 'X';
-          }
-          if (fichaInfo.discapacidadquepadece !== "Ninguna de las anteriores") {
-              tutorado['DISCAPACIDAD'] = 'X';
-          }
-
-          if (!this.shouldIncludeTutorado(tutorado)) {
-            return; // Si no cumple con ninguna condición, no lo agregues al dataSource
-        }
-
-
-          // Actualizar tutorados en el dataSource.
-          this.dataSource.data = [...tutorados];
-
-          console.log('datos actualizados', this.dataSource.data)
+      if (fichaInfo.viveconeingresos && fichaInfo.viveconeingresos.length > 0) {
+        ingresoTotal = fichaInfo.viveconeingresos.reduce((acc: number, curr: any) => acc + Number(curr.ingresoMensual), 0);
       }
+
+      if (ingresoTotal <= 4000) {
+        tutoradosinfo['EN$'] = 'X';
+        cumplioCondiciones = true;
+      }
+      if (ingresoTotal >= 4000 && ingresoTotal <= 6000) {
+        tutoradosinfo['N$'] = 'X';
+        cumplioCondiciones = true;
+      }
+      if (fichaInfo.usodedrogas === 'SI') {
+        tutoradosinfo['DROGAS'] = 'X';
+        cumplioCondiciones = true;
+      }
+      if (fichaInfo.discapacidadquepadece !== "Ninguna de las anteriores") {
+        tutoradosinfo['DISCAPACIDAD'] = 'X';
+        cumplioCondiciones = true;
+      }
+
+      // Si no cumple con ninguna de las condiciones, lo removemos de la lista
+      if (!cumplioCondiciones) {
+        const index = tutorados.indexOf(tutoradosinfo);
+        if (index > -1) {
+          tutorados.splice(index, 1);
+        }
+      }
+
+      // Actualizar el dataSource
+      this.dataSource.data = tutorados;
+    }
   });
 }
 
 
+
+
 getInterviewForTutorado(interviewID: string): void {
     this.fichaTecnicaService.getInterviews(interviewID).subscribe((interviewInfo) => {
-        console.log('entrevista', interviewInfo)
+        // console.log('entrevista', interviewInfo)
     });
 }
 

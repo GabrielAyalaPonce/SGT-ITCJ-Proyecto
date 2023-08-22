@@ -1,12 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UserFirebaseService } from 'src/app/services/user-firebase.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatTable } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
 import { User } from 'src/app/models/user';
 import {PackageI} from 'src/app/models/packages';
-import { AuthService } from 'src/app/services/usersAuthServices';
 import 'firebase/auth';
 import 'firebase/compat/auth';
 import firebase from 'firebase/compat/app';
@@ -16,7 +11,6 @@ import 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import { ElementRef } from '@angular/core';
 import { FichaTecnicaService } from 'src/app/services/tab-identifiation-tutored.service';
 
 
@@ -144,5 +138,67 @@ getInterviewForTutorado(interviewID: string): void {
         // console.log('entrevista', interviewInfo)
     });
 }
+
+
+generatePDF() {
+  const doc = new jsPDF();
+
+  // Título y encabezados
+  doc.setFontSize(18);
+  doc.text("RESUMEN DE ALERTAS", 10, 20);
+  doc.setFontSize(16);
+  doc.text("INSTITUTO TECNOLÓGICO DE CD. JUÁREZ", 10, 30);
+  doc.text("PROGRAMA INSTITUCIONAL DE TUTORÍAS", 10, 40);
+  
+
+  const fechaElement = document.querySelector("p input[matInput]:nth-child(1)") as HTMLInputElement;
+  const fecha = fechaElement ? fechaElement.value : 'No se ingreso';
+  
+  const departamentoElement = document.querySelector("p input[matInput]:nth-child(2)") as HTMLInputElement;
+  const departamento = departamentoElement ? departamentoElement.value : 'No se ingreso';
+
+  const horariodeTutoriaElement = document.querySelector("p input[matInput]:nth-child(3)") as HTMLInputElement;
+  const horario = horariodeTutoriaElement ? horariodeTutoriaElement.value : 'No se ingreso';
+
+  const semestredeingresoElement = document.querySelector("p input[matInput]:nth-child(4)") as HTMLInputElement;
+  const semestre = semestredeingresoElement ? semestredeingresoElement.value : 'No se ingreso';
+
+  const carreraElement = document.querySelector("p input[matInput]:nth-child(5)") as HTMLInputElement;
+  const carrera = carreraElement ? carreraElement.value : 'No se ingreso';
+
+  const claveygrupoElement = document.querySelector("p input[matInput]:nth-child(6)") as HTMLInputElement;
+  const claveygrupo = claveygrupoElement ? claveygrupoElement.value : 'No se ingreso';
+  
+  const nombretutorElement = document.querySelector("p input[matInput]:nth-child(7)") as HTMLInputElement;
+  const nombretutor = nombretutorElement ? nombretutorElement.value : 'No se ingreso';
+ 
+
+  doc.setFontSize(12);
+  doc.text(`Fecha: ${fecha}`, 10, 50);
+  doc.text(`Departamento: ${departamento}`, 100, 50);
+  doc.text(`Horario de Tutoria: ${horario}`, 10, 60);
+  doc.text(`Semestre de ingreso: ${semestre}`, 100, 60);
+  doc.text(`Carrera: ${carrera}`, 10, 70);
+  doc.text(`Clave y Grupo: ${claveygrupo}`, 100, 70);
+  doc.text(`Nombre Tutor: ${nombretutor}`, 65, 90);
+
+  // ... Añade los otros campos aquí
+
+  // Crear tabla con los datos
+  const headers = ["NOMBRE", "#CONTROL", "EN$", "N$", "ADA", "BDA", "SM", "AE", "PSICOLOGIA", "DROGAS", "DISCAPACIDAD"];
+  const data = this.dataSource.data.map((item:any) => [
+    item.name, item.Ncontrol, item['EN$'], item['N$'], item.ADA, item.BDA, item.SM, item.AE, item.PSICOLOGIA, item.DROGAS, item.DISCAPACIDAD
+  ]);
+
+  (doc as any).autoTable({
+    startY: 100,
+    head: [headers],
+    body: data
+  });
+
+  // Guardar el PDF
+  doc.save("Reporte-De-Resumen-Alertas.pdf");
+}
+
 
 }
